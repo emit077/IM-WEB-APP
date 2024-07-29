@@ -18,14 +18,14 @@
   <div>
     <!--  tabs -->
     <div id="payment-tab">
-      <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+      <v-tabs
+        v-model="tab"
+        background-color="transparent"
+        color="basil"
+        grow
+      >
         <v-tab
-          v-for="(item, i) in [
-            'Subscription Payments',
-            'Student Reg. Payment',
-            'Tutor Reg. Payment',
-            'EMIs'
-          ]"
+          v-for="(item, i) in tab_list"
           :key="i"
           class="tab-btn mr-1 px-3"
           active-class="tab-btn-active"
@@ -79,8 +79,24 @@ export default {
   data() {
     return {
       tab: "",
+      tab_list: [],
     };
   },
-  methods: {},
+  created() {
+    if (this.$store.state.user.account_type == this.$keys.ACCOUNT_STUDENT)
+      this.tab_list = ["Subscription Payments", "Student Reg. Payment"];
+    else if (this.$store.state.user.account_type == this.$keys.ACCOUNT_TEACHER)
+      this.tab_list = ["Tutor Reg. Payment"];
+    else
+      this.tab_list = [
+        "Subscription Payments",
+        "Student Reg. Payment",
+        "Tutor Reg. Payment",
+        "EMIs",
+      ];
+  },
+  methods: {
+    getItems() {},
+  },
 };
 </script>
