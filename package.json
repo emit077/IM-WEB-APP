@@ -6,9 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern-only",
     "lint": "vue-cli-service lint",
-    "im-prod": "sh im-prod.sh",
-    "tf-prod": "sh tf-prod.sh",
-    "staging": "sh staging.sh"
+    "im-prod": "sh im-prod.sh"
   },
   "dependencies": {
     "@cashfreepayments/cashfree-js": "^1.0.4",
