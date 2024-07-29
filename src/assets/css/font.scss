@@ -1,0 +1,153 @@
+/** all the font style is written here for global use**/
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
+.ff-noto {
+  font-family: Noto Sans;
+}
+
+.page-link,
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.color-theme-yellow {
+  color: #FFF200;
+}
+
+.color-theme-blue {
+  color: #32345F;
+}
+
+.fs-44 {
+  font-size: 36px;
+  line-height: 49px;
+}
+
+.fs-36 {
+  font-size: 36px;
+  line-height: 49px;
+}
+
+.fs-32 {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+.fs-22 {
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.fs-25 {
+  font-size: 25px;
+  line-height: 32px;
+}
+
+.fs-18 {
+  font-size: 18px !important;
+  line-height: 25px;
+}
+
+.fs-16 {
+  font-size: 16px !important;
+  line-height: 22px;
+}
+
+.fs-14 {
+  font-size: 14px !important;
+  line-height: 19px;
+}
+
+.fs-12 {
+  font-size: 12px !important;
+  line-height: 18px;
+}
+
+.fs-10 {
+  font-size: 10px !important;
+  line-height: 16px;
+}
+
+.fc-primary {
+  color: #03014C;
+}
+.fc-primary-light {
+  color: #8180A6;
+}
+.fc-secondary {
+  color: #FFF200;
+}
+
+.fc-white {
+  color: #FFFFFF;
+}
+.fc-theme-green{
+  color: #4CAF50;
+}
+
+/* font weight variation */
+.fw-bold {
+  font-weight: bold;
+}
+
+.card-header-text {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+  padding: 12px 0px;
+}
+
+.title-text-1 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  color: #32345F;
+}
+
+.label-text-1 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #797979;
+}
+
+.text-1 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: #424242;
+}
+
+.add-new-btn-text {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.2px;
+  color: #32345F;
+}
+
+
+.custom-form .label-text {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  margin-bottom: 5px;
+  color: #6C6BA2;
+}
+
