@@ -1,6 +1,6 @@
 export default {
   NAME: "IM",
   // ENV: "LOCAL",
-  ENV:"PRODUCTION",
+  ENV: "PRODUCTION",
   // ENV:"STAGING",
 };

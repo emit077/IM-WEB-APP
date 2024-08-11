@@ -5,10 +5,10 @@ const keys = {
   IM: "IM",
   TF: "TF",
 
-  PROJECT_NAME:"Indian Mentors",
-  PROJECT_LEGAL_NAME:"AFRISHA INDIAN MENTORS PRIVATE LIMITED",
+  PROJECT_NAME: "Indian Mentors",
+  PROJECT_LEGAL_NAME: "AFRISHA INDIAN MENTORS PRIVATE LIMITED",
 
-  MINIMUM_WITHDRAW_AMOUNT: 500,
+  MINIMUM_WITHDRAW_AMOUNT: 1000,
 
   ACCOUNT_STUDENT: "Student",
   ACCOUNT_TEACHER: "Teacher",
@@ -95,7 +95,7 @@ const keys = {
   PAYOUT_STATUS_PENDING: "Pending",
   PAYOUT_STATUS_APPROVED: "Approved",
   PAYOUT_STATUS_REJECTED: "Rejected",
-  
+
 };
 
 export default keys;
