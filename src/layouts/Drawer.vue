@@ -10,7 +10,6 @@
   font-weight: 600 !important;
   font-size: 13px !important;
   line-height: 15px;
-  color: #ffffff;
 }
 
 .drawer_list .v-list-item--link::before {
@@ -18,15 +17,16 @@
 }
 
 .drawer_list .v-list-item--active .drawer-text {
-  color:rgb(var(--primary_rgb)) !important;
+  color: rgb(var(--primary_rgb)) !important;
   font-weight: bold !important;
 }
-
-a.v-list-item--active {
-  background: yellow !important;
-  // margin: 0px 5px;
+a.v-list-item {
+  border-left: 7px solid transparent;
   border-radius: 10px;
   font-weight: bold !important;
+}
+a.v-list-item--active {
+  border-left: 7px solid rgb(var(--primary_rgb));
 }
 </style>
 
@@ -36,29 +36,44 @@ a.v-list-item--active {
       v-model="$store.state.drawer.drawer"
       app
       class="elevation-0 navbar-custome-style"
-      color="primary"
-      width="210"
+      color="surface"
+      width="220"
       height="99.9%"
     >
       <template v-slot:prepend>
+        <!-- user profile  -->
+        <div class="d-flex py-3 px-2" style="align-items: center">
+          <v-avatar size="40" color="primary" class="white--text" title="Indian Mentors">
+            <img src="@/assets/im-logo/im-logo-icon.svg" alt="" />
+          </v-avatar>
+          <div class="pl-2">
+            <p
+              class="ma-0 fs-16 primary--text overflow-hidden"
+              style="
+                line-height: 110%;
+                width: 150px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              "
+            >
+              {{ $store.state.user.name }}
+            </p>
+            <small class="ma-0">{{ $store.state.user.account_type }}</small>
+          </div>
+        </div>
+        <!--  -->
         <!--   logo   -->
-        <div class="text-center">
+        <!-- <div class="text-center">
           <img
             class="my-2 text-center"
             src="@/assets/im-logo/logo-white.svg"
             width="170px"
             v-if="$project.NAME == 'IM'"
           />
-          <img
-            class="my-2 text-center"
-            src="@/assets/logo/logo.svg"
-            width="130px"
-            v-else
-          />
-        </div>
+        </div> -->
         <!--   logo end    -->
       </template>
-      <hr />
+      <v-divider></v-divider>
       <div class="py-2">
         <v-list class="pa-0 drawer_list" dense nav>
           <div v-for="(item, i) in getDrawerItems" :key="i">
@@ -82,7 +97,7 @@ a.v-list-item--active {
       <template v-slot:append>
         <div class="pa-1 text-center">
           <v-divider />
-          <v-btn :ripple="false" text color="theme_yellow" @click="logout">
+          <v-btn :ripple="false" small color="primary" @click="logout" class="mt-2">
             <span>{{ $lang.LOGOUT }}</span>
           </v-btn>
         </div>

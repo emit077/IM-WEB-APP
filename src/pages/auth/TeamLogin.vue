@@ -1,4 +1,3 @@
-
 <style lang="scss">
 .login-card {
   max-width: 480px;
@@ -54,26 +53,29 @@
             v-if="$project.NAME == 'IM'"
           />
           <img alt="logo" class="logo-img" src="@/assets/logo/logo.svg" v-else />
-          <h3 class="text-center white--text my-5">- Welcome back to work  -</h3>
+          <h3 class="text-center white--text my-5">- Welcome back to work -</h3>
         </div>
         <!-- brand logo end -->
-        <div class="px-9 py-10 elevation-10  border-r-30 bg-white">
-            <v-stepper v-model="step" class="elevation-0">
-              <v-stepper-items class="">
-                <v-stepper-content step="1">
-                  <LoginForm @step-change="manageStep" @update="getTokens"></LoginForm>
-                </v-stepper-content>
-                <v-stepper-content step="2">
-                  <ForgetPassword @step-change="manageStep"></ForgetPassword>
-                </v-stepper-content>
-                <v-stepper-content step="3">
-                  <ResetPassword @step-change="manageStep"></ResetPassword>
-                </v-stepper-content>
-                <v-stepper-content step="4">
-                  <VerifyAccount @step-change="manageStep" :otp_token="otp_token"></VerifyAccount>
-                </v-stepper-content>
-              </v-stepper-items>
-            </v-stepper>
+        <div class="px-9 py-10 elevation-10 border-r-30 bg-white">
+          <v-stepper v-model="step" class="elevation-0">
+            <v-stepper-items class="">
+              <v-stepper-content step="1">
+                <LoginForm @step-change="manageStep" @update="getTokens"></LoginForm>
+              </v-stepper-content>
+              <v-stepper-content step="2">
+                <ForgetPassword @step-change="manageStep"></ForgetPassword>
+              </v-stepper-content>
+              <v-stepper-content step="3">
+                <ResetPassword @step-change="manageStep"></ResetPassword>
+              </v-stepper-content>
+              <v-stepper-content step="4">
+                <VerifyAccount
+                  @step-change="manageStep"
+                  :otp_token="otp_token"
+                ></VerifyAccount>
+              </v-stepper-content>
+            </v-stepper-items>
+          </v-stepper>
         </div>
       </div>
     </div>
@@ -94,9 +96,11 @@ export default {
     step: 1,
     otp_token: "",
   }),
-  created(){
-    /* setting the favicon*/ 
-    document.querySelector("link[rel~='icon']").outerHTML=`<link rel="icon" href="./${this.$project.NAME}-fevicon.png">`
+  created() {
+    /* setting the favicon*/
+    document.querySelector(
+      "link[rel~='icon']"
+    ).outerHTML = `<link rel="icon" href="./${this.$project.NAME}-fevicon.png">`;
   },
   methods: {
     manageStep(step) {

@@ -31,9 +31,9 @@ export default {
     /* import end */
 
     /* setting the favicon*/
-    document.querySelector(
-      "link[rel~='icon']"
-    ).outerHTML = `<link rel="icon" href="./${this.$project.NAME}-fevicon.png">`;
+    // document.querySelector(
+    //   "link[rel~='icon']"
+    // ).outerHTML = `<link rel="icon" href="./${this.$project.NAME}-fevicon.png">`;
   },
   methods: {
     ...mapActions([

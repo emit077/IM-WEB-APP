@@ -5,7 +5,10 @@
       <v-row justify="end" v-if="$store.state.user.account_type == $keys.ACCOUNT_TEACHER">
         <v-col class="" md="6">
           <div class="text-right">
-            <span class="fc-primary cursor-pointer" @click="$router.push({ name: 'sessions_start' })">
+            <span
+              class="fc-primary cursor-pointer"
+              @click="$router.push({ name: 'sessions_start' })"
+            >
               {{ $lang.START_SESSION }}
               <v-btn color="primary" depressed fab x-small>
                 <v-icon size="24">mdi-plus</v-icon>
@@ -17,8 +20,17 @@
     </div>
     <v-row class="mb-6">
       <v-col cols="12" md="6">
-        <v-text-field v-model="search_query" :placeholder="$lang.STUDENT_SEARCH" append-icon="mdi-magnify" dense
-          hide-details outlined rounded single-line @keyup="getSessionList"></v-text-field>
+        <v-text-field
+          v-model="search_query"
+          :placeholder="$lang.STUDENT_SEARCH"
+          append-icon="mdi-magnify"
+          dense
+          hide-details
+          outlined
+          rounded
+          single-line
+          @keyup="getSessionList"
+        ></v-text-field>
       </v-col>
       <v-col class="" cols="3" md="2">
         <div>
@@ -34,9 +46,17 @@
       </v-col>
     </v-row>
     <div>
-      <v-data-table :disable-sort="true" :headers="headers" :hide-default-footer="true" :items="session_list"
-        :items-per-page="$keys.PAGE_LENGTH" :loading="table_loading" :single-select="singleSelect"
-        class="elevation-1 custom-header-bg custom-table-body" item-key="shipment_id">
+      <v-data-table
+        :disable-sort="true"
+        :headers="headers"
+        :hide-default-footer="true"
+        :items="session_list"
+        :items-per-page="$keys.PAGE_LENGTH"
+        :loading="table_loading"
+        :single-select="singleSelect"
+        class="elevation-1 custom-header-bg custom-table-body"
+        item-key="shipment_id"
+      >
         <!-- tutor info -->
         <template v-slot:[`item.tutor_name`]="{ item }">
           <div>
@@ -54,9 +74,17 @@
         </template>
 
         <template v-slot:[`item.action1`]="{ item }">
-          <v-switch v-model="item.is_active" :class="item.is_active ? 'active-toggle-btn' : 'deactive-toggle-btn'"
-            :ripple="false" class="custom-toggle-btn" color="error" dense inset
-            style="display: inline-flex; width: 50px" @click="openToggleAccountDialog(item)"></v-switch>
+          <v-switch
+            v-model="item.is_active"
+            :class="item.is_active ? 'active-toggle-btn' : 'deactive-toggle-btn'"
+            :ripple="false"
+            class="custom-toggle-btn"
+            color="error"
+            dense
+            inset
+            style="display: inline-flex; width: 50px"
+            @click="openToggleAccountDialog(item)"
+          ></v-switch>
         </template>
 
         <!-- duration info -->
@@ -67,29 +95,56 @@
         <template v-slot:[`item.action`]="{ item, index }">
           <!-- duration info -->
           <div
-            v-if="!item.is_approved && [$keys.ACCOUNT_SUPER_ADMIN, $keys.ACCOUNT_ADMIN, $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR, $keys.ACCOUNT_STUDENT].includes(getUser.account_type)"
-            class="d-inline">
-            <v-btn color="success" class="py-2 px-2" @click="openDialog(item, index)" style="height:auto !important"> <small>{{ $lang.APPROVE }}</small>
+            v-if="
+              !item.is_approved &&
+              [
+                $keys.ACCOUNT_SUPER_ADMIN,
+                $keys.ACCOUNT_ADMIN,
+                $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+                $keys.ACCOUNT_STUDENT,
+              ].includes(getUser.account_type)
+            "
+            class="d-inline"
+          >
+            <v-btn
+              color="success"
+              :loading="confirmation_dialog_data.flag"
+              class="py-2 px-2"
+              @click="openDialog(item, index)"
+              style="height: auto !important"
+            >
+              <small>{{ $lang.APPROVE }}</small>
             </v-btn>
           </div>
           <!--  -->
-          <div class="d-inline" @click="
-        $router.push({
-          name: 'sessions_details',
-          params: { session_table_id: encrypt(item.id) },
-        })
-        ">
+          <div
+            class="d-inline"
+            @click="
+              $router.push({
+                name: 'sessions_details',
+                params: { session_table_id: encrypt(item.id) },
+              })
+            "
+          >
             <TableDetailBtn></TableDetailBtn>
           </div>
         </template>
       </v-data-table>
-      <v-pagination v-model="page_number" :length="total_page_count" :total-visible="7" class="custom-pagination"
-        @input="getSessionList"></v-pagination>
+      <v-pagination
+        v-model="page_number"
+        :length="total_page_count"
+        :total-visible="7"
+        class="custom-pagination"
+        @input="getSessionList"
+      ></v-pagination>
     </div>
 
     <!--  -->
     <FilterDialog :filter_data="filter_data" @filter="getSessionList" />
-    <ConfirmationDialog :data="confirmation_dialog_data" @yes="approveSession"></ConfirmationDialog>
+    <ConfirmationDialog
+      :data="confirmation_dialog_data"
+      @yes="approveSession"
+    ></ConfirmationDialog>
   </div>
 </template>
 
@@ -154,6 +209,7 @@ export default {
         title: "",
         message: "",
         payment_table_id: null,
+        btn_loader: false,
       },
     };
   },
@@ -214,7 +270,7 @@ export default {
         self.dialog.flag = false;
         self.getSessionList();
       };
-      const finallyHandler = () => { };
+      const finallyHandler = () => {};
       this.request_POST(
         self,
         self.$urls.TOGGLE_ACCOUNT_STATUS,
@@ -244,7 +300,7 @@ export default {
     /* aprove the session data*/
     approveSession() {
       const self = this;
-      self.btn_loader = true;
+      self.confirmation_dialog_data.btn_loader = true;
       var form = new FormData();
       form.append("session_table_id", this.confirmation_dialog_data.session_table_id);
       const successHandler = (response) => {
@@ -254,7 +310,7 @@ export default {
         }
       };
       const finallyHandler = () => {
-        self.btn_loader = false;
+        self.confirmation_dialog_data.btn_loader = false;
       };
       this.request_POST(
         self,
