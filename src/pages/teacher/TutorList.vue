@@ -22,12 +22,12 @@
           </div>
         </div>
       </v-col>
-      <v-col class="text-right mt-4" cols="12" md="4" v-if="$project.NAME== $keys.TF">
+      <v-col class="text-right mt-4" cols="12" md="4" v-if="$project.NAME == $keys.TF">
         <span
           @click="downloadExcel"
           :style="{
             opacity:
-            tutor_filter_data.filter_date_from && tutor_filter_data.filter_date_to
+              tutor_filter_data.filter_date_from && tutor_filter_data.filter_date_to
                 ? 1
                 : 0.4,
           }"
@@ -264,6 +264,8 @@ export default {
             : null,
         filter_date_from: this.tutor_filter_data.filter_date_from,
         filter_date_to: this.tutor_filter_data.filter_date_to,
+
+        gender: this.tutor_filter_data.gender,
         time_slot_table_id_list: JSON.stringify(this.tutor_filter_data.time_slot_id_list),
       };
       const successHandler = (response) => {

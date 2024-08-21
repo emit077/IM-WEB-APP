@@ -23,16 +23,21 @@
 }
 
 .border-r {
-  border-right: solid 2px #8180A6;
+  border-right: solid 2px #8180a6;
 }
 
 .border-b {
-  border-bottom: solid 2px #8180A6;
+  border-bottom: solid 2px #8180a6;
 }
 </style>
 
 <template>
-  <v-dialog v-model="filter_data.flag" width="600" class="filter-dialog" :scollable="false">
+  <v-dialog
+    v-model="filter_data.flag"
+    width="600"
+    class="filter-dialog"
+    :scollable="false"
+  >
     <v-card class="dialog-body">
       <v-card-text class="pa-0">
         <v-btn class="cross-btn" fab small text>
@@ -48,18 +53,30 @@
           <!--  Left Part of the filter -->
 
           <v-col md="4" class="border-r pl-4">
-            <p class="filter-sub-title fw-bold fs-16 ">{{ $lang.FILTER_USING }}</p>
+            <p class="filter-sub-title fw-bold fs-16">{{ $lang.FILTER_USING }}</p>
 
             <div v-for="(item, i) in filter_option" :key="i">
               <div class="py-1 my-1 cursor-pointer" @click="step = i + 1">
-
-                <span v-if="i == 0" class="" :class="step == i + 1 ? 'fc-primary-light font-weight-bold fs-16' : ''"
-                  @click="getClassList">{{ item }}</span>
-                <span v-else-if="i == 1" class=""
-                  :class="step == i + 1 ? 'fc-primary-light font-weight-bold fs-16' : ''" @click="getCityList">{{ item
-                  }}</span>
-                <span v-else class="" :class="step == i + 1 ? 'fc-primary-light font-weight-bold fs-16' : ''">{{ item
-                  }}</span>
+                <span
+                  v-if="i == 0"
+                  class=""
+                  :class="step == i + 1 ? 'fc-primary-light font-weight-bold fs-16' : ''"
+                  @click="getClassList"
+                  >{{ item }}</span
+                >
+                <span
+                  v-else-if="i == 1"
+                  class=""
+                  :class="step == i + 1 ? 'fc-primary-light font-weight-bold fs-16' : ''"
+                  @click="getCityList"
+                  >{{ item }}</span
+                >
+                <span
+                  v-else
+                  class=""
+                  :class="step == i + 1 ? 'fc-primary-light font-weight-bold fs-16' : ''"
+                  >{{ item }}</span
+                >
               </div>
             </div>
           </v-col>
@@ -68,14 +85,21 @@
           <v-col md="8" class="px-0 filter-main-body">
             <v-stepper v-model="step" class="elevation-0">
               <v-stepper-items>
-
                 <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
                 <!-- $$$$$$$$$$$$$$ class type $$$$$$$$$$$$$-->
                 <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
                 <v-stepper-content step="1">
-                  <v-checkbox v-for="(item, i) in class_list" :key="i" v-model="filter_data.class_id_list"
-                    :label="item.class_name" :value="item.id" @change="manageCount" class="ml-2 mt-0 mb-2" dense
-                    hide-details>
+                  <v-checkbox
+                    v-for="(item, i) in class_list"
+                    :key="i"
+                    v-model="filter_data.class_id_list"
+                    :label="item.class_name"
+                    :value="item.id"
+                    @change="manageCount"
+                    class="ml-2 mt-0 mb-2"
+                    dense
+                    hide-details
+                  >
                     <template v-slot:label>
                       <div>
                         <p class="sub-title-text-dark mb-0">{{ item.class_name }}</p>
@@ -88,12 +112,28 @@
                 <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
                 <v-stepper-content step="2" class="py-0 px-3">
                   <div class="mb-3">
-                    <v-text-field v-model="city_search_query" :placeholder="$lang.SEARCH" @keyup="getCityList" outlined
-                      dense rounded append-icon="mdi-magnify" class="mt-1" hide-details></v-text-field>
+                    <v-text-field
+                      v-model="city_search_query"
+                      :placeholder="$lang.SEARCH"
+                      @keyup="getCityList"
+                      outlined
+                      dense
+                      rounded
+                      append-icon="mdi-magnify"
+                      class="mt-1"
+                      hide-details
+                    ></v-text-field>
                   </div>
                   <div class="scrollable-box">
-                    <v-checkbox v-for="city in city_list" :key="city.id" v-model="filter_data.city_id_list"
-                      :label="city.city" :value="city.city" @change="manageCount" class="ml-2 mt-0">
+                    <v-checkbox
+                      v-for="city in city_list"
+                      :key="city.id"
+                      v-model="filter_data.city_id_list"
+                      :label="city.city"
+                      :value="city.city"
+                      @change="manageCount"
+                      class="ml-2 mt-0"
+                    >
                       <template v-slot:label>
                         <div>
                           <p class="sub-title-text-dark">
@@ -108,9 +148,17 @@
                 <!-- $$$$$$$$$$$$$$ STATUS FILTER $$$$$$$$$$$$$-->
                 <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
                 <v-stepper-content step="3">
-                  <v-checkbox v-for="(item, i) in student_status_options" :key="i"
-                    v-model="filter_data.student_status_list" :label="item.text" :value="item.value"
-                    @change="manageCount" dense hide-details class="ml-2 mt-0 mb-2 ">
+                  <v-checkbox
+                    v-for="(item, i) in student_status_options"
+                    :key="i"
+                    v-model="filter_data.student_status_list"
+                    :label="item.text"
+                    :value="item.value"
+                    @change="manageCount"
+                    dense
+                    hide-details
+                    class="ml-2 mt-0 mb-2"
+                  >
                     <template v-slot:label>
                       <div>
                         <p class="sub-title-text-dark mb-0">{{ item.text }}</p>
@@ -123,31 +171,60 @@
                 <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
                 <v-stepper-content step="4">
                   <v-radio-group v-model="filter_data.profile_status" column>
-                    <v-radio v-for="(item, i) in profile_status_options" :key="i" :label="item" color="primary"
-                      :value="item"></v-radio>
+                    <v-radio
+                      v-for="(item, i) in profile_status_options"
+                      :key="i"
+                      :label="item"
+                      color="primary"
+                      :value="item"
+                    ></v-radio>
+                  </v-radio-group>
+                </v-stepper-content>
+                <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                <!-- $$$$$$$$$$$$$$ GENDER FILTER $$$$$$$$$$$$$-->
+                <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                <v-stepper-content step="5">
+                  <v-radio-group v-model="filter_data.gender" column>
+                    <v-radio
+                      v-for="(item, i) in ['Male', 'Female', 'Other']"
+                      :key="i"
+                      :label="item"
+                      color="primary"
+                      :value="item"
+                    ></v-radio>
                   </v-radio-group>
                 </v-stepper-content>
                 <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
                 <!-- $$$$$$$$$$$$$$ DATE FILTER $$$$$$$$$$$$$-->
                 <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
-                <v-stepper-content step="5" class="px-5 py-0">
+                <v-stepper-content step="6" class="px-5 py-0">
                   <div>
                     <!-- from date  -->
                     <div>
                       <v-menu bottom origin="center center" transition="scale-transition">
                         <template v-slot:activator="{ on, attrs }">
                           <div class="elevation-0" v-bind="attrs" v-on="on">
-                            <label class="">
-                              {{ $lang.FROM_DATE }}
-                            </label><br>
+                            <label class=""> {{ $lang.FROM_DATE }} </label><br />
                             <div>
-                              <v-text-field v-model="d_form_date" placeholder="From date" dense outlined single-line
-                                maxlength="2" readonly hide-details></v-text-field>
+                              <v-text-field
+                                v-model="d_form_date"
+                                placeholder="From date"
+                                dense
+                                outlined
+                                single-line
+                                maxlength="2"
+                                readonly
+                                hide-details
+                              ></v-text-field>
                             </div>
                           </div>
                         </template>
-                        <v-date-picker v-model="form_date" @change="dateChangeHandler()" :max="today"
-                          style="z-index: 5">
+                        <v-date-picker
+                          v-model="form_date"
+                          @change="dateChangeHandler()"
+                          :max="today"
+                          style="z-index: 5"
+                        >
                         </v-date-picker>
                       </v-menu>
                     </div>
@@ -155,17 +232,28 @@
                     <div>
                       <v-menu bottom origin="center center" transition="scale-transition">
                         <template v-slot:activator="{ on, attrs }">
-                          <div class="elevation-0 " v-bind="attrs" v-on="on">
-                            <label class="">
-                              {{ $lang.TO_DATE }}
-                            </label><br>
+                          <div class="elevation-0" v-bind="attrs" v-on="on">
+                            <label class=""> {{ $lang.TO_DATE }} </label><br />
                             <div>
-                              <v-text-field v-model="d_to_date" placeholder="To date" dense outlined single-line
-                                maxlength="2" readonly hide-details></v-text-field>
+                              <v-text-field
+                                v-model="d_to_date"
+                                placeholder="To date"
+                                dense
+                                outlined
+                                single-line
+                                maxlength="2"
+                                readonly
+                                hide-details
+                              ></v-text-field>
                             </div>
                           </div>
                         </template>
-                        <v-date-picker v-model="to_date" @change="dateChangeHandler()" :min="form_date" :max="today">
+                        <v-date-picker
+                          v-model="to_date"
+                          @change="dateChangeHandler()"
+                          :min="form_date"
+                          :max="today"
+                        >
                         </v-date-picker>
                       </v-menu>
                     </div>
@@ -201,7 +289,7 @@
   </v-dialog>
 </template>
 <script>
-import HelperMixin from '@/helper/mixins/helper-mixin'
+import HelperMixin from "@/helper/mixins/helper-mixin";
 
 export default {
   mixins: [HelperMixin],
@@ -209,9 +297,12 @@ export default {
   data() {
     return {
       step: 1,
-      filter_option: ["Class", "City", "Status", "Profile Status", "Date"],
+      filter_option: ["Class", "City", "Status", "Profile Status", "Gender", "Date"],
       class_list: [],
-      student_status_options: [{ text: "Active", value: 1 }, { text: "Blocked", value: 0 }],
+      student_status_options: [
+        { text: "Active", value: 1 },
+        { text: "Blocked", value: 0 },
+      ],
       profile_status_options: ["Incomplete", "Completed", "Active"],
 
       today: new Date().toISOString().substr(0, 10),
@@ -252,12 +343,14 @@ export default {
     },
     /* manage the filter count*/
     manageCount() {
-      let count = 0
-      count += this.filter_data.city_id_list.length
-      count += this.filter_data.class_id_list.length
-      if (this.filter_data.student_status_list.length > 1) count += this.filter_data.student_status_list.length
-      if (this.filter_data.profile_status) count += 1
-      if (this.filter_data.filter_date_from) count += 1
+      let count = 0;
+      count += this.filter_data.city_id_list.length;
+      count += this.filter_data.class_id_list.length;
+      if (this.filter_data.student_status_list.length > 1)
+        count += this.filter_data.student_status_list.length;
+      if (this.filter_data.profile_status) count += 1;
+      if (this.filter_data.filter_date_from) count += 1;
+      if (this.filter_data.gender) count += 1;
       this.filter_count = count;
     },
     applyFilter() {
@@ -271,19 +364,21 @@ export default {
         filter_date_from: this.filter_data.filter_date_from,
         filter_date_to: this.filter_data.filter_date_to,
         filter_count: this.filter_data.filter_count,
+        gender: this.filter_data.gender,
       });
       this.$emit("filter");
       this.filter_data.flag = false;
     },
     /* clear filter */
     clearFIlter() {
-      const self = this
+      const self = this;
       this.filter_data.city_id_list = [];
       this.filter_data.student_status_list = [1];
       this.filter_data.profile_status = "";
       this.filter_data.class_id_list = [];
       this.filter_data.filter_date_from = "";
       this.filter_data.filter_date_to = "";
+      this.filter_data.gender = "";
       this.manageCount();
     },
     dateChangeHandler() {

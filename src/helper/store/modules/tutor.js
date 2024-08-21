@@ -5,12 +5,13 @@ export const state = {
     city_id_list: [],
     class_id_list: [],
     student_status_list: [1],
-    profile_status:"",
+    profile_status: "",
     filter_date_from: "",
     filter_date_to: "",
     filter_count: 0,
-    time_slot_id_list:[],
-    pincode_list:[],
+    time_slot_id_list: [],
+    pincode_list: [],
+    gender: ""
 }
 
 export const mutations = {
@@ -24,6 +25,7 @@ export const mutations = {
         filter_date_to,
         pincode_list,
         filter_count,
+        gender,
     }) {
         state.city_id_list = city_id_list
         state.class_id_list = class_id_list
@@ -32,12 +34,13 @@ export const mutations = {
         state.time_slot_id_list = time_slot_id_list
         state.filter_date_from = filter_date_from
         state.filter_date_to = filter_date_to
-        state.pincode_list=pincode_list
+        state.pincode_list = pincode_list
+        state.gender = gender
         state.filter_count = filter_count
     },
 }
 export const actions = {
-    setFilter({commit}, items) {commit('SET_FILTER', items)},
+    setFilter({ commit }, items) { commit('SET_FILTER', items) },
 }
 export const getters = {
     getFilter: state => {

@@ -9,6 +9,7 @@ export const state = {
     bda_id_list: [],
     filter_date_from: "",
     filter_date_to: "",
+    gender: "",
     filter_count: 0,
 }
 
@@ -22,6 +23,7 @@ export const mutations = {
         filter_date_from,
         filter_date_to,
         filter_count,
+        gender
     }) {
         state.city_id_list = city_id_list
         state.class_id_list = class_id_list
@@ -31,12 +33,13 @@ export const mutations = {
         state.filter_date_from = filter_date_from
         state.filter_date_to = filter_date_to
         state.filter_count = filter_count
+        state.gender = gender
     },
 }
 export const actions = {
     setFilter({
-                  commit
-              }, items) {
+        commit
+    }, items) {
         commit('SET_FILTER', items)
     },
 }
