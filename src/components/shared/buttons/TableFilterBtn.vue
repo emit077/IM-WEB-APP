@@ -1,21 +1,9 @@
 <style lang="scss" scoped>
 .download-svg-btn {
-  background: #F7F7F7;
-  border: 1px solid #988F8F;
+  background: rgb(var(--primary_rgb), 0.05) !important;
   box-sizing: border-box;
-  border-radius: 20px;
-  font-style: normal;
-  font-weight: bold !important;
-  font-size: 14px !important;
-  line-height: 16px;
-  //height: 40px !important;
-  margin-top: 2px;
-
-  /*display: flex;*/
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.04em;
-  color: #988F8F !important;
+  color: rgb(var(--primary_rgb)) !important;
+  border: solid 1px rgb(var(--primary_rgb), 0.1) !important;
 }
 
 .download-svg-btn img {
@@ -23,28 +11,31 @@
 }
 </style>
 <template>
-  <div>
+  <span>
     <v-badge
-        bordered
-        color="primary"
-        :content="filter_count"
-        overlap
-        v-if="filter_count>0"
+      bordered
+      color="primary"
+      :content="filter_count"
+      overlap
+      v-if="filter_count > 0"
     >
-      <v-btn rounded depressed outlined class="download-svg-btn">
-        <v-icon>mdi-filter</v-icon>
-        {{ $lang.FILTER }}
+      <v-btn outlined class="download-svg-btn">
+        <v-icon>mdi-filter-variant</v-icon>
+        <!-- {{ $lang.FILTER }} -->
       </v-btn>
     </v-badge>
 
-
-    <v-btn v-if="filter_count<1" rounded depressed outlined class="download-svg-btn" width="100">
-      <v-icon>mdi-filter</v-icon>
-      {{ $lang.FILTER }}
+    <v-btn
+      v-else
+      depressed
+      class="download-svg-btn"
+      height="40"
+      width="40"
+      style="min-height: 20px; min-width: 20px"
+    >
+      <v-icon size="28">mdi-filter-outline</v-icon>
     </v-btn>
-
-
-  </div>
+  </span>
 </template>
 
 <script type="text/javascript">
@@ -52,9 +43,7 @@ export default {
   props: {
     filter_count: {
       default: 0,
-    }
-  }
-}
-
-
+    },
+  },
+};
 </script>

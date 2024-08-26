@@ -4,9 +4,20 @@
     <div>
       <v-row justify="end">
         <v-col class="" md="6">
-          <div class="text-right"
-            v-if="[$keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR, $keys.ACCOUNT_SUPER_ADMIN, $keys.ACCOUNT_ADMIN].includes($store.state.user.account_type)">
-            <span class="fc-primary cursor-pointer" @click="$router.push({ name: 'schedule_demo_class' })">
+          <div
+            class="text-right"
+            v-if="
+              [
+                $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+                $keys.ACCOUNT_SUPER_ADMIN,
+                $keys.ACCOUNT_ADMIN,
+              ].includes($store.state.user.account_type)
+            "
+          >
+            <span
+              class="fc-primary cursor-pointer"
+              @click="$router.push({ name: 'schedule_demo_class' })"
+            >
               {{ $keys.SCHEDULE_DEMO }}
               <v-btn color="primary" depressed fab x-small>
                 <v-icon size="24">mdi-plus</v-icon>
@@ -18,8 +29,16 @@
     </div>
     <v-row class="mb-6">
       <v-col cols="12" md="6">
-        <v-text-field v-model="search_query" :placeholder="$lang.DEMO_SEARCH" append-icon="mdi-magnify" dense
-          hide-details outlined rounded single-line @keyup="getDemoList"></v-text-field>
+        <v-text-field
+          v-model="search_query"
+          :placeholder="$lang.DEMO_SEARCH"
+          append-icon="mdi-magnify"
+          dense
+          hide-details
+          outlined
+          single-line
+          @keyup="getDemoList"
+        ></v-text-field>
       </v-col>
       <v-col class="" cols="3" md="2">
         <!--        <div>-->
@@ -31,9 +50,16 @@
       <v-col class="" cols="9" md="2"> </v-col>
     </v-row>
     <div>
-      <v-data-table :disable-sort="true" :headers="headers" :hide-default-footer="true" :items="demo_list"
-        :items-per-page="$keys.PAGE_LENGTH" :loading="table_loading"
-        class="elevation-1 custom-header-bg custom-table-body" item-key="shipment_id">
+      <v-data-table
+        :disable-sort="true"
+        :headers="headers"
+        :hide-default-footer="true"
+        :items="demo_list"
+        :items-per-page="$keys.PAGE_LENGTH"
+        :loading="table_loading"
+        class="elevation-1 custom-header-bg custom-table-body"
+        item-key="shipment_id"
+      >
         <template v-slot:item.student_info="{ item }">
           <div>
             <p class="font-weight-bold large-screen">{{ item.student_name }}</p>
@@ -66,9 +92,7 @@
         </template>
         <template v-slot:item.mode="{ item }">
           <div>
-            <span v-if="item.is_online" class="online px-3">{{
-              $lang.ONLINE
-            }}</span>
+            <span v-if="item.is_online" class="online px-3">{{ $lang.ONLINE }}</span>
             <span v-else class="offline px-3">{{ $lang.OFFLINE }}</span>
           </div>
         </template>
@@ -79,20 +103,39 @@
 
         <template v-slot:item.action="{ item }">
           <!-- edit btn -->
-          <a class="d-inline text-decoration-none"
-            :href="$router.resolve({ name: 'edit_demo', params: { demo_table_id: encrypt(item.id) } }).href">
+          <a
+            class="d-inline text-decoration-none"
+            :href="
+              $router.resolve({
+                name: 'edit_demo',
+                params: { demo_table_id: encrypt(item.id) },
+              }).href
+            "
+          >
             <TableEditBtn></TableEditBtn>
           </a>
           <!-- detail btn -->
-          <a class="d-inline text-decoration-none"
-            :href="$router.resolve({ name: 'demo_details', params: { demo_table_id: encrypt(item.id) } }).href">
+          <a
+            class="d-inline text-decoration-none"
+            :href="
+              $router.resolve({
+                name: 'demo_details',
+                params: { demo_table_id: encrypt(item.id) },
+              }).href
+            "
+          >
             <TableDetailBtn></TableDetailBtn>
           </a>
         </template>
       </v-data-table>
 
-      <v-pagination v-model="page_number" :length="total_page_count" :total-visible="7" class="custom-pagination"
-        @input="getDemoList"></v-pagination>
+      <v-pagination
+        v-model="page_number"
+        :length="total_page_count"
+        :total-visible="7"
+        class="custom-pagination"
+        @input="getDemoList"
+      ></v-pagination>
     </div>
   </div>
 </template>
@@ -103,8 +146,7 @@ import { mapGetters } from "vuex";
 export default {
   components: {
     TableEditBtn: () => import("@/components/shared/buttons/TableEditBtn"),
-    TableDetailBtn: () =>
-      import("../../components/shared/buttons/TableDetailBtn"),
+    TableDetailBtn: () => import("../../components/shared/buttons/TableDetailBtn"),
   },
   data() {
     return {
@@ -181,7 +223,7 @@ export default {
         self.dialog.flag = false;
         self.getDemoList();
       };
-      const finallyHandler = () => { };
+      const finallyHandler = () => {};
       this.request_POST(
         self,
         self.$urls.TOGGLE_ACCOUNT_STATUS,
@@ -213,7 +255,7 @@ export default {
         this.dialog.flag = false;
         self.getDemoList();
       };
-      const finallyHandler = () => { };
+      const finallyHandler = () => {};
       this.request_POST(
         self,
         self.$urls.CHANGE_SHIPMENT_STATUS,

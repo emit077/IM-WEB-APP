@@ -10,7 +10,6 @@
           dense
           hide-details
           outlined
-          rounded
           single-line
           @keyup="getTutorList"
         ></v-text-field>

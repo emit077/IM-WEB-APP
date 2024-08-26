@@ -80,11 +80,11 @@ export default {
   SCHEDULE_INTERVIEW: "/tutor/schedule-interview/",
   INTERVIEW_RESULT: "/tutor/interview-result/",
   START_AGREEMENT: "/tutor/start-agreement/",
-
   UPLOAD_DOCUMENT: "/tutor/upload-document/",
   GET_TUTOR_DOCUMENTS: "/tutor/get-document/",
-
   PROFILE_SETTINGS: "/tutor/settings/",
+
+  INTERVIEW_LIST: "/tutor/interview-list/",
 
   /* Batch*/
   BATCH_LIST: "/batch/list/",

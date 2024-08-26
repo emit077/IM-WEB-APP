@@ -3,8 +3,16 @@
   <div>
     <v-row class="mt-5 mb-1" justify="space-between">
       <v-col cols="12" md="6" class="">
-        <v-text-field v-model="search_query" :placeholder="$lang.PAYMENT_SEARCH" append-icon="mdi-magnify" dense
-          hide-details outlined rounded single-line @keyup="getPaymentList"></v-text-field>
+        <v-text-field
+          v-model="search_query"
+          :placeholder="$lang.PAYMENT_SEARCH"
+          append-icon="mdi-magnify"
+          dense
+          hide-details
+          outlined
+          single-line
+          @keyup="getPaymentList"
+        ></v-text-field>
       </v-col>
       <v-col class="text-right" cols="12" md="3">
         <DateRangePicker @update="applyDateFilter"></DateRangePicker>
@@ -13,10 +21,13 @@
     <!-- status filter -->
     <v-row class="my-0 ml-1" justify="space-between">
       <v-col cols="12" md="6" class="">
-        <div v-for="(item, i) in payment_status_options" :key="i"
+        <div
+          v-for="(item, i) in payment_status_options"
+          :key="i"
           :class="filter_data.status_list.includes(item.status) ? 'elevation-5 ' : ''"
           class="px-3 py-1 d-inline mr-2 border-r-30 btn cursor-pointer"
-          @click="(filter_data.status_list = item.status), getPaymentList()">
+          @click="(filter_data.status_list = item.status), getPaymentList()"
+        >
           <span>{{ item.status || "All" }}</span>
           <v-icon v-if="i > 0" size="10" class="pl-2" :color="item.color">
             mdi-checkbox-blank-circle
@@ -24,9 +35,13 @@
         </div>
       </v-col>
       <v-col class="text-right" cols="12" md="3">
-        <span class="" @click="downloadExcel" :style="{
-          opacity: filter_data.filter_date_from && filter_data.filter_date_to ? 1 : 0.4,
-        }">
+        <span
+          class=""
+          @click="downloadExcel"
+          :style="{
+            opacity: filter_data.filter_date_from && filter_data.filter_date_to ? 1 : 0.4,
+          }"
+        >
           <ExportExcelBtn />
         </span>
       </v-col>
@@ -34,9 +49,18 @@
     <!-- status filter end -->
 
     <div class="mt-1">
-      <v-data-table :disable-sort="true" :headers="headers" :hide-default-footer="true" :items="payment_list"
-        :items-per-page="$keys.PAGE_LENGTH" :loading="table_loading" :single-select="singleSelect"
-        class="elevation-1 custom-header-bg custom-table-body" item-key="id" :item-class="getItemClass">
+      <v-data-table
+        :disable-sort="true"
+        :headers="headers"
+        :hide-default-footer="true"
+        :items="payment_list"
+        :items-per-page="$keys.PAGE_LENGTH"
+        :loading="table_loading"
+        :single-select="singleSelect"
+        class="elevation-1 custom-header-bg custom-table-body"
+        item-key="id"
+        :item-class="getItemClass"
+      >
         <template v-slot:[`item.name`]="{ item }">
           <p class="fw-bold">{{ item.student_name }}</p>
           <p>{{ item.student_mobile }}</p>
@@ -44,8 +68,8 @@
         <!-- status -->
         <template v-slot:[`item.payment_status`]="{ item }">
           <span :class="'pay-' + item.payment_status.toLowerCase()" class="px-2">{{
-          item.payment_status
-        }}</span>
+            item.payment_status
+          }}</span>
         </template>
         <!-- icons -->
         <template v-slot:[`item.payment_mode`]="{ item }">
@@ -53,10 +77,16 @@
         </template>
         <!-- action -->
         <template v-slot:[`item.action`]="{ item }">
-          <a v-if="item.payment_status == $keys.PAYMENT_SUCCESS" class="d-inline" :href="$urls[$project.NAME][$project.ENV] +
-          $urls.GET_SUBSCRIPTION_PAYMNET_INVOICE +
-          item.id
-          " target="_blank">
+          <a
+            v-if="item.payment_status == $keys.PAYMENT_SUCCESS"
+            class="d-inline"
+            :href="
+              $urls[$project.NAME][$project.ENV] +
+              $urls.GET_SUBSCRIPTION_PAYMNET_INVOICE +
+              item.id
+            "
+            target="_blank"
+          >
             <v-icon>mdi-download</v-icon>
           </a>
         </template>
@@ -67,8 +97,13 @@
         </template>
         <!-- epmty table end -->
       </v-data-table>
-      <v-pagination v-model="page_number" :length="total_page_count" :total-visible="7" class="custom-pagination"
-        @input="getPaymentList"></v-pagination>
+      <v-pagination
+        v-model="page_number"
+        :length="total_page_count"
+        :total-visible="7"
+        class="custom-pagination"
+        @input="getPaymentList"
+      ></v-pagination>
     </div>
   </div>
 </template>

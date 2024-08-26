@@ -96,6 +96,9 @@ const keys = {
   PAYOUT_STATUS_APPROVED: "Approved",
   PAYOUT_STATUS_REJECTED: "Rejected",
 
+  WEEKDAYS_OPTION: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  CLASS_MODE_OPTION: ['Online', 'Offline']
+
 };
 
 export default keys;

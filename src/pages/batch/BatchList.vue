@@ -35,7 +35,6 @@
           dense
           hide-details
           outlined
-          rounded
           single-line
           @keyup="getBatchList"
         ></v-text-field>
@@ -90,11 +89,7 @@
 
         <!-- Student info -->
         <template v-slot:item.student_list="{ item }">
-          <div
-            v-for="student in item.student_list"
-            :key="student.id"
-            class="mt-1"
-          >
+          <div v-for="student in item.student_list" :key="student.id" class="mt-1">
             <p class="font-weight-bold large-screen">{{ student.name }}</p>
             <p class="font-weight-bold text-h6 small-screen">
               {{ student.name }}
@@ -106,9 +101,7 @@
         <template v-slot:item.action1="{ item }">
           <v-switch
             v-model="item.is_active"
-            :class="
-              item.is_active ? 'active-toggle-btn' : 'deactive-toggle-btn'
-            "
+            :class="item.is_active ? 'active-toggle-btn' : 'deactive-toggle-btn'"
             :ripple="false"
             class="custom-toggle-btn"
             color="error"
@@ -165,11 +158,7 @@
     </div>
 
     <StudentFilters :filter_data="filter_data" @filter="getBatchList" />
-    <ToggleStatusDialog
-      :data="dialog"
-      @yes="toggleAccountStatus"
-      @no="getBatchList"
-    />
+    <ToggleStatusDialog :data="dialog" @yes="toggleAccountStatus" @no="getBatchList" />
   </div>
 </template>
 
@@ -181,8 +170,7 @@ export default {
     TableEditBtn: () => import("@/components/shared/buttons/TableEditBtn"),
     ToggleStatusDialog: () =>
       import("../../components/shared/dialogs/ToggleStatusDialog"),
-    TableDetailBtn: () =>
-      import("../../components/shared/buttons/TableDetailBtn"),
+    TableDetailBtn: () => import("../../components/shared/buttons/TableDetailBtn"),
     // TableFilterBtn: () => import("@/components/shared/buttons/TableFilterBtn"),
     StudentFilters: () => import("../../components/student/StudentFilters"),
   },
@@ -243,18 +231,16 @@ export default {
         { text: "Batch ID", align: "start", value: "batch_id" },
         { text: "SAC info", value: "bda_name" },
         { text: "", value: "action", align: "end", width: "120px" },
-      ]
+      ];
   },
   methods: {
     // /*Open filter dialog*/
     openFilterDialog() {
       this.filter_data.city_id_list = this.student_filter_data.city_id_list;
       this.filter_data.bda_id_list = this.student_filter_data.bda_id_list;
-      this.filter_data.student_status_list =
-        this.student_filter_data.student_status_list;
+      this.filter_data.student_status_list = this.student_filter_data.student_status_list;
       this.filter_data.class_id_list = this.student_filter_data.class_id_list;
-      this.filter_data.filter_date_from =
-        this.student_filter_data.filter_date_from;
+      this.filter_data.filter_date_from = this.student_filter_data.filter_date_from;
       this.filter_data.filter_date_to = this.student_filter_data.filter_date_to;
       this.filter_data.flag = true;
     },
@@ -268,9 +254,7 @@ export default {
         search_query: this.search_query,
         bda_id_list: JSON.stringify(this.student_filter_data.bda_id_list),
         city_id_list: JSON.stringify(this.student_filter_data.city_id_list),
-        student_status_list: JSON.stringify(
-          this.student_filter_data.student_status_list
-        ),
+        student_status_list: JSON.stringify(this.student_filter_data.student_status_list),
         class_id_list: JSON.stringify(this.student_filter_data.class_id_list),
         filter_date_from: this.student_filter_data.filter_date_from,
         filter_date_to: this.student_filter_data.filter_date_to,

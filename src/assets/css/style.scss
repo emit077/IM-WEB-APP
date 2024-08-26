@@ -127,6 +127,7 @@ a {
   padding: 5px;
 }
 
+.status-selected,
 .status-active,
 .emi-paid,
 .active,
@@ -143,7 +144,7 @@ a {
   color: #27ae60;
   background: #27ae603d;
   border-radius: 20px;
-  padding: 4px 0px;
+  padding: 4px 10px;
 }
 
 .addon_plan {
@@ -158,6 +159,7 @@ a {
   margin-top: 2px;
   vertical-align: middle;
 }
+.status-rejected,
 .pay-failed,
 .status-incomplete,
 .expired,
@@ -191,6 +193,7 @@ a {
   padding: 4px 15px;
 }
 .rescheduled,
+.status-pending,
 .on-hold,
 .pending {
   font-style: normal;
@@ -199,7 +202,7 @@ a {
   line-height: 18px;
   letter-spacing: 0.015em;
   color: #f2994a;
-  background: #f2994a4d;
+  background: #f2994a2b;
   border-radius: 20px;
   padding: 4px 15px;
 }

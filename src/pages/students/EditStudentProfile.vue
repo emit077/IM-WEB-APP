@@ -218,20 +218,21 @@
             <v-col class="py-0" cols="12" md="6">
               <div class="form-filed-wrapper">
                 <label class="label-text-1">
-                  {{ $lang.ADDRESS }} <sup class="error--text">*</sup></label
+                  {{ $lang.LANDMARK }} <sup class="error--text">*</sup></label
                 >
-                <v-textarea
-                  v-model="form.address"
-                  :placeholder="$lang.ADDRESS"
-                  :rules="[$rules.REQUIRED_FIELD($lang.ADDRESS)]"
+                <v-text-field
+                  v-model="form.landmark"
+                  :placeholder="$lang.LANDMARK"
+                  :rules="[$rules.REQUIRED_FIELD($lang.LANDMARK)]"
                   class="mt-1"
                   dense
+                  maxlength="250"
                   outlined
                   single-line
-                ></v-textarea>
+                  readonly
+                  hide-details
+                ></v-text-field>
               </div>
-            </v-col>
-            <v-col class="py-0" cols="12" md="6">
               <div class="form-filed-wrapper">
                 <label class="label-text-1">
                   {{ $lang.PIN_CODE }} <sup class="error--text">*</sup></label
@@ -247,8 +248,10 @@
                   single-line
                   @change="getPincodeData(form.pin_code)"
                   :loading="pin_loading"
+                  hide-details
                 ></v-text-field>
               </div>
+
               <div class="form-filed-wrapper">
                 <label class="label-text-1">
                   {{ $lang.CITY }} <sup class="error--text">*</sup></label
@@ -263,7 +266,25 @@
                   outlined
                   single-line
                   readonly
+                  hide-details
                 ></v-text-field>
+              </div>
+            </v-col>
+            <v-col class="py-0" cols="12" md="6">
+              <div class="form-filed-wrapper">
+                <label class="label-text-1">
+                  {{ $lang.ADDRESS }} <sup class="error--text">*</sup></label
+                >
+                <v-textarea
+                  v-model="form.address"
+                  :placeholder="$lang.ADDRESS"
+                  :rules="[$rules.REQUIRED_FIELD($lang.ADDRESS)]"
+                  class="mt-1"
+                  dense
+                  outlined
+                  single-line
+                  rows="6"
+                ></v-textarea>
               </div>
             </v-col>
 
@@ -388,6 +409,21 @@
             </v-col>
             <v-col class="py-0" cols="12" md="6">
               <div class="form-filed-wrapper">
+                <label class="label-text-1">
+                  {{ $lang.HOBBIES }} <sup class="error--text">*</sup></label
+                >
+                <v-text-field
+                  v-model="form.hobbies"
+                  :placeholder="$lang.HOBBIES"
+                  :rules="[$rules.REQUIRED_FIELD($lang.HOBBIES)]"
+                  class="mt-1"
+                  dense
+                  maxlength="350"
+                  outlined
+                  single-line
+                ></v-text-field>
+              </div>
+              <div class="form-filed-wrapper">
                 <label class="label-text-1"> {{ $lang.SPECIAL_CONCERN }} </label>
                 <v-textarea
                   v-model="form.special_concern"
@@ -396,17 +432,67 @@
                   dense
                   outlined
                   row-height="40"
-                  rows="8"
+                  rows="5"
                   single-line
                 ></v-textarea>
               </div>
             </v-col>
+          </v-row>
 
+          <v-divider></v-divider>
+          <!-- Other details -->
+          <p class="pt-2 font-weight-bold">
+            {{ $lang.OTHER_DETAILS }}
+          </p>
+          <v-row
+            :class="{
+              'px-0': $vuetify.breakpoint.smAndDown,
+              'px-0': $vuetify.breakpoint.mdAndUp,
+            }"
+            class="ma-0"
+          >
             <v-col class="py-0" cols="12" md="12">
-              <div class="form-filed-wrapper">
+              <div class="form-filed-wrapper mt-2">
+                <label class="label-text-1 pb-0">{{ $lang.MODE_OF_CLASS }}:</label>
+                <div class="px-2 d-flex v-align-top">
+                  <v-checkbox
+                    v-for="(item, i) in $keys.CLASS_MODE_OPTION"
+                    :key="item"
+                    v-model="class_mode_preference"
+                    :label="item"
+                    :value="item"
+                    class="shrink mr-3 mt-0"
+                    hide-details
+                  ></v-checkbox>
+                </div>
+              </div>
+            </v-col>
+            <!-- day Perference -->
+            <v-col class="py-0" cols="12" md="12">
+              <div class="form-filed-wrapper mt-2">
+                <label class="label-text-1">{{ $lang.SUITABLE_DAYS }}:</label> <br />
+                <div
+                  class="px-2 d-flex v-align-top flex-wrap"
+                  style="flex-direction: row"
+                >
+                  <v-checkbox
+                    v-for="(item, i) in $keys.WEEKDAYS_OPTION"
+                    :key="item"
+                    v-model="suitable_days"
+                    :label="item"
+                    :value="item"
+                    class="shrink mr-3 mt-0"
+                    hide-details
+                  ></v-checkbox>
+                </div>
+              </div>
+            </v-col>
+            <!-- time preference -->
+            <v-col class="py-0" cols="12" md="12">
+              <div class="form-filed-wrapper mt-2">
                 <label class="label-text-1">{{ $lang.SUITABLE_TIME_SLOT }}:</label> <br />
                 <div class="d-inline-block px-2 v-align-top">
-                  <p class="text-1 text-center mb-0">{{ $lang.MORNING }}</p>
+                  <p class="text-1 text-md-left text-center mb-2">{{ $lang.MORNING }}</p>
                   <v-checkbox
                     v-for="item in morning_time_slots"
                     :key="item.id"
@@ -418,7 +504,9 @@
                   ></v-checkbox>
                 </div>
                 <div class="d-inline-block px-2 v-align-top">
-                  <p class="text-1 text-center mb-0">{{ $lang.AFTER_NOON }}</p>
+                  <p class="text-1 text-md-left text-center mb-2">
+                    {{ $lang.AFTER_NOON }}
+                  </p>
                   <v-checkbox
                     v-for="item in afternoon_time_slots"
                     :key="item.id"
@@ -430,7 +518,7 @@
                   ></v-checkbox>
                 </div>
                 <div class="d-inline-block px-2 v-align-top">
-                  <p class="text-1 text-center mb-0">{{ $lang.EVENING }}</p>
+                  <p class="text-1 text-md-left text-center mb-2">{{ $lang.EVENING }}</p>
                   <v-checkbox
                     v-for="item in evening_time_slots"
                     :key="item.id"
@@ -494,6 +582,7 @@ export default {
       guardian_contact_number: "",
       parent_email: "",
       address: "",
+      landmark: "",
       pin_code: "",
       latitude: "",
       longitude: "",
@@ -504,9 +593,12 @@ export default {
       education_board: "",
       school_name: "",
       tutor_preference: "",
+      hobbies: "",
       special_concern: "",
       time_slots_id_list: [],
     },
+    suitable_days: [],
+    class_mode_preference: [],
     morning_time_slots: [],
     afternoon_time_slots: [],
     evening_time_slots: [],
@@ -610,6 +702,12 @@ export default {
       form.append("education_board", self.form.education_board);
       form.append("school_name", self.form.school_name);
       form.append("time_slots_id_list", JSON.stringify(self.form.time_slots_id_list));
+
+      form.append("landmark", self.form.landmark);
+      form.append("hobbies", self.form.hobbies);
+      form.append("class_mode_preference", JSON.stringify(self.class_mode_preference));
+      form.append("suitable_days", JSON.stringify(self.suitable_days));
+
       if (this.student_table_id) form.append("student_table_id", self.student_table_id);
 
       const successHandler = (response) => {

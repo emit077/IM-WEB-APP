@@ -27,7 +27,6 @@
           dense
           hide-details
           outlined
-          rounded
           single-line
           @keyup="getStudentList"
         ></v-text-field>

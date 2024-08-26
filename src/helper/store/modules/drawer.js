@@ -82,6 +82,17 @@ export const state = {
       ],
     },
     {
+      title: "Interviews",
+      url: { name: "interview_list" },
+      is_active_tab: false,
+      access_by: [
+        keys.SUPER_ADMIN,
+        keys.ADMIN,
+        keys.ACCOUNT_BUSINESS_DEVELOPER,
+        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+      ],
+    },
+    {
       title: "Manager",
       url: { name: "bda_list" },
       is_active_tab: false,

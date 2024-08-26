@@ -27,7 +27,6 @@
           dense
           hide-details
           outlined
-          rounded
           single-line
           @keyup="getBDAList"
         ></v-text-field>
@@ -77,7 +76,8 @@
         <template v-slot:[`item.mobile`]="{ item }">
           <div>
             <p>
-              {{ item.mobile}}<span v-if="item.secondary_mobile">, {{ item.secondary_mobile }}</span>
+              {{ item.mobile
+              }}<span v-if="item.secondary_mobile">, {{ item.secondary_mobile }}</span>
             </p>
             <p>{{ item.email }}</p>
           </div>
@@ -170,7 +170,7 @@ export default {
         { text: "Name", align: "start", value: "name" },
         { text: "Contact info", align: "start", value: "mobile" },
         { text: "Gender", align: "center", value: "gender" },
-        { text: "City", value: "city", },
+        { text: "City", value: "city" },
         { text: "Type", align: "center", value: "account_type" },
         { text: "Blocked", value: "action1", align: "end", width: "40px" },
         { text: "", value: "action", align: "end", width: "110px" },

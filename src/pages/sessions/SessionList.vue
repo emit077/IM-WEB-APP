@@ -27,7 +27,6 @@
           dense
           hide-details
           outlined
-          rounded
           single-line
           @keyup="getSessionList"
         ></v-text-field>

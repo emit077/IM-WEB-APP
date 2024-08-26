@@ -533,6 +533,19 @@ const routes = [
             /* webpackChunkName: "demo" */ "../../pages/demo/DemoDetails.vue"
           ),
       },
+      {
+        path: "/interviews/",
+        name: "interview_list",
+        meta: {
+          requiresAuth: true,
+          title: "Interviews",
+          show_back_btn: false,
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "demo" */ "../../pages/interviews/InterviewList.vue"
+          ),
+      },
     ],
   },
 ];

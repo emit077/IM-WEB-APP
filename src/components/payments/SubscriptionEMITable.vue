@@ -10,7 +10,6 @@
           dense
           hide-details
           outlined
-          rounded
           single-line
           @keyup="getEMIList"
         ></v-text-field>
@@ -115,10 +114,10 @@ export default {
       search_query: "",
       headers: [
         { text: "User info", align: "start", value: "student_name" },
-        { text: "Due date", value: "emi_due_date",align: "center"  },
+        { text: "Due date", value: "emi_due_date", align: "center" },
         { text: "Amount", value: "emi_amount", align: "end" },
         { text: "Status", value: "emi_status", align: "center" },
-        { text: "", value: "action",align: "center", width:"100px" },
+        { text: "", value: "action", align: "center", width: "100px" },
       ],
       filter_data: {
         flag: false,
@@ -201,7 +200,8 @@ export default {
     /* Open confirmation dialog for status toggle */
     openDialog(item) {
       this.dialog_data.title = "Confirm Payment";
-      this.dialog_data.message = "Are you sure want to receive " + item.emi_amount.toString();
+      this.dialog_data.message =
+        "Are you sure want to receive " + item.emi_amount.toString();
       this.dialog_data.emi_table_id = item.id;
       this.dialog_data.flag = true;
     },
