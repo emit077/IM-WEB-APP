@@ -229,7 +229,6 @@
                   maxlength="250"
                   outlined
                   single-line
-                  readonly
                   hide-details
                 ></v-text-field>
               </div>
@@ -655,6 +654,9 @@ export default {
           self.morning_time_slots = response.data.morning_time_slots;
           self.afternoon_time_slots = response.data.afternoon_time_slots;
           self.evening_time_slots = response.data.evening_time_slots;
+          self.class_mode_preference = response.data.student_basic_data.class_mode;
+          self.suitable_days = response.data.student_basic_data.suitable_days;
+
           // self.set_location_in_map(response.data.student_basic_data.latitude, response.data.student_basic_data.longitude)
         }
       };
