@@ -10,122 +10,151 @@ li {
       <v-card-title class="text-h5 grey lighten-2">
         {{ dialog.action }}
       </v-card-title>
-      <v-card-text>
-        <p class="mt-3">
-          This service contract is made and entered into by and between
-          {{ project_name }}, a home tuition service provider in
-          <b>{{ dialog.city }}</b> here in after called <b>{{ project_name }}</b>
-          here in after called the TUTOR. In Engagement the following definitions apply:
-        </p>
+      <v-card-text class="mt-5">
         <ol type="1">
           <li>
-            Your tenure for working in {{ project_name }} will be from
-            <b>{{ dialog.start_date }}</b> to<b>{{ dialog.end_date }}</b>
-            and prohibition period will be 11 months from date of formal declaration of
-            resigning the job.
+            Term and Prohibition Period: <br />
+            The work tenure is from <b>{{ dialog.start_date }}</b> to<b>
+              {{ dialog.end_date }}</b
+            >, with an 11-month prohibition period from the formal declaration of
+            resignation.
           </li>
           <li>
-            First class salary will be deducted by {{ project_name }} as a security
-            deposit fer the security of each and every student allotted to you and will be
-            refunded after smooth completion of your tenure.
-          </li>
-          <li>
-            If tutor fails to mark attendance on {{ project_name }} Application, that
-            class will be marked absent.
-          </li>
-          <li>
-            Tutor shall maintain high standards set by {{ project_name }} and follow the
-            processes and the methodologies set by {{ project_name }}.
-          </li>
-          <li>
-            The tutor agrees to attend all the orientation and training programs organised
-            by {{ project_name }}.
-          </li>
-          <li>You have to arrange yourself for transportation.</li>
-          <li>
-            Tutor should inform {{ project_name }} well in advance (15 days) on his leave
-            plans.
-          </li>
-          <li>
-            Tutor should mark daily attendance on {{ project_name }} Application everyday.
-            Any forgery against the attendance will be considered as crime and the tutor
-            will be asked to follow the legal action with {{ project_name }}.
-          </li>
-          <li>
-            Salary will be given to the Tutor only at the proof of the daily attendance.
-          </li>
-          <li>
-            Tutor should ensure that there is positive progress in the student's academic
-            performance.
-          </li>
-          <li>
-            Tutor is asked to give few demo classes at the starting of assignments and if
-            the client is unhappy with the tutoring and asks for replacement, salary will
-            not be given for the demo classes.
-          </li>
-          <li>
-            Once TUTOR starts assignment with {{ project_name }}, he/she should continue
-            at least for 6 months.
-          </li>
-          <li>
-            At any cost TUTOR cannot leave the tutoring assignment at the time of
-            examination.
-          </li>
-          <li>
-            The TUTOR is not entitled to receive payment from {{ project_name }} CLIENTS.
-          </li>
-          <li>
-            TUTOR agrees to co-operate with the client's reasonable instructions but shall
-            not engage in any conduct detrimental to the interests of the client.
-          </li>
-          <li>
-            If any Student/Client leaves you in between security deposit and salary of the
-            allotted class will be seized.
-          </li>
-          <li>
-            If the student leaves the {{ project_name }} after completion of the package,
-            you have to sign the class discontinuation certificate to receive the security
-            deposit of the allotted class.
-          </li>
-          <li>
-            During the course of tutoring assignment, if the client wishes to employ the
-            tutor directly and the tutor is fine with it, in such case TUTOR agrees to pay
-            a sum of INR 50,000 (In words: Rupees Fifty Thousand only) each to
-            {{ project_name }}.
-          </li>
-          <li>
-            Tutor shall abide by the additional clauses mentioned below:
+            Attendance and Performance Standards:
             <ol type="a">
               <li>
-                If the tutor cannot attend the class any day, TUTOR agrees to inform
-                {{ project_name }} in advance.
+                If the mentor fails to mark attendance on the application, that class will
+                be marked as absent.
               </li>
               <li>
-                There will be no negotiation on salary once the tutor sign the agreement
-                with Tutors Factory.
+                The mentor is expected to maintain high standards and adhere to the
+                processes and methodologies set by Indian Mentors.
               </li>
               <li>
-                If {{ project_name }} receives complain about TUTOR, then he/she agrees to
-                pay the fine.
+                The mentor should provide at least 15 day’s advance notice for any planned
+                leave.
               </li>
               <li>
-                TUTOR shall never divulge the company related confidential matter to the
-                third party including student or student's family. If
-                {{ project_name }} finds TUTOR has divulged any company secrets that may
-                affect the company's interest. {{ project_name }} will charge the fine and
-                terminate the TUTOR from the assignment.
+                The mentor is required to mark daily attendance on the application. Any
+                falsification of attendance records will be considered a serious offense,
+                and Indian Mentors may take legal action.
               </li>
               <li>
-                TUTOR agrees to regular update the {{ project_name }} on progress that
-                student is making.If there is negative trend in the student's progress,
-                TUTOR shall immediately bring this to {{ project_name }} notice.
+                Salary will only be disbursed to mentors upon proof of daily attendance.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Academic Progress and Demo Classes:
+            <ol type="a">
+              <li>
+                The mentor will ensure positive progress in the student's academic
+                performance.
+              </li>
+              <li>
+                The mentor is required to conduct a few demo classes at the beginning of
+                mentoring assignments. If the client is dissatisfied with the tutoring and
+                requests a replacement, the mentor will not receive payment for the demo
+                classes.
+              </li>
+              <li>
+                Once the mentor begins a mentoring assignment with Indian Mentors, he/she
+                should commit to at least 6 months of mentoring.
+              </li>
+            </ol>
+          </li>
+
+          <li>
+            Examination and Payment:
+            <ol type="a">
+              <li>
+                The mentor must not leave the mentoring assignment during the examination.
+              </li>
+              <li>
+                The mentor must conduct weekly tests to evaluate the performance of the
+                student.
+              </li>
+              <li>
+                The mentor is not entitled to receive payment directly from parents or
+                students.
+              </li>
+              <li>
+                Payout will be disbursed to the mentor within 10 days after the completion
+                of the monthly session, which is discussed during the class allotment for
+                the particular mentoring assignment or student.
+              </li>
+            </ol>
+          </li>
+
+          <li>
+            Cooperation and Misconduct:
+            <ol type="a">
+              <li>
+                The mentor agrees to cooperate with reasonable instructions from the
+                parents but shall not engage in any conduct detrimental to their
+                interests.
+              </li>
+              <li>
+                In the event of complaints about the mentor, the mentor is required to pay
+                a fine.
+              </li>
+              <li>
+                If any parent or student leaves before the end of the contract, the
+                security deposit and the salary for the remaining class sessions will be
+                forfeited.
+              </li>
+            </ol>
+          </li>
+
+          <li>
+            Termination and Confidentiality:
+            <ol type="a">
+              <li>
+                If the student leaves before or after completing the package, the mentor
+                must sign the Class Discontinuation Certificate in order to receive the
+                security deposit for the allotted class.
+              </li>
+              <li>
+                The mentor must not leave in the middle of the academic session until the
+                exams are over, such as in March.
+              </li>
+              <li>
+                If the parents/students wish to employ the mentor directly and the mentor
+                agrees, the mentor is obligated to pay a penalty of INR 1,50,000 to Indian
+                Mentors.
+              </li>
+              <li>
+                All terms and conditions, including mentoring salary or payout details,
+                are strictly confidential and should not be disclosed to parents or anyone
+                else without prior written permission from Indian Mentors. Unauthorized
+                disclosure may result in immediate termination of the mentoring
+                assignment.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Additional Clauses:
+            <ol type="a">
+              <li>
+                The mentor is required to provide advance notice in the event of an
+                inability to attend class on any given day.
+              </li>
+              <li>
+                Once the agreement has been signed, salary negotiation is not allowed
+                after starting the mentoring assignment for a student in the middle of the
+                academic session.
+              </li>
+              <li>
+                Mentor must not disclose any company-related confidential matters to any
+                third parties, including the student or their family. Failure to adhere to
+                this may result in fines and termination of the mentoring assignment.
               </li>
             </ol>
           </li>
         </ol>
+
         <div class="px-5 mt-3">
           <v-form ref="agreement_form" lazy-validation>
-            <p class="font-weight-bold">Acknowledge *</p>
             <div>
               <p class="d-inline-flex">
                 <v-checkbox
@@ -136,8 +165,8 @@ li {
                   style="display: inline-flex"
                 ></v-checkbox>
                 <span class="pt-2">
-                  I acknowledge that I have read and understood the above agreement
-                  entirety and agree to abide by them
+                  I acknowledge that I have read and understood the above agreement in its
+                  entirety, and I agree to abide by it.
                 </span>
               </p>
             </div>
