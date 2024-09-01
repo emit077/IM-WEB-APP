@@ -1,8 +1,7 @@
 <style lang="scss" scoped>
-.student-card {
-  border: 1px solid lightgrey;
+.field-wrapper {
+  margin-bottom: 8px;
 }
-
 
 @media screen and (max-width: 1260px) {
   .student-card {
@@ -22,198 +21,345 @@
     .field-wrapper {
       margin-bottom: 8px;
     }
-
   }
-
 }
 </style>
 <template>
   <div class="student-card">
+    <v-card flat outlined class="px-3" color="transparent">
+      <v-card-text class="my-3">
+        <v-row no-gutter>
+          <!-- for mobile view -->
+          <v-col class="py-0 small-screen" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.PROFILE_STATUS }} :</label>
+              <p class="text-1">
+                <span
+                  v-if="student_basic_data.profile_status"
+                  :class="'status-' + student_basic_data.profile_status.toLowerCase()"
+                  >{{ student_basic_data.profile_status }}</span
+                >
+              </p>
+            </div>
+          </v-col>
+          <!--  -->
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.GENDER }} :</label>
+              <p class="text-1">{{ student_basic_data.gender }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.DATE_OF_BIRTH }} :</label>
+              <p class="text-1">{{ student_basic_data.dob }}</p>
+            </div>
+          </v-col>
 
-    <!--  ################################################    -->
-    <!--  ################ BASIC DETAILS #################    -->
-    <!--  ################################################    -->
-    <div class=" bg-primary">
-      <p class="card-header-text text-center">{{ $lang.STUDENT_BASIC_DETAILS }}</p>
-    </div>
-    <v-row :class="{ 'px-2': $vuetify.breakpoint.smAndDown, 'px-6': $vuetify.breakpoint.mdAndUp }"
-      class="mx-0 py-2 my-1 text-left">
-      <v-col class="py-0" cols="12" md="4" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.STUDENT_NAME }} :</label>
-          <p class="text-1">{{ student_name }}</p>
-        </div>
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.MOBILE_NUMBER }} :</label>
-          <p class="text-1">{{ mobile }}</p>
-        </div>
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.EMAIL }} :</label>
-          <p class="text-1">{{ email || '-' }}</p>
-        </div>
-      </v-col>
-      <v-col class="py-0" cols="12" md="4" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.FATHER_NAME }} :</label>
-          <p class="text-1">{{ student_basic_data.father_name || '-' }}</p>
-        </div>
-        <div class="field-wrapper">
-          <label class="label-text-1">Father's {{ $lang.MOBILE_NUMBER }} :</label>
-          <p class="text-1">{{ student_basic_data.father_contact_number || '-' }}</p>
-        </div>
-        <div class="field-wrapper">
-          <label class="label-text-1">Father's {{ $lang.EMAIL }} :</label>
-          <p class="text-1">{{ student_basic_data.parent_email || '-' }}</p>
-        </div>
-      </v-col>
-      <v-col class="py-0" cols="12" md="4" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.MOTHER_NAME }} :</label>
-          <p class="text-1">{{ student_basic_data.mother_name || '-' }}</p>
-        </div>
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.GUARDIAN_CONTACT_NUMBER }} :</label>
-          <p class="text-1">{{ student_basic_data.guardian_contact_number || '-' }}</p>
-        </div>
-      </v-col>
-    </v-row>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.SING_UP_DATE }} :</label>
+              <p class="text-1">{{ student_basic_data.signup_date }}</p>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
 
+    <!--  ################ CONTACT_DETAILS #################    -->
+    <v-card flat outlined class="" color="transparent">
+      <v-card-title class="primary--text text-body-1 font-weight-bold">{{
+        $lang.CONTACT_DETAILS
+      }}</v-card-title>
+      <v-divider></v-divider>
+      <v-card-text class="my-3">
+        <v-row no-gutter>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.MOBILE_NUMBER }} :</label>
+              <p class="text-1">{{ mobile }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.WA_MOBILE_NUMBER }} :</label>
+              <p class="text-1">{{ mobile }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.EMAIL }} :</label>
+              <p class="text-1">{{ email || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.FATHER_NAME }} :</label>
+              <p class="text-1">{{ student_basic_data.father_name || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">Father's {{ $lang.MOBILE_NUMBER }} :</label>
+              <p class="text-1">{{ student_basic_data.father_contact_number || "-" }}</p>
+            </div>
+          </v-col>
+          <!-- <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">Father's {{ $lang.EMAIL }} :</label>
+              <p class="text-1">{{ student_basic_data.parent_email || "-" }}</p>
+            </div>
+          </v-col> -->
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.MOTHER_NAME }} :</label>
+              <p class="text-1">{{ student_basic_data.mother_name || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.MOTHER_CONTACT_NUMBER }} :</label>
+              <p class="text-1">{{ student_basic_data.mother_name || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.CONTACT_PERSON }} :</label>
+              <p class="text-1">
+                {{ student_basic_data.contact_person || "-" }}
+              </p>
+            </div>
+          </v-col>
 
-    <!--  ################################################    -->
+          <v-col
+            class="py-0"
+            cols="12"
+            md="3"
+            v-if="student_basic_data.contact_person == 'Other'"
+          >
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.CONTACT_PERSON }} Name :</label>
+              <p class="text-1">
+                {{ student_basic_data.contact_person_name || "-" }}
+              </p>
+            </div>
+          </v-col>
+          <v-col
+            class="py-0"
+            cols="12"
+            md="3"
+            v-if="student_basic_data.contact_person == 'Other'"
+          >
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.CONTACT_PERSON }} Mobile :</label>
+              <p class="text-1">
+                {{ student_basic_data.contact_person_mobile || "-" }}
+              </p>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
     <!--  ############## ADDRESS DETAILS #################    -->
-    <!--  ################################################    -->
-    <div class="bg-primary mt-5">
-      <p class="card-header-text text-center ">{{ $lang.STUDENT_ADDRESS_DETAILS }}</p>
-    </div>
-    <v-row :class="{ 'px-2': $vuetify.breakpoint.smAndDown, 'px-6': $vuetify.breakpoint.mdAndUp }"
-      class="mx-0 py-2  my-1 text-left">
-      <v-col class="py-0" cols="12" md="6" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.ADDRESS }} :</label>
-          <p class="text-1">{{ student_basic_data.address || "-" }}</p>
-        </div>
-
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.PIN_CODE }} :</label>
-          <p class="text-1">{{ student_basic_data.pin_code || '-' }}</p>
-        </div>
-      </v-col>
-
-      <v-col class="py-0" cols="12" md="6" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.CITY }} :</label>
-          <p class="text-1">{{ student_basic_data.city || "-" }}</p>
-        </div>
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.STATE }} :</label>
-          <p class="text-1">{{ student_basic_data.state || "-" }}</p>
-        </div>
-        <!--        <GoogleMap ref="map_elm" :class_name="map_class_name" :clickable="false" :draggable="false"-->
-        <!--                   :search_enable="false"-->
-        <!--                   :zoom_control="false"></GoogleMap>-->
-      </v-col>
-    </v-row>
-
-    <!--  ################################################    -->
+    <v-card flat outlined class="my-3" color="transparent">
+      <v-card-title class="py-2 primary--text text-body-1 font-weight-bold">
+        <!-- <v-icon color="primary" class="mr-1">mdi-home</v-icon> -->
+        {{ $lang.STUDENT_ADDRESS_DETAILS }}
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-text class="my-3">
+        <v-row no-gutter>
+          <v-col class="py-0" cols="12" md="2">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.CITY }} :</label>
+              <p class="text-1">{{ student_basic_data.city || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="2">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.STATE }} :</label>
+              <p class="text-1">{{ student_basic_data.state || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="1">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.PIN_CODE }} :</label>
+              <p class="text-1">{{ student_basic_data.pin_code || "-" }}</p>
+            </div>
+            <!--        <GoogleMap ref="map_elm" :class_name="map_class_name" :clickable="false" :draggable="false"-->
+            <!--                   :search_enable="false"-->
+            <!--                   :zoom_control="false"></GoogleMap>-->
+          </v-col>
+          <v-col class="py-0" cols="12" md="2">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.LANDMARK }} :</label>
+              <p class="text-1">{{ student_basic_data.landmark || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="5">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.ADDRESS }} :</label>
+              <p class="text-1">{{ student_basic_data.address || "-" }}</p>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
     <!--  ############## ACADEMIC DETAILS ################    -->
-    <!--  ################################################    -->
-    <div class="bg-primary">
-      <p class="card-header-text text-center">{{ $lang.STUDENT_ACADEMIC_DETAILS }}</p>
-    </div>
-    <v-row :class="{ 'px-2': $vuetify.breakpoint.smAndDown, 'px-6': $vuetify.breakpoint.mdAndUp }"
-      class="mx-0 py-2 my-1 text-left">
-      <v-col class="py-0" cols="12" md="4" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.EDUCATION_BOARD }} :</label>
-          <p class="text-1">{{ student_basic_data.education_board || '-' }}</p>
-        </div>
-      </v-col>
-      <v-col class="py-0" cols="12" md="4" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.SCHOOL_NAME }} :</label>
-          <p class="text-1">{{ student_basic_data.school_name || '-' }}</p>
-        </div>
-      </v-col>
-      <v-col class="py-0" cols="12" md="4" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.CLASS }} :</label>
-          <p class="text-1">{{ student_basic_data.class_name || '-' }}</p>
-        </div>
-      </v-col>
-      <v-col class="py-0" cols="12" md="4" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.SUBJECTS }} :</label>
-          <p class="text-1">
-            <span v-for="(subject, i) in student_basic_data.subjects_list" :key="i">{{ subject }}
-              <span v-if="i >= 0 && (i + 1) < student_basic_data.subjects_list.length">, </span>
-            </span>
-          </p>
-        </div>
-      </v-col>
-      <v-col class="py-0" cols="12" md="4" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.TUTOR_PREFERENCE }} :</label>
-          <p class="text-1">{{ student_basic_data.tutor_preference || '-' }}</p>
-        </div>
-      </v-col>
-    </v-row>
-    <v-row :class="{ 'px-2': $vuetify.breakpoint.smAndDown, 'px-6': $vuetify.breakpoint.mdAndUp }"
-      class="mx-0 py-2 my-1 text-left">
-      <v-col class="py-0" cols="12" md="7" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.SUITABLE_TIME_SLOT }} :</label> <br>
-          <div class="d-inline-block  v-align-top">
-            <p class="text-1 text-center mb-0">{{ $lang.MORNING }}</p>
-            <div v-for="item in morning_time_slots" :key="item.id">
-              <v-checkbox :disabled="!student_basic_data.time_slots_id_list.includes(item.id)"
-                :input-value="student_basic_data.time_slots_id_list.includes(item.id)"
-                :label="item.slot_from + ' - ' + item.slot_to" class="shrink ma-0" hide-details readonly></v-checkbox>
+    <v-card flat outlined color="transparent">
+      <v-card-title class="py-2 primary--text text-body-1 font-weight-bold">
+        <!-- <v-icon color="primary" class="mr-1">mdi-school</v-icon> -->
+        {{ $lang.STUDENT_ACADEMIC_DETAILS }}
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-text class="my-3">
+        <v-row no-gutter>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.CLASS }} :</label>
+              <p class="text-1">{{ student_basic_data.class_name || "-" }}</p>
             </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.EDUCATION_BOARD }} :</label>
+              <p class="text-1">{{ student_basic_data.education_board || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.SCHOOL_NAME }} :</label>
+              <p class="text-1">{{ student_basic_data.school_name || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.SUBJECTS }} :</label>
+              <p class="text-1">
+                <span v-for="(subject, i) in student_basic_data.subjects_list" :key="i"
+                  >{{ subject }}
+                  <span v-if="i >= 0 && i + 1 < student_basic_data.subjects_list.length"
+                    >,
+                  </span>
+                </span>
+              </p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.TUTOR_PREFERENCE }} :</label>
+              <p class="text-1">{{ student_basic_data.tutor_preference || "-" }}</p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="9">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.SPECIAL_CONCERN }} :</label>
+              <p class="text-1" style="width: 100%">
+                {{ student_basic_data.special_concern || "-" }}
+              </p>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+    <!--  ############## OTHER DETAILS ################    -->
+    <v-card flat outlined color="transparent">
+      <v-card-title class="py-2 primary--text text-body-1 font-weight-bold">
+        <!-- <v-icon color="primary" size="27">mdi-information</v-icon> -->
+        {{ $lang.OTHER_DETAILS }}
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-text class="my-3">
+        <v-row no-gutter>
+          <v-col class="py-0" cols="12" md="6" sm="6">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
 
-          </div>
-          <div :class="{ '': $vuetify.breakpoint.smAndDown, 'px-4': $vuetify.breakpoint.mdAndUp }"
-            class="d-inline-block v-align-top">
-            <p class="text-1 text-center mb-0">{{ $lang.AFTER_NOON }}</p>
-            <div v-for="item in afternoon_time_slots" :key="item.id">
-              <v-checkbox :disabled="!student_basic_data.time_slots_id_list.includes(item.id)"
-                :input-value="student_basic_data.time_slots_id_list.includes(item.id)"
-                :label="item.slot_from + ' - ' + item.slot_to" class="shrink ma-0" hide-details readonly></v-checkbox>
+              <p class="text-1">
+                <span
+                  class="text-1"
+                  v-for="(item, i) in student_basic_data.teaching_preference"
+                  :key="item.id"
+                >
+                  {{ item
+                  }}<span v-if="i + 1 < student_basic_data.suitable_days.length">,</span>
+                </span>
+              </p>
             </div>
-          </div>
-          <div :class="{ '': $vuetify.breakpoint.smAndDown, 'px-4': $vuetify.breakpoint.mdAndUp }"
-            class="d-inline-block  v-align-top ">
-            <p class="text-1  text-center mb-0">{{ $lang.EVENING }}</p>
-            <div v-for="item in evening_time_slots" :key="item.id">
-              <v-checkbox :disabled="!student_basic_data.time_slots_id_list.includes(item.id)"
-                :input-value="student_basic_data.time_slots_id_list.includes(item.id)"
-                :label="item.slot_from + ' - ' + item.slot_to" class="shrink ma-0" hide-details readonly></v-checkbox>
-            </div>
-          </div>
-        </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="6" sm="6">
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.SUITABLE_DAYS }} :</label>
 
-      </v-col>
-      <v-col class="py-0" cols="12" md="5" sm="6">
-        <div class="field-wrapper">
-          <label class="label-text-1">{{ $lang.SPECIAL_CONCERN }} :</label>
-          <p class="text-1" style="width: 100%">{{ student_basic_data.special_concern || '-' }}</p>
-        </div>
-      </v-col>
-    </v-row>
+              <p class="text-1">
+                <span
+                  class="text-1"
+                  v-for="(item, i) in student_basic_data.suitable_days"
+                  :key="item.id"
+                >
+                  {{ item
+                  }}<span v-if="i + 1 < student_basic_data.suitable_days.length">,</span>
+                </span>
+              </p>
+            </div>
+          </v-col>
+          <v-col class="py-0" cols="12" md="12" sm="6">
+            <!-- suitable time -->
+            <div class="field-wrapper">
+              <label class="label-text-1">{{ $lang.SUITABLE_TIME_SLOT }} :</label> <br />
+              <span v-for="item in morning_time_slots" :key="item.id">
+                <span
+                  class="text-1"
+                  v-if="student_basic_data.time_slots_id_list.includes(item.id)"
+                >
+                  {{ item.slot_from + " - " + item.slot_to }} ,
+                </span>
+              </span>
+              <br />
+              <span v-for="item in afternoon_time_slots" :key="item.id">
+                <span
+                  class="text-1"
+                  v-if="student_basic_data.time_slots_id_list.includes(item.id)"
+                >
+                  {{ item.slot_from + " - " + item.slot_to }} ,</span
+                >
+              </span>
+              <br />
+              <span v-for="item in evening_time_slots" :key="item.id">
+                <span
+                  class="text-1"
+                  v-if="student_basic_data.time_slots_id_list.includes(item.id)"
+                >
+                  {{ item.slot_from + " - " + item.slot_to }} ,
+                </span>
+              </span>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["email", "student_name", 'mobile', "student_basic_data", 'evening_time_slots',
-    'morning_time_slots', 'afternoon_time_slots'],
+  props: [
+    "email",
+    "student_name",
+    "mobile",
+    "student_basic_data",
+    "evening_time_slots",
+    "morning_time_slots",
+    "afternoon_time_slots",
+  ],
   components: {
     // GoogleMap: () => import('@/components/shared/GoogleMap'),
   },
   data() {
     return {
-      map_class_name: "min-height"
-    }
+      map_class_name: "min-height",
+    };
   },
-  methods: {}
-}
+  methods: {},
+};
 </script>

@@ -59,6 +59,11 @@ const keys = {
   RESULT_SELECTED: "Selected",
   RESULT_REJECTED: "Rejected",
 
+  TYPE_CONTACT_FORM: "contact_form",
+  TYPE_ADDRESS_FORM: "address_form",
+  TYPE_ACADEMICS_FORM: "academics_form",
+  TYPE_OTHER_FORM: "other_form",
+
   HOMEWORK_PENDING: "Pending",
   HOMEWORK_COMPLETED: "Completed",
   HOMEWORK_PARTIALLY_COMPLETED: "Partially Completed",
@@ -97,7 +102,9 @@ const keys = {
   PAYOUT_STATUS_REJECTED: "Rejected",
 
   WEEKDAYS_OPTION: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  CLASS_MODE_OPTION: ['Online', 'Offline']
+  CLASS_MODE_OPTION: ['Online', 'Offline'],
+  STUDENT_TEACHING_PREFERENCE_OPTION: ["My Home", "Tutor's Home", "Coaching Center"],
+  TUTOR_TEACHING_PREFERENCE_OPTION: ["My Home", "Student's Home", "Coaching Center"],
 
 };
 

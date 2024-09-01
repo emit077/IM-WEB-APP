@@ -2,7 +2,10 @@
 .student-card {
   border: 1px solid lightgrey;
 }
-
+.field-wrapper {
+  // margin-bottom: 10px;
+  margin-top: 20px !important;
+}
 @media screen and (max-width: 1260px) {
   .student-card {
     label {
@@ -19,7 +22,7 @@
     }
 
     .field-wrapper {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
   }
 }

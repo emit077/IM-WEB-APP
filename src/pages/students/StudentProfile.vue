@@ -1,27 +1,47 @@
 <template>
   <div>
-    <ProfileCard :created="created" :student_basic_data="student_basic_data" :student_table_id="student_table_id"
-      :student_name="student_name"></ProfileCard>
+    <UserProfileCard
+      :data="{
+        name: student_basic_data.name,
+        id: student_basic_data.student_table_id,
+        gender: student_basic_data.gender,
+        display_id: student_basic_data.student_id,
+        profile_status: student_basic_data.profile_status,
+      }"
+      :account_type="$keys.ACCOUNT_STUDENT"
+    ></UserProfileCard>
 
     <DemoDetails v-if="demo_data" :demo_data="demo_data"></DemoDetails>
 
+    <!-- Basic Details -->
+
     <v-row class="mt-4 mx-0">
       <v-col class="px-0" cols="12" md="12">
-        <StudentDetailsCard :afternoon_time_slots="afternoon_time_slots" :email="email"
-          :evening_time_slots="evening_time_slots" :mobile="mobile" :morning_time_slots="morning_time_slots"
-          :student_basic_data="student_basic_data" :student_name="student_name"></StudentDetailsCard>
+        <StudentDetailsCard
+          :afternoon_time_slots="afternoon_time_slots"
+          :email="email"
+          :evening_time_slots="evening_time_slots"
+          :mobile="mobile"
+          :morning_time_slots="morning_time_slots"
+          :student_basic_data="student_basic_data"
+          :student_name="student_name"
+        ></StudentDetailsCard>
       </v-col>
     </v-row>
+
     <ProfileSettings :settings="settings"></ProfileSettings>
 
-    <ProfileDialog v-if="$store.state.user.account_type == $keys.ACCOUNT_STUDENT" :data="dialog_data"></ProfileDialog>
+    <ProfileDialog
+      v-if="$store.state.user.account_type == $keys.ACCOUNT_STUDENT"
+      :data="dialog_data"
+    ></ProfileDialog>
   </div>
 </template>
 
 <script>
 export default {
   components: {
-    ProfileCard: () => import("@/components/student/ProfileCard"),
+    UserProfileCard: () => import("@/components/shared/UserProfileCard"),
     StudentDetailsCard: () => import("../../components/student/StudentDetailsCard"),
     ProfileDialog: () => import("../../components/student/ProfileDialog"),
     DemoDetails: () => import("../../components/student/DemoDetails"),
@@ -38,7 +58,7 @@ export default {
         gender: "",
         date_of_birth: "",
         father_contact_number: "",
-        guardian_contact_number: "",
+        whatsapp_number: "",
         parent_email: "",
         address: "",
         pin_code: "",

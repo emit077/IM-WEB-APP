@@ -1,12 +1,15 @@
 <template>
   <div>
-    <ProfileCard
-      :created="created"
-      :tutor_name="tutor_data.tutor_name"
-      :tutor_id="tutor_data.tutor_id"
-      :gender="tutor_data.gender"
-      :tutor_table_id="tutor_table_id"
-    ></ProfileCard>
+    <UserProfileCard
+      :data="{
+        name: tutor_data.tutor_name,
+        id: tutor_table_id,
+        gender: tutor_data.gender,
+        display_id: tutor_data.tutor_id,
+        profile_status: tutor_data.profile_status,
+      }"
+      :account_type="$keys.ACCOUNT_TEACHER"
+    ></UserProfileCard>
 
     <InterviewDetails
       v-if="tutor_data.contract_status == $keys.INTERVIEW_SCHEDULED"
@@ -43,7 +46,7 @@
 export default {
   components: {
     ProfileDialog: () => import("@/components/student/ProfileDialog"),
-    ProfileCard: () => import("../../components/teacher/tutor-profile/ProfileCard"),
+    UserProfileCard: () => import("../../components/shared/UserProfileCard"),
     DetailsCard: () => import("../../components/teacher/tutor-profile/DetailsCard"),
     InterviewDetails: () => import("../../components/teacher/InterviewDetails"),
     ProfileSettings: () => import("../../components/shared/ProfileSettings"),
@@ -63,7 +66,7 @@ export default {
       grade_list: [],
       academic_data: [],
       settings: {
-        profile_status:"",
+        profile_status: "",
         registration_fee_required: null,
         user_table_id: null,
         account_type: this.$keys.ACCOUNT_TEACHER,
@@ -110,7 +113,7 @@ export default {
           this.settings.registration_fee_amount = response.data.registration_fee_amount;
 
           this.settings.profile_status = response.data.profile_status;
-          
+
           this.dialog_data.profile_status = response.data.profile_status;
 
           if (response.data.profile_status == this.$keys.PROFILE_INCOMPLETE) {
@@ -124,9 +127,8 @@ export default {
             // this.dialog_data.title = "Continue to complete your registration";
             // this.dialog_data.message =
             //   "Kindly pay one-time registration & account activation charges and get lifetime access to all the verified classes near your location.";
-              this.dialog_data.title = "Just one more step to go!";
+            this.dialog_data.title = "Just one more step to go!";
             this.dialog_data.message = `Complete your profile by paying the <b>₹${this.settings.registration_fee_amount}</b> registration fee and embark on your learning journey today.`;
-      
           }
         }
       };

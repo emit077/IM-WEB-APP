@@ -122,7 +122,7 @@ export default {
         { text: "Tutor ID", align: "start", value: "tutor_id", width: "120px" },
         { text: "Tutor info", align: "start", value: "name" },
         { text: "Interviewer", align: "start", value: "bda" },
-        { text: "Date & time ", value: "datetime", align: "center" },
+        { text: "Date ", value: "date", align: "center" },
         { text: "time", value: "time", align: "center" },
         { text: "Result", value: "result", align: "center" },
         { text: "", value: "action", align: "end", width: "150px" },
