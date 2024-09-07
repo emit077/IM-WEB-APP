@@ -54,7 +54,7 @@
           />
         </v-stepper-content>
         <v-stepper-content step="4" class="pa-3">
-          <h3 class="font-weight-bold pl-3 mb-3">{{ $lang.STUDENT_ACADEMIC_DETAILS }}</h3>
+          <h3 class="font-weight-bold pl-3 mb-3">{{ $lang.OTHER_DETAILS }}</h3>
           <v-divider></v-divider>
           <OtherDetailsForm
             :student_table_id="student_table_id"
@@ -192,6 +192,7 @@ export default {
       );
     },
     updateSteps(step) {
+      window.scroll({ top: 0, left: 0, behavior: "smooth" });
       this.step = step;
     },
   },

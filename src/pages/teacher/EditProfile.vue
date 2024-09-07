@@ -1,25 +1,50 @@
+<style lang="scss" scoped>
+.stepper-border {
+  border: solid 3px !important;
+  border-radius: 3px;
+}
+</style>
+
 <template>
-  <v-stepper v-model="e1" class="elevation-0">
-    <v-stepper-header>
-      <v-stepper-step step="1" @click="e1 = 1"> Personal details </v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step step="2" @click="e1 = 2"> Professional Details </v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step step="3" @click="e1 = 3"> Upload Documents </v-stepper-step>
+  <v-stepper v-model="step" class="elevation-0 bg-transparent">
+    <v-stepper-header class="elevation-0">
+      <v-stepper-step step="1" @click="step = 1"></v-stepper-step>
+      <v-divider class="stepper-border" color="secondary"></v-divider>
+      <v-stepper-step step="2" @click="step = 2"></v-stepper-step>
+      <v-divider class="stepper-border" color="secondary"></v-divider>
+      <v-stepper-step step="3" @click="step = 3"></v-stepper-step>
+      <v-divider class="stepper-border" color="secondary"></v-divider>
+      <v-stepper-step step="4" @click="step = 4"></v-stepper-step>
+      <v-divider class="stepper-border" color="secondary"></v-divider>
+      <v-stepper-step step="5" @click="step = 5"></v-stepper-step>
     </v-stepper-header>
-
     <v-stepper-items>
       <v-stepper-content step="1">
-        <AddressDetails @next="nextStep" />
+        <h3 class="font-weight-bold pl-3 mb-3">{{ $lang.STUDENT_BASIC_DETAILS }}</h3>
+        <v-divider></v-divider>
+        <BasicDetailsForm
+          :form="tutor_data"
+          :tutor_table_id="tutor_table_id"
+          :academic_data="academic_data"
+          @next="nextStep"
+        />
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <!--        <EducationalDetails :academic_data_list="academic_data_list" @next="nextStep"/>-->
-        <ProfessionalDetails
+        <h3 class="font-weight-bold pl-3 mb-3">{{ $lang.STUDENT_ADDRESS_DETAILS }}</h3>
+        <v-divider></v-divider>
+        <AddressForm
+          :form="tutor_data"
+          :tutor_table_id="tutor_table_id"
+          @next="nextStep"
+        />
+      </v-stepper-content>
+      <v-stepper-content step="3">
+        <h3 class="font-weight-bold pl-3 mb-3">{{ $lang.PROFESSIONAL_DETAILS }}</h3>
+        <v-divider></v-divider>
+        <ProfessionalDetailsForm
+          :form="tutor_data"
+          :tutor_table_id="tutor_table_id"
           :afternoon_time_slots="afternoon_time_slots"
           :evening_time_slots="evening_time_slots"
           :grade_list="grade_list"
@@ -28,9 +53,23 @@
           @next="nextStep"
         />
       </v-stepper-content>
+      <v-stepper-content step="4">
+        <h3 class="font-weight-bold pl-3 mb-3">{{ $lang.OTHER_DETAILS }}</h3>
+        <v-divider></v-divider>
+        <OtherDetailsForm
+          :tutor_table_id="tutor_table_id"
+          :form="tutor_data"
+          :morning_time_slots="morning_time_slots"
+          :afternoon_time_slots="afternoon_time_slots"
+          :evening_time_slots="evening_time_slots"
+          @next="nextStep"
+        />
+      </v-stepper-content>
 
-      <v-stepper-content step="3">
-        <OtherDetails @next="nextStep" />
+      <v-stepper-content step="5">
+        <h3 class="font-weight-bold pl-3 mb-3">{{ $lang.UPLOAD_DOCUMENTS }}</h3>
+        <v-divider></v-divider>
+        <DocumentForm @next="nextStep" class="mt-8" />
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
@@ -38,20 +77,21 @@
 <script>
 export default {
   components: {
-    // EducationalDetails: () => import('@/components/teacher/edit-profile/EducationalDetails'),
-    AddressDetails: () => import("@/components/teacher/edit-profile/AddressDetails"),
-    ProfessionalDetails: () =>
-      import("@/components/teacher/edit-profile/ProfessionalDetails"),
-    OtherDetails: () => import("@/components/teacher/edit-profile/OtherDetails"),
+    AddressForm: () => import("@/components/teacher/edit-profile/AddressForm"),
+    BasicDetailsForm: () => import("@/components/teacher/edit-profile/BasicDetailsForm"),
+    ProfessionalDetailsForm: () =>
+      import("@/components/teacher/edit-profile/ProfessionalDetailsForm"),
+    OtherDetailsForm: () => import("@/components/teacher/edit-profile/OtherDetailsForm"),
+    DocumentForm: () => import("@/components/teacher/edit-profile/DocumentForm"),
   },
   data() {
     return {
-      e1: 1,
+      step: 1,
       tutor_table_id: -1,
       tutor_data: {
         time_slots_id_list: [],
       },
-      academic_data_list: [],
+      academic_data: {},
       tutor_professional_data: [],
       grade_list: [],
       mo: [],
@@ -78,7 +118,7 @@ export default {
       const successHandler = (response) => {
         if (response.data.success) {
           self.tutor_data = response.data.tutor_data;
-          self.academic_data_list = response.data.academic_data_list;
+          self.academic_data = response.data.academic_data;
           self.tutor_professional_data = response.data.tutor_professional_data;
           self.grade_list = response.data.grade_list;
           self.morning_time_slots = response.data.morning_time_slots;
@@ -106,39 +146,9 @@ export default {
       );
     },
     nextStep(step) {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-      this.e1 = step;
+      window.scroll({ top: 0, left: 0, behavior: "smooth" });
+      this.step = step;
     },
-    /* set the current location in the map*/
-    // set_location_in_map(lat, lng) {
-    //   if (lat && lng) {
-    //     // set the map with saved location
-    //     this.form.latitude = lat
-    //     this.form.longitude = lng
-    //     this.$refs.map_elm.center = {
-    //       lat: parseFloat(lat),
-    //       lng: parseFloat(lng)
-    //     }
-    //     this.$refs.map_elm.intMap(this.$refs.map_elm.center)
-    //   } else {
-    //     //set map withhh current location
-    //     this.$getLocation({
-    //       enableHighAccuracy: true,
-    //     }).then(coordinates => {
-    //       this.form.latitude = coordinates.lat
-    //       this.form.longitude = coordinates.lng
-    //       this.$refs.map_elm.center = {
-    //         lat: parseFloat(coordinates.lat),
-    //         lng: parseFloat(coordinates.lng)
-    //       }
-    //       this.$refs.map_elm.intMap(this.$refs.map_elm.center)
-    //     });
-    //   }
-    // }
   },
 };
 </script>

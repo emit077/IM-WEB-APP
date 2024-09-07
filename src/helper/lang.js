@@ -27,6 +27,10 @@ export default {
   PROFESSIONAL_DETAILS: "Professional Details",
   OTHER_DETAILS: "Other Details",
   CONTACT_DETAILS: "Contact Details",
+  UPLOAD_DOCUMENTS: "Upload Documents",
+  PERSONAL_VEHICLE: "Do you have personal vehicle?",
+  PERSONAL_COMPUTER: "Do you have personal computer?",
+  ACHIEVEMENTS: "Achievements",
 
   NAME: "Name",
   ADD_MORE_STUDENT: "Add more Student",
@@ -38,6 +42,7 @@ export default {
   PARENT_MOBILE_NUMBER: "Parent Contact number",
   WA_MOBILE_NUMBER: "Whatsapp number",
   GUARDIAN_CONTACT_NUMBER: "Guardian Contact number",
+  ALTERNATE_MOBILE_NUMBER: "Alternate Mobile Number",
   GENDER: "Gender",
   DATE_OF_BIRTH: "Date of Birth",
   EMAIL: "Email",

@@ -315,7 +315,6 @@
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>
-              <br />
               <span v-for="item in afternoon_time_slots" :key="item.id">
                 <span
                   class="text-1"
@@ -324,7 +323,6 @@
                   {{ item.slot_from + " - " + item.slot_to }} ,</span
                 >
               </span>
-              <br />
               <span v-for="item in evening_time_slots" :key="item.id">
                 <span
                   class="text-1"

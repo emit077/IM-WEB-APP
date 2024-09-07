@@ -1,21 +1,88 @@
 <template>
-  <div>
+  <v-card class="pb-5 py-5 bg-transparent" flat color="">
     <v-form ref="address_form" lazy-validation>
-      <v-row
-        :class="{
-          'px-0': $vuetify.breakpoint.smAndDown,
-          'px-0': $vuetify.breakpoint.mdAndUp,
-        }"
-        class="ma-0"
-      >
-        <v-col
-          :class="{
-            'px-0 py-0': $vuetify.breakpoint.smAndDown,
-            'pl-0': $vuetify.breakpoint.mdAndUp,
-          }"
-          cols="12"
-          md="6"
-        >
+      <v-row class="ma-0">
+        <v-col class="py-0" cols="12" md="4">
+          <div class="form-filed-wrapper">
+            <label class="label-text-1"
+              >{{ $lang.TUTOR_NAME }} <sup class="error--text">*</sup></label
+            >
+            <v-text-field
+              v-model="form.tutor_name"
+              :placeholder="$lang.TUTOR_NAME"
+              :rules="[$rules.REQUIRED_FIELD($lang.TUTOR_NAME)]"
+              class="mt-1"
+              dense
+              maxlength="80"
+              outlined
+              single-line
+            ></v-text-field>
+          </div>
+        </v-col>
+        <v-col class="py-0" cols="12" md="4">
+          <div class="form-filed-wrapper">
+            <label class="label-text-1">
+              {{ $lang.MOBILE_NUMBER }} <sup class="error--text">*</sup></label
+            >
+            <v-text-field
+              v-model="form.tutor_mobile"
+              :placeholder="$lang.MOBILE_NUMBER"
+              class="mt-1"
+              dense
+              maxlength="10"
+              outlined
+              single-line
+              disabled
+            >
+              <template slot="prepend-inner">
+                <span class="mt-1">+91</span>
+              </template>
+            </v-text-field>
+          </div>
+        </v-col>
+        <v-col class="py-0" cols="12" md="4">
+          <div class="form-filed-wrapper">
+            <label class="label-text-1">
+              {{ $lang.WA_MOBILE_NUMBER }} <sup class="error--text">*</sup></label
+            >
+            <v-text-field
+              v-model="form.whatsapp_number"
+              :placeholder="$lang.WA_MOBILE_NUMBER"
+              :rules="$rules.MOBILE"
+              class="mt-1"
+              dense
+              maxlength="10"
+              outlined
+              single-line
+            >
+              <template slot="prepend-inner">
+                <span class="mt-1">+91</span>
+              </template>
+            </v-text-field>
+          </div>
+        </v-col>
+        <v-col class="py-0" cols="12" md="4">
+          <div class="form-filed-wrapper">
+            <label class="label-text-1">
+              {{ $lang.ALTERNATE_MOBILE_NUMBER }} <sup class="error--text">*</sup></label
+            >
+            <v-text-field
+              v-model="form.alternate_number"
+              :placeholder="$lang.ALTERNATE_NUMBER"
+              :rules="$rules.MOBILE"
+              class="mt-1"
+              dense
+              maxlength="10"
+              outlined
+              single-line
+            >
+              <template slot="prepend-inner">
+                <span class="mt-1">+91</span>
+              </template>
+            </v-text-field>
+          </div>
+        </v-col>
+        <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
             <label class="label-text-1"
               >{{ $lang.EMAIL }} <sup class="error--text">*</sup></label
@@ -32,14 +99,7 @@
             ></v-text-field>
           </div>
         </v-col>
-        <v-col
-          :class="{
-            'px-0 py-0': $vuetify.breakpoint.smAndDown,
-            'pl-0': $vuetify.breakpoint.mdAndUp,
-          }"
-          cols="12"
-          md="6"
-        >
+        <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
             <label class="label-text-1"
               >{{ $lang.FATHER_NAME }} <sup class="error--text">*</sup></label
@@ -56,14 +116,7 @@
             ></v-text-field>
           </div>
         </v-col>
-        <v-col
-          :class="{
-            'px-0 py-0': $vuetify.breakpoint.smAndDown,
-            'pl-0': $vuetify.breakpoint.mdAndUp,
-          }"
-          cols="12"
-          md="6"
-        >
+        <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
             <label class="label-text-1">
               {{ $lang.GENDER }} <sup class="error--text">*</sup></label
@@ -81,14 +134,7 @@
             ></v-select>
           </div>
         </v-col>
-        <v-col
-          :class="{
-            'px-0 py-0': $vuetify.breakpoint.smAndDown,
-            'pl-0': $vuetify.breakpoint.mdAndUp,
-          }"
-          cols="12"
-          md="6"
-        >
+        <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
             <label class="label-text-1">
               {{ $lang.DATE_OF_BIRTH }} <sup class="error--text">*</sup></label
@@ -128,78 +174,7 @@
             </v-menu>
           </div>
         </v-col>
-        <v-col
-          :class="{
-            'px-0 py-0': $vuetify.breakpoint.smAndDown,
-            'pl-0': $vuetify.breakpoint.mdAndUp,
-          }"
-          cols="12"
-          md="6"
-        >
-          <div class="form-filed-wrapper">
-            <label class="label-text-1">
-              {{ $lang.ADDRESS }} <sup class="error--text">*</sup></label
-            >
-            <v-textarea
-              v-model="form.address"
-              :placeholder="$lang.ADDRESS"
-              :rules="[$rules.REQUIRED_FIELD($lang.ADDRESS)]"
-              class="mt-1"
-              dense
-              outlined
-              single-line
-            ></v-textarea>
-          </div>
-        </v-col>
-        <v-col
-          :class="{
-            'px-0 py-0': $vuetify.breakpoint.smAndDown,
-            'pl-0': $vuetify.breakpoint.mdAndUp,
-          }"
-          cols="12"
-          md="6"
-        >
-          <div class="form-filed-wrapper">
-            <label class="label-text-1">
-              {{ $lang.PIN_CODE }} <sup class="error--text">*</sup></label
-            >
-            <v-text-field
-              v-model="form.pin_code"
-              :placeholder="$lang.PIN_CODE"
-              :rules="[$rules.PIN_CODE($lang.PIN_CODE)]"
-              class="mt-1"
-              dense
-              maxlength="6"
-              outlined
-              single-line
-              @change="getPincodeData(form.pin_code)"
-            ></v-text-field>
-          </div>
-          <div class="form-filed-wrapper">
-            <label class="label-text-1">
-              {{ $lang.CITY }} <sup class="error--text">*</sup></label
-            >
-            <v-text-field
-              v-model="city"
-              :placeholder="$lang.CITY"
-              :rules="[$rules.REQUIRED_FIELD($lang.CITY)]"
-              class="mt-1"
-              dense
-              maxlength="80"
-              outlined
-              single-line
-              readonly
-            ></v-text-field>
-          </div>
-        </v-col>
-        <!--       removed map for now  -->
-        <!--        <v-col :class="{'px-0 py-0': $vuetify.breakpoint. smAndDown, 'pl-0': $vuetify.breakpoint. mdAndUp}" cols="12"-->
-        <!--               md="12">-->
-        <!--          <GoogleMap ref="map_elm" :class_name="class_name" @update-center="get_location"></GoogleMap>-->
-        <!--        </v-col>-->
-        <!--        <p v-if="!form.latitude" class="red&#45;&#45;text"> Please update your location</p>-->
       </v-row>
-
       <!--  Educational details    -->
       <div>
         <v-row class="ma-0">
@@ -215,7 +190,7 @@
               {{ $lang.SCHOOL_NAME }} <sup class="error--text">*</sup></label
             >
             <v-text-field
-              v-model="form.school_name"
+              v-model="academic_data.school_name"
               :placeholder="$lang.SCHOOL_NAME"
               :rules="[$rules.REQUIRED_FIELD($lang.SCHOOL_NAME)]"
               class="mt-1"
@@ -235,7 +210,7 @@
           >
             <label class="label-text-1"> 10th % <sup class="error--text">*</sup></label>
             <v-text-field
-              v-model="form.score_10"
+              v-model="academic_data.score_10"
               placeholder="10th %"
               :rules="[$rules.REQUIRED_NUMBER_FIELD('10th %')]"
               class="mt-1"
@@ -256,7 +231,7 @@
           >
             <label class="label-text-1"> 12th % <sup class="error--text">*</sup></label>
             <v-text-field
-              v-model="form.score_12"
+              v-model="academic_data.score_12"
               placeholder="12th %"
               :rules="[$rules.REQUIRED_NUMBER_FIELD('12th %')]"
               class="mt-1"
@@ -279,7 +254,7 @@
               {{ $lang.STREAM }} <sup class="error--text">*</sup></label
             >
             <v-select
-              v-model="form.stream"
+              v-model="academic_data.stream"
               :label="$lang.STREAM"
               :items="stream_options"
               class="mt-1"
@@ -305,7 +280,7 @@
               {{ $lang.COLLAGE_NAME }} <sup class="error--text">*</sup></label
             >
             <v-text-field
-              v-model="form.collage_name"
+              v-model="academic_data.collage_name"
               :placeholder="$lang.COLLAGE_NAME"
               :rules="[$rules.REQUIRED_FIELD($lang.COLLAGE_NAME)]"
               class="mt-1"
@@ -327,7 +302,7 @@
               {{ $lang.COURSE_NAME }} <sup class="error--text">*</sup></label
             >
             <v-text-field
-              v-model="form.collage_course_name"
+              v-model="academic_data.collage_course_name"
               :placeholder="$lang.COURSE_NAME"
               :rules="[$rules.REQUIRED_FIELD($lang.COURSE_NAME)]"
               class="mt-1"
@@ -349,7 +324,7 @@
               {{ $lang.STATUS }} <sup class="error--text">*</sup></label
             >
             <v-select
-              v-model="form.collage_status"
+              v-model="academic_data.collage_status"
               :label="$lang.STATUS"
               :items="collage_status_options"
               class="mt-1"
@@ -363,18 +338,31 @@
         </v-row>
       </div>
 
-      <div class="text-center mt-5">
+      <!-- action btn -->
+      <div class="text-center mt-5 px-3">
         <v-btn
-          class="my-3 px-8 py-4"
+          text
+          outlined
           color="primary"
-          width="200px"
-          @click="saveAddressDetails"
+          class="ma-3"
+          width="120"
+          @click="$router.go(-1)"
         >
-          {{ $lang.SUBMIT }}
+          Cancel
+        </v-btn>
+        <v-btn
+          color="primary"
+          @click="Save()"
+          width="120"
+          :loading="btn_loader"
+          :disabled="btn_loader"
+        >
+          Continue
         </v-btn>
       </div>
+      <!-- action btn end -->
     </v-form>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -382,15 +370,11 @@ import HelperMixin from "@/helper/mixins/helper-mixin";
 
 export default {
   mixins: [HelperMixin],
-  components: {
-    // GoogleMap: () => import('@/components/shared/GoogleMap'),
-  },
+  props: ["form", "tutor_table_id", "academic_data"],
   data: () => ({
-    tutor_table_id: null,
     btn_loader: false,
     bob_menu: false,
     today: new Date().toISOString().substr(0, 10),
-    class_name: "min-height",
     stream_options: ["Science", "Commerce", "Arts"],
     collage_status_options: [
       "Pursuing Graduations",
@@ -398,86 +382,10 @@ export default {
       "Pursuing Post-Graduations",
       "Post-Graduate",
     ],
-    form: {
-      email: "",
-      father_name: "",
-      gender: "",
-      date_of_birth: "",
-      address: "",
-      pin_code: "",
-      latitude: "",
-      longitude: "",
-      // city: "",
-      // state: "",
-
-      school_name: "",
-      collage_name: "",
-      score_10: "",
-      score_12: "",
-      stream: "",
-      collage_course_name: "",
-      collage_status: "",
-    },
   }),
-  created() {
-    if (this.$store.getters.getUsertype != this.$keys.ACCOUNT_TEACHER)
-      this.tutor_table_id = this.decrypt(this.$route.query.tutor_table_id);
-    this.getTutorDetails();
-  },
   methods: {
-    /* fetching tutor profile */
-    getTutorDetails() {
-      const self = this;
-      this.$store.dispatch("setPageLoader", false);
-      let params = {};
-      if (self.tutor_table_id) params.tutor_table_id = self.tutor_table_id;
-
-      const successHandler = (response) => {
-        if (response.data.success) {
-          this.form.email = response.data.tutor_data.email;
-          this.form.father_name = response.data.tutor_data.father_name;
-          this.form.gender = response.data.tutor_data.gender;
-          this.form.date_of_birth = response.data.tutor_data.date_of_birth;
-          this.form.address = response.data.tutor_data.address;
-          this.form.pin_code = response.data.tutor_data.pin_code;
-          this.city = response.data.tutor_data.city;
-          this.state = response.data.tutor_data.state;
-          this.form.pin_code = response.data.tutor_data.pin_code;
-          //education
-          this.form.school_name = response.data.academic_data.school_name;
-          this.form.collage_name = response.data.academic_data.collage_name;
-          this.form.score_10 = response.data.academic_data.score_10;
-          this.form.score_12 = response.data.academic_data.score_12;
-          this.form.stream = response.data.academic_data.stream;
-          this.form.collage_course_name = response.data.academic_data.collage_course_name;
-          this.form.collage_status = response.data.academic_data.collage_status;
-
-          // this.form.latitude = response.data.tutor_data.latitude
-          // this.form.longitude = response.data.tutor_data.longitude
-        }
-      };
-      const finallyHandler = () => {
-        this.$store.dispatch("setPageLoader", false);
-      };
-
-      self.request_GET(
-        self,
-        self.$urls.GET_TUTOR_DETAILS,
-        params,
-        successHandler,
-        null,
-        null,
-        finallyHandler
-      );
-    },
-    /* get and set map location */
-    // get_location(lat, lng) {
-    //   this.form.latitude = lat
-    //   this.form.longitude = lng
-    //
-    // },
     /* get address */
-    saveAddressDetails() {
+    Save() {
       const self = this;
       if (
         this.$refs.address_form.validate() == false &&
@@ -488,22 +396,22 @@ export default {
       this.$store.dispatch("setPageLoader", false);
       let form = new FormData();
       if (self.tutor_table_id) form.append("tutor_table_id", self.tutor_table_id);
+      form.append("type", self.$keys.TYPE_CONTACT_FORM);
+      form.append("tutor_name", self.form.tutor_name);
       form.append("email", self.form.email);
+      form.append("whatsapp_number", self.form.whatsapp_number);
+      form.append("alternate_number", self.form.alternate_number);
       form.append("father_name", self.form.father_name);
       form.append("gender", self.form.gender);
       form.append("date_of_birth", self.form.date_of_birth);
-      form.append("address", self.form.address);
-      form.append("city", self.city);
-      form.append("state", self.state);
-      form.append("pin_code", self.form.pin_code);
       //education
-      form.append("school_name", self.form.school_name);
-      form.append("collage_name", self.form.collage_name);
-      form.append("score_10", self.form.score_10);
-      form.append("score_12", self.form.score_12);
-      form.append("stream", self.form.stream);
-      form.append("collage_course_name", self.form.collage_course_name);
-      form.append("collage_status", self.form.collage_status);
+      form.append("school_name", self.academic_data.school_name);
+      form.append("collage_name", self.academic_data.collage_name);
+      form.append("score_10", self.academic_data.score_10);
+      form.append("score_12", self.academic_data.score_12);
+      form.append("stream", self.academic_data.stream);
+      form.append("collage_course_name", self.academic_data.collage_course_name);
+      form.append("collage_status", self.academic_data.collage_status);
 
       // form.append("latitude", self.form.latitude);
       // form.append("longitude", self.form.longitude);
@@ -519,7 +427,7 @@ export default {
 
       self.request_POST(
         self,
-        self.$urls.TUTOR_ADD_ADDRESS_DATA,
+        self.$urls.ADD_TUTOR_DATA,
         form,
         successHandler,
         null,
