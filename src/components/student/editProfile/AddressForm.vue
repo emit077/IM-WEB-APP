@@ -42,7 +42,7 @@
               maxlength="6"
               outlined
               single-line
-              @change="getPincodeData(form.pin_code)"
+              @change="getCityFromPincode(form.pin_code)"
               :loading="pin_loading"
             ></v-text-field>
           </div>
@@ -65,7 +65,7 @@
             ></v-text-field>
           </div>
         </v-col>
-        <v-col class="py-0" cols="12" md="4">
+        <v-col class="py-0" cols="12" md="12">
           <div class="form-filed-wrapper">
             <label class="label-text-1">
               {{ $lang.ADDRESS }} <sup class="error--text">*</sup></label
@@ -153,6 +153,32 @@ export default {
     // }
   },
   methods: {
+    getCityFromPincode(pin_code) {
+      const self = this;
+      self.pin_loading = true;
+      let params = {
+        pin_code: pin_code,
+      };
+      const successHandler = (response) => {
+        if (response.data.success) {
+          this.form.city = response.data.city;
+          this.form.state = response.data.state;
+          return response.data;
+        }
+      };
+      const finallyHandler = () => {
+        self.pin_loading = false;
+      };
+      self.request_GET(
+        self,
+        self.$urls.MATCH_PIN_CODE,
+        params,
+        successHandler,
+        null,
+        null,
+        finallyHandler
+      );
+    },
     /* save profile details*/
     Save() {
       const self = this;

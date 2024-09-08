@@ -101,7 +101,7 @@ const keys = {
   PAYOUT_STATUS_APPROVED: "Approved",
   PAYOUT_STATUS_REJECTED: "Rejected",
 
-  WEEKDAYS_OPTION: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  WEEKDAYS_OPTION: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
   CLASS_MODE_OPTION: ['Online', 'Offline'],
   STUDENT_TEACHING_PREFERENCE_OPTION: ["My Home", "Tutor's Home", "Tuition Center", "Coaching Center"],
   TUTOR_TEACHING_PREFERENCE_OPTION: ["My Home", "Student's Home", "Tuition Center", "Coaching Center", 'School', "College"],

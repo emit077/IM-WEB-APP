@@ -28,8 +28,8 @@ export default {
   OTHER_DETAILS: "Other Details",
   CONTACT_DETAILS: "Contact Details",
   UPLOAD_DOCUMENTS: "Upload Documents",
-  PERSONAL_VEHICLE: "Do you have personal vehicle?",
-  PERSONAL_COMPUTER: "Do you have personal computer?",
+  PERSONAL_VEHICLE: "Do you have Personal Vehicle?",
+  PERSONAL_COMPUTER: "Do you have Personal Computer?",
   ACHIEVEMENTS: "Achievements",
 
   NAME: "Name",

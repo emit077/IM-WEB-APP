@@ -10,7 +10,7 @@
   <v-card class="pb-5 py-5 bg-transparent" flat color="">
     <v-form ref="student_edit_form" lazy-validation>
       <v-row class="ma-0">
-        <v-col class="py-0" cols="12" md="12">
+        <v-col class="py-2" cols="12" md="4">
           <div class="form-filed-wrapper">
             <label class="label-text-1 pb-0">{{ $lang.PERSONAL_COMPUTER }}:</label>
             <div class="px-2 d-flex v-align-top">
@@ -27,7 +27,7 @@
           </div>
         </v-col>
 
-        <v-col class="py-0" cols="12" md="12">
+        <v-col class="py-2" cols="12" md="4">
           <div class="form-filed-wrapper">
             <label class="label-text-1 pb-0">{{ $lang.PERSONAL_VEHICLE }}:</label>
             <div class="px-2 d-flex v-align-top">
@@ -43,25 +43,7 @@
             </div>
           </div>
         </v-col>
-
-        <v-col class="py-0" cols="12" md="12">
-          <div class="form-filed-wrapper">
-            <label class="label-text-1 pb-0">{{ $lang.TEACHING_PREFERENCE }}:</label>
-            <div class="px-2 d-flex v-align-top">
-              <v-checkbox
-                v-for="(item, i) in $keys.TUTOR_TEACHING_PREFERENCE_OPTION"
-                :key="item"
-                v-model="form.teaching_preference"
-                :label="item"
-                :value="item"
-                class="shrink mr-3 mt-0"
-                hide-details
-              ></v-checkbox>
-            </div>
-          </div>
-        </v-col>
-
-        <v-col class="py-0" cols="12" md="12">
+        <v-col class="py-2" cols="12" md="4">
           <div class="form-filed-wrapper mt-2">
             <label class="label-text-1 pb-0">{{ $lang.MODE_OF_CLASS }}:</label>
             <div class="px-2 d-flex v-align-top">
@@ -77,8 +59,26 @@
             </div>
           </div>
         </v-col>
+
+        <v-col class="py-2" cols="12" md="12">
+          <div class="form-filed-wrapper">
+            <label class="label-text-1 pb-0">{{ $lang.TEACHING_PREFERENCE }}:</label>
+            <div class="px-2 d-md-flex v-align-top">
+              <v-checkbox
+                v-for="(item, i) in $keys.TUTOR_TEACHING_PREFERENCE_OPTION"
+                :key="item"
+                v-model="form.teaching_preference"
+                :label="item"
+                :value="item"
+                class="shrink mr-3 mt-0"
+                hide-details
+              ></v-checkbox>
+            </div>
+          </div>
+        </v-col>
+
         <!-- day Perference -->
-        <v-col class="py-0" cols="12" md="12">
+        <v-col class="py-2" cols="12" md="12">
           <div class="form-filed-wrapper mt-2">
             <label class="label-text-1">{{ $lang.SUITABLE_DAYS }}:</label> <br />
             <div class="px-2 d-flex v-align-top flex-wrap" style="flex-direction: row">
@@ -95,7 +95,7 @@
           </div>
         </v-col>
         <!-- time preference -->
-        <v-col class="py-0" cols="12" md="12">
+        <v-col class="py-2" cols="12" md="12">
           <div class="form-filed-wrapper mt-2">
             <label class="label-text-1">{{ $lang.SUITABLE_TIME_SLOT }}:</label> <br />
             <div class="d-inline-block px-2 v-align-top">

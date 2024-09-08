@@ -122,7 +122,7 @@
             ></v-text-field>
           </div>
         </v-col>
-        <v-col class="py-0" cols="12" md="4">
+        <v-col class="py-0" cols="12" md="12">
           <div class="form-filed-wrapper">
             <label class="label-text-1"> {{ $lang.SPECIAL_CONCERN }} </label>
             <v-textarea

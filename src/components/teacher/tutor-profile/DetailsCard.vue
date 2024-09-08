@@ -185,7 +185,7 @@
             <p class="label-text-1 mt-2">{{ grade.grade_name }}</p>
           </v-col>
           <v-col class="pa-0" cols="12" md="10">
-            <span v-for="item in grade.subject_list" :key="item.id">
+            <span class="text-1" v-for="item in grade.subject_list" :key="item.id">
               {{ item.subject_name }},
             </span>
           </v-col>
@@ -231,21 +231,6 @@
               </p>
             </div>
           </v-col>
-          <v-col class="py-0" cols="12" md="3" sm="6">
-            <div class="field-wrapper">
-              <label class="label-text-1"
-                >Expected Tuition Fee <small>(per Hours)</small> :</label
-              >
-              <p class="text-1">
-                {{
-                  tutor_data.tuition_fee.toLocaleString("en-IN", {
-                    style: "currency",
-                    currency: "INR",
-                  })
-                }}
-              </p>
-            </div>
-          </v-col>
         </v-row>
       </v-card-text>
     </v-card>
@@ -260,7 +245,8 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.PERSONAL_COMPUTER }} :</label>
               <p class="text-1">
-                {{ tutor_data.personal_computer }}
+              <span v-if="tutor_data.personal_computer">Yes</span>
+              <span v-else>No</span>
               </p>
             </div>
           </v-col>
@@ -268,7 +254,8 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.PERSONAL_VEHICLE }} :</label>
               <p class="text-1">
-                {{ tutor_data.personal_vehicle }}
+                <span v-if="tutor_data.personal_vehicle">Yes</span>
+                <span v-else>No</span>
               </p>
             </div>
           </v-col>

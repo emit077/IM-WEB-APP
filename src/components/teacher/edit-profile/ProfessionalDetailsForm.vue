@@ -39,11 +39,11 @@
           <label class="label-text-1"
             >{{ $lang.EXPERIENCE }} <small>(in Years)</small></label
           >
+          <!-- :rules="[$rules.REQUIRED_NUMBER_FIELD($lang.EXPERIENCE)]" -->
 
           <v-select
             v-model="form.experience"
             :placeholder="$lang.EXPERIENCE"
-            :rules="[$rules.REQUIRED_NUMBER_FIELD($lang.EXPERIENCE)]"
             class="mt-1"
             dense
             maxlength="2"
@@ -71,9 +71,9 @@
       </v-row>
       <v-row class="ma-0">
         <v-col class="mt-3" cols="12" md="6">
-          <label class="label-text-1"> {{ $lang.ABOUT_YOURSELF }} </label>
+          <label class="label-text-1"> {{ $lang.ACHIEVEMENTS }} </label>
           <v-textarea
-            v-model="form.about_you"
+            v-model="form.achievements"
             :placeholder="$lang.ABOUT_YOURSELF"
             class="mt-1"
             dense
@@ -84,9 +84,9 @@
           ></v-textarea>
         </v-col>
         <v-col class="mt-3" cols="12" md="6">
-          <label class="label-text-1"> {{ $lang.ACHIEVEMENTS }} </label>
+          <label class="label-text-1"> {{ $lang.ABOUT_YOURSELF }} </label>
           <v-textarea
-            v-model="form.achievements"
+            v-model="form.about_you"
             :placeholder="$lang.ABOUT_YOURSELF"
             class="mt-1"
             dense
@@ -140,6 +140,7 @@ export default {
       btn_loader: false,
       board_options: ["CBSE", "ICSE", "State Board", "IB", "CISCE", "NIOS", "CIE"],
       experience_options: [
+        0,
         1,
         2,
         3,

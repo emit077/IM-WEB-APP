@@ -211,7 +211,7 @@
             <label class="label-text-1"> 10th % <sup class="error--text">*</sup></label>
             <v-text-field
               v-model="academic_data.score_10"
-              placeholder="10th %"
+              placeholder="80%"
               :rules="[$rules.REQUIRED_NUMBER_FIELD('10th %')]"
               class="mt-1"
               dense
@@ -232,7 +232,7 @@
             <label class="label-text-1"> 12th % <sup class="error--text">*</sup></label>
             <v-text-field
               v-model="academic_data.score_12"
-              placeholder="12th %"
+              placeholder="80%"
               :rules="[$rules.REQUIRED_NUMBER_FIELD('12th %')]"
               class="mt-1"
               dense
@@ -303,7 +303,7 @@
             >
             <v-text-field
               v-model="academic_data.collage_course_name"
-              :placeholder="$lang.COURSE_NAME"
+              placeholder="BSc, MSc, BTech, BEd,"
               :rules="[$rules.REQUIRED_FIELD($lang.COURSE_NAME)]"
               class="mt-1"
               dense
