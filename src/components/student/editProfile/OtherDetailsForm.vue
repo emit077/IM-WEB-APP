@@ -16,7 +16,7 @@
         }"
         class="ma-0"
       >
-        <v-col class="py-0" cols="12" md="12">
+        <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper mt-2">
             <label class="label-text-1 pb-0">{{ $lang.MODE_OF_CLASS }}:</label>
             <div class="px-2 d-flex v-align-top">
@@ -32,7 +32,7 @@
             </div>
           </div>
         </v-col>
-        <v-col class="py-0" cols="12" md="12">
+        <v-col class="py-0" cols="12" md="8">
           <div class="form-filed-wrapper mt-2">
             <label class="label-text-1 pb-0">{{ $lang.TEACHING_PREFERENCE }}:</label>
             <div class="px-2 d-flex v-align-top">

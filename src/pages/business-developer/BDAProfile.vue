@@ -47,8 +47,8 @@
       <v-row class="mx-0" justify="center">
         <v-col class="text-center" cols="12" md="2" sm="4">
           <v-avatar class="ml-1" size="110">
-            <img v-if="gender == 'Female'" alt="John" src="../../assets/images/student/female-profile.svg">
-            <img v-else alt="John" src="../../assets/images/student/male-profile.svg">
+            <img v-if="gender == 'Female'" alt="John" src="../../assets/images/student/female-profile.png">
+            <img v-else alt="John" src="../../assets/images/student/male-profile.png">
           </v-avatar>
         </v-col>
         <v-col :class="{ 'pa-0': $vuetify.breakpoint.smAndDown, '': $vuetify.breakpoint.mdAndUp }" class="" cols="12"
@@ -57,7 +57,8 @@
             class="title-txt ma-0">
             {{ name }} <br>
           </p>
-          <p :class="{ 'text-center': $vuetify.breakpoint.smAndDown, '': $vuetify.breakpoint.mdAndUp }" class="font-weight-bold" style="color: #ffff;font-size: 14px;">( {{ account_type }} )</p>
+          <p :class="{ 'text-center': $vuetify.breakpoint.smAndDown, '': $vuetify.breakpoint.mdAndUp }"
+            class="font-weight-bold" style="color: #ffff;font-size: 14px;">( {{ account_type }} )</p>
           <div :class="{ 'fs-16 text-center': $vuetify.breakpoint.smAndDown, 'fs-18': $vuetify.breakpoint.mdAndUp }">
             <p class="sub-title ma-0">+91 {{ mobile }}</p>
             <p class="sub-title ma-0">Date of Joining : {{ created }}</p>

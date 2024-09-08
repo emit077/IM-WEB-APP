@@ -7,7 +7,6 @@
   background-size: cover;
   background-repeat: repeat;
   height: 180px;
-  margin-bottom: -50px;
 }
 
 .title-txt {
@@ -35,8 +34,7 @@
 
 @media screen and (max-width: 1260px) {
   .profile_card {
-    height: 150px;
-    margin-bottom: -85px;
+    height: auto;
     border-radius: 10px;
   }
 }
@@ -46,54 +44,61 @@
     <div class="profile_card mx-md-5">
       <!-- for desktop view -->
       <div class="large-screen" v-if="data">
-        <div class="text-subtitle-1 white--text text-right font-weight-medium">
-          <p>#{{ data.display_id }}</p>
+        <div class="text-subtitle-1 float-right white--text font-weight-medium">
+          <p class="secondary--text">#{{ data.display_id }}</p>
         </div>
-        <div class="float-end" style="position: relative; top: 75px">
-          <v-btn color="info" small @click="editProfile(data.id)">
+      </div>
+      <div
+        class="d-md-flex text-md-left text-center h-100 justify-center justify-md-start"
+        style="align-items: center"
+      >
+        <img
+          height="110"
+          style="border-radius: 30px"
+          alt="John"
+          :src="
+            require(data.gender == 'Female'
+              ? '../../assets/images/student/female-profile.png'
+              : '../../assets/images/student/male-profile.png')
+          "
+        />
+        <!-- mobile view -->
+        <div class="small-screen text-center">
+          <h3 class="ma-0 white--text">{{ data.name }}</h3>
+          <p class="secondary--text">#{{ data.display_id }}</p>
+          <v-btn class="mt-3" color="info" small @click="editProfile(data.id)">
             {{ $lang.EDIT_PROFILE }}
           </v-btn>
         </div>
-      </div>
-      <!-- destop view end  -->
-    </div>
-    <div class="ml-md-10" v-if="data">
-      <div class="d-flex justify-center justify-md-start" style="align-items: end">
-        <div>
-          <img
-            height="130"
-            style="border-radius: 30px"
-            alt="John"
-            class="elevation-3"
-            :src="
-              require(data.gender == 'Female'
-                ? '../../assets/images/student/female-profile.png'
-                : '../../assets/images/student/male-profile.png')
-            "
-          />
-          <!-- mobile view -->
-          <div class="small-screen text-center">
-            <h3 class="ma-0">{{ data.name }}</h3>
-            <p>#{{ data.display_id }}</p>
-            <v-btn class="mt-3" color="info" small @click="editProfile(data.id)">
-              {{ $lang.EDIT_PROFILE }}
-            </v-btn>
-          </div>
-          <!-- mobile view end -->
-        </div>
+        <!-- mobile view end -->
         <!-- desktop view -->
-        <div class="px-3 pb-5 large-screen">
-          <h2 class="text-h4 font-weight-bold">
+        <div class="px-3 large-screen">
+          <h2 class="text-h4 white--text font-weight-bold">
             {{ data.name }}
           </h2>
           <span
-            v-if="data.profile_status"
-            :class="'status-' + data.profile_status.toLowerCase()"
-            >{{ data.profile_status }}</span
+            :title="'Profile Status: ' + data.profile_status"
+            class="mt-2"
+            style="background-color: #fff; border-radius: 20px; display: inline-flex"
           >
+            <span
+              v-if="data.profile_status"
+              :class="'status-' + data.profile_status.toLowerCase()"
+              >{{ data.profile_status }}</span
+            >
+          </span>
         </div>
+
         <!-- desktop view end -->
       </div>
+
+      <div class="float-end large-screen" style="position: relative; top: -35px">
+        <v-btn class="mt-3" color="info" small @click="editProfile(data.id)">
+          {{ $lang.EDIT_PROFILE }}
+        </v-btn>
+      </div>
+
+      <!-- destop view end  -->
     </div>
   </div>
 </template>

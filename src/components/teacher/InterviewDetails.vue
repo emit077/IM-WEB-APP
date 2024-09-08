@@ -7,13 +7,10 @@
 }
 </style>
 <template>
-  <div
-    :class="{
-      'profile_card-mobile': $vuetify.breakpoint.smAndDown,
-      'profile_card mx-5': $vuetify.breakpoint.mdAndUp,
-    }"
-    class="card-bg"
-  >
+  <div :class="{
+    'profile_card-mobile': $vuetify.breakpoint.smAndDown,
+    'profile_card mx-5': $vuetify.breakpoint.mdAndUp,
+  }" class="card-bg">
     <div v-if="interview_data.result == $keys.RESULT_PENDING">
       <h3 class="text-center fc-primary mb-3">Interview Scheduled</h3>
       <v-row class="mx-0" justify="center">
@@ -31,33 +28,21 @@
           <b>{{ interview_data.interview_date }}, {{ interview_data.interview_time }}</b>
         </v-col>
       </v-row>
-      <div
-        v-if="
-          [
-            $keys.ACCOUNT_SUPER_ADMIN,
-            $keys.ACCOUNT_BUSINESS_DEVELOPER,
-            $keys.ACCOUNT_ADMIN,
-          ].includes($store.state.user.account_type)
-        "
-        :class="{
-          'text-center mt-5 mb-n2': $vuetify.breakpoint.smAndDown,
-          'text-right': $vuetify.breakpoint.mdAndUp,
-        }"
-      >
-        <v-btn
-          color="green"
-          small
-          class="mr-2"
-          @click="ChangeInterviewStatus('Selected')"
-        >
+      <div v-if="
+        [
+          $keys.ACCOUNT_SUPER_ADMIN,
+          $keys.ACCOUNT_BUSINESS_DEVELOPER,
+          $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+          $keys.ACCOUNT_ADMIN,
+        ].includes($store.state.user.account_type)
+      " :class="{
+        'text-center mt-5 mb-n2': $vuetify.breakpoint.smAndDown,
+        'text-right': $vuetify.breakpoint.mdAndUp,
+      }">
+        <v-btn color="green" small class="mr-2" @click="ChangeInterviewStatus('Selected')">
           <span style="color: #ffff">Select</span>
         </v-btn>
-        <v-btn
-          color="error"
-          small
-          class="mr-2"
-          @click="ChangeInterviewStatus('Rejected')"
-        >
+        <v-btn color="error" small class="mr-2" @click="ChangeInterviewStatus('Rejected')">
           <span style="color: #ffff">Reject</span>
         </v-btn>
         <v-btn color="rgba(0, 121, 208, 1)" small @click="RescheduleInterview">
@@ -74,13 +59,8 @@
         <span v-else>Tutor factory.</span>
         please accept the offer to start your contract with us.
       </p>
-      <v-btn
-        color="success"
-        small
-        class="mt-3"
-        v-if="[$keys.ACCOUNT_TEACHER].includes($store.state.user.account_type)"
-        @click="AcceptAgreement"
-      >
+      <v-btn color="success" small class="mt-3" v-if="[$keys.ACCOUNT_TEACHER].includes($store.state.user.account_type)"
+        @click="AcceptAgreement">
         <span style="color: #ffff"><b>Accept</b></span>
       </v-btn>
     </div>
@@ -89,10 +69,7 @@
       <p class="error--text text-center fw-bold">Your profile has been rejected</p>
     </div>
 
-    <TutorInterviewDialog
-      :dialog="interview_dialog"
-      @update="$emit('update')"
-    ></TutorInterviewDialog>
+    <TutorInterviewDialog :dialog="interview_dialog" @update="$emit('update')"></TutorInterviewDialog>
     <TutorAgreement :dialog="agreement_dialog" @update="$emit('update')"></TutorAgreement>
   </div>
 </template>
@@ -138,7 +115,7 @@ export default {
           this.$emit("update");
         }
       };
-      const finallyHandler = () => {};
+      const finallyHandler = () => { };
       this.request_POST(
         self,
         this.$urls.INTERVIEW_RESULT,

@@ -1,54 +1,38 @@
+<style lang="scss" scoped>
+.card-divider {
+  border: solid 1.5px !important;
+  border-radius: 3px;
+}
+</style>
 <template>
-  <div
-    class="px-3"
-    v-if="
-      [
-        $keys.ACCOUNT_BUSINESS_DEVELOPER,
-        $keys.ACCOUNT_ADMIN,
-        $keys.ACCOUNT_SUPER_ADMIN,
-      ].includes($store.state.user.account_type)
-    "
-  >
+  <div class="px-3" v-if="
+    [
+      $keys.ACCOUNT_BUSINESS_DEVELOPER,
+      $keys.ACCOUNT_ADMIN,
+      $keys.ACCOUNT_SUPER_ADMIN,
+    ].includes($store.state.user.account_type)
+  ">
     <!--  ################ Settings  #################    -->
-    <v-card
-      flat
-      class="mb-3 pb-3"
-      style="border-radius: 10px; background-color: var(--admin_setting_bg)"
-    >
+    <v-card flat class="mb-3 pb-3" style="border-radius: 10px; background-color: var(--admin_setting_bg)">
       <v-card-title class="primary--text text-body-1 font-weight-medium">
         <v-icon color="primary" class="mr-1" size="20">mdi-cog</v-icon>
         {{ $lang.SETTINGS }}
       </v-card-title>
       <div class="px-5">
-        <v-divider></v-divider>
+        <v-divider class="card-divider" color="secondary"></v-divider>
       </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="py-0" cols="12" md="4" sm="6">
             <div class="field-wrapper">
-              <v-checkbox
-                v-model="settings.registration_fee_required"
-                :label="$lang.REGISTRATION_FEE_REQUIRE"
-                class="shrink ma-0 ml-3 d-inline-flex"
-                hide-details
-                @change="saveSettings"
-              ></v-checkbox>
+              <v-checkbox v-model="settings.registration_fee_required" :label="$lang.REGISTRATION_FEE_REQUIRE"
+                class="shrink ma-0 ml-3 d-inline-flex" hide-details @change="saveSettings"></v-checkbox>
             </div>
           </v-col>
-          <v-col
-            class="py-0"
-            cols="12"
-            md="4"
-            sm="6"
-            v-if="settings.registration_fee_required"
-          >
+          <v-col class="py-0" cols="12" md="4" sm="6" v-if="settings.registration_fee_required">
             <div class="field-wrapper">
-              <v-btn
-                class="success"
-                small
-                @click="openPaymentDialog"
-                :disabled="settings.profile_status != $keys.PROFILE_COMPLETE"
-              >
+              <v-btn class="success" small @click="openPaymentDialog"
+                :disabled="settings.profile_status != $keys.PROFILE_COMPLETE">
                 {{ $lang.COLLECT_REGISTRATION_PAYMENT }}
               </v-btn>
             </div>
@@ -78,7 +62,7 @@ export default {
       },
     };
   },
-  created() {},
+  created() { },
   components: {
     OfflinePaymentDialog: () => import("@/components/payments/OfflinePaymentDialog"),
   },
