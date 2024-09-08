@@ -129,6 +129,17 @@ export default {
           this.dialog_data.profile_status = response.data.profile_status;
           this.demo_data = response.data.demo_data;
 
+          if (!Array.isArray(self.student_address_data.suitable_days)) {
+            self.student_address_data.suitable_days = [
+              self.student_address_data.suitable_days,
+            ];
+          }
+          if (!Array.isArray(self.student_address_data.suitable_days)) {
+            self.student_address_data.suitable_days = [
+              self.student_address_data.suitable_days,
+            ];
+          }
+
           //settings
           this.settings.registration_fee_required =
             response.data.registration_fee_required;

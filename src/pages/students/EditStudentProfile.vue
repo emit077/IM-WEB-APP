@@ -168,6 +168,10 @@ export default {
             self.form.email = response.data.email;
           }
 
+          if (!Array.isArray(self.form.suitable_days)) {
+            self.form.suitable_days = [self.form.suitable_days];
+          }
+
           self.morning_time_slots = response.data.morning_time_slots;
           self.afternoon_time_slots = response.data.afternoon_time_slots;
           self.evening_time_slots = response.data.evening_time_slots;

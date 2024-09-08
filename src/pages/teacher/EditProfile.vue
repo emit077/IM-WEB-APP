@@ -125,6 +125,18 @@ export default {
           self.afternoon_time_slots = response.data.afternoon_time_slots;
           self.evening_time_slots = response.data.evening_time_slots;
 
+          if (!Array.isArray(self.tutor_data.class_mode)) {
+            self.tutor_data.class_mode = [self.tutor_data.class_mode];
+          }
+
+          if (!Array.isArray(self.tutor_data.teaching_preference)) {
+            self.tutor_data.teaching_preference = [self.tutor_data.teaching_preference];
+          }
+
+          if (!Array.isArray(self.tutor_data.suitable_days)) {
+            self.tutor_data.suitable_days = [self.tutor_data.suitable_days];
+          }
+
           self.set_location_in_map(
             response.data.tutor_data.latitude,
             response.data.tutor_data.longitude
