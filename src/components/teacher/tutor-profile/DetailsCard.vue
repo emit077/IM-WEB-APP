@@ -38,7 +38,7 @@
             <label class="label-text-1">{{ $lang.SING_UP_DATE }} :</label>
             <p class="text-1">{{ tutor_data.created }}</p>
           </v-col>
-          <v-col class="py-0" cols="12" md="3">
+          <v-col class="py-0" cols="12" md="9">
             <label class="label-text-1">{{ $lang.ABOUT_YOURSELF }} :</label>
             <p class="text-1">{{ tutor_data.about_you }}</p>
           </v-col>
