@@ -28,7 +28,6 @@
         ></StudentDetailsCard>
       </v-col>
     </v-row>
-
     <ProfileSettings :settings="settings"></ProfileSettings>
 
     <ProfileDialog
@@ -129,21 +128,10 @@ export default {
           this.dialog_data.profile_status = response.data.profile_status;
           this.demo_data = response.data.demo_data;
 
-          if (!Array.isArray(self.student_address_data.suitable_days)) {
-            self.student_address_data.suitable_days = [
-              self.student_address_data.suitable_days,
-            ];
-          }
-          if (!Array.isArray(self.student_address_data.suitable_days)) {
-            self.student_address_data.suitable_days = [
-              self.student_address_data.suitable_days,
-            ];
-          }
-
           //settings
           this.settings.registration_fee_required =
             response.data.registration_fee_required;
-          this.settings.user_table_id = self.student_table_id;
+          this.settings.user_table_id = self.student_basic_data.student_table_id;
           this.settings.registration_fee_amount = response.data.registration_fee_amount;
           this.settings.profile_status = response.data.profile_status;
 

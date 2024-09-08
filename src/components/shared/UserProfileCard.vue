@@ -64,6 +64,7 @@
             height="130"
             style="border-radius: 30px"
             alt="John"
+            class="elevation-3"
             :src="
               require(data.gender == 'Female'
                 ? '../../assets/images/student/female-profile.png'

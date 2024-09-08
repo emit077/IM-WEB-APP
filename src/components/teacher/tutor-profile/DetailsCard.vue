@@ -3,6 +3,10 @@
   margin-bottom: 8px;
 }
 
+.tutor-card .v-card {
+  border-radius: 10px !important;
+}
+
 @media screen and (max-width: 1260px) {
   .tutor-card {
     label {
@@ -25,18 +29,31 @@
 }
 </style>
 <template>
-  <div class="tutor-card">
-    <v-card flat outlined class="px-0" color="transparent">
+  <div class="tutor-card px-3">
+    <v-card flat class="mb-5 pb-3" color="transparent">
       <v-card-text>
-    {{tutor_data.about_you}}
-    </v-card-text>
+      <!-- {{ tutor_data }} -->
+        <v-row no-gutter>
+          <v-col class="py-0" cols="12" md="3">
+            <label class="label-text-1">{{ $lang.SING_UP_DATE }} :</label>
+            <p class="text-1">{{ tutor_data.created }}</p>
+          </v-col>
+          <v-col class="py-0" cols="12" md="3">
+            <label class="label-text-1">{{ $lang.ABOUT_YOURSELF }} :</label>
+            <p class="text-1">{{ tutor_data.about_you }}</p>
+          </v-col>
+        </v-row>
+      </v-card-text>
     </v-card>
     <!--  ################ BASIC DETAILS #################    -->
-    <v-card flat outlined class="px-0" color="transparent">
-      <v-card-title class="primary--text text-body-1 font-weight-bold">{{
-        $lang.CONTACT_DETAILS
-      }}</v-card-title>
-      <v-divider></v-divider>
+    <v-card flat class="mb-5 pb-3" color="">
+      <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1" size="20">mdi-contacts</v-icon>
+        {{ $lang.CONTACT_DETAILS }}
+      </v-card-title>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text>
         <v-row class="py-2 text-left" no-gutter>
           <v-col class="py-0" cols="12" md="3" sm="6">
@@ -91,11 +108,14 @@
       </v-card-text>
     </v-card>
     <!--  ############## ADDRESS DETAILS #################    -->
-    <v-card flat outlined class="px-0" color="transparent">
+    <v-card flat class="mb-5 pb-3" color="">
       <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1">mdi-home-circle</v-icon>
         {{ $lang.STUDENT_ADDRESS_DETAILS }}
       </v-card-title>
-      <v-divider></v-divider>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="py-0" cols="12" md="2">
@@ -135,11 +155,14 @@
       </v-card-text>
     </v-card>
     <!--  ############## ACADEMIC DETAILS ################    -->
-    <v-card flat outlined class="px-0" color="transparent">
+    <v-card flat class="mb-5 pb-3" color="">
       <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1">mdi-bank-circle</v-icon>
         {{ $lang.STUDENT_ACADEMIC_DETAILS }}
       </v-card-title>
-      <v-divider></v-divider>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="pa-3" cols="12" md="3" sm="6">
@@ -173,20 +196,23 @@
         </v-row>
       </v-card-text>
     </v-card>
-    <!--  ############## ACADEMIC DETAILS ################    -->
-    <v-card flat outlined class="px-0" color="transparent">
+    <!--  ############## professnal DETAILS ################    -->
+    <v-card flat class="mb-5 pb-3" color="">
       <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1">mdi-account-circle</v-icon>
         {{ $lang.PROFESSIONAL_DETAILS }}
       </v-card-title>
-      <v-divider></v-divider>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row v-for="grade in grade_list" :key="grade.id" class="mx-0 my-1 text-left">
-          <v-col class="pa-0" cols="12" md="2">
+          <v-col class="pa-0" cols="12" md="2" v-if="grade.subject_list.some(x => x.selected)">
             <p class="label-text-1 mt-2">{{ grade.grade_name }}</p>
           </v-col>
           <v-col class="pa-0" cols="12" md="10">
             <span class="text-1" v-for="item in grade.subject_list" :key="item.id">
-            <span v-if="item.selected">{{ item.subject_name }},</span>
+              <span v-if="item.selected">{{ item.subject_name }},</span>
             </span>
           </v-col>
         </v-row>
@@ -194,9 +220,10 @@
           <v-col class="py-0" cols="12" md="3" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">Preferred board :</label>
-              <p class="text-1">
-                <span v-for="item in tutor_data.preferred_boards" :key="item.id">
-                  {{ item }},
+              <p class="text-1" v-if="tutor_data.preferred_boards.length > 0">
+                <span v-for="(item, i) in tutor_data.preferred_boards" :key="item.id">
+                  {{ item }}
+                  <span v-if="tutor_data.preferred_boards.length > (i + 1)">,</span>
                 </span>
               </p>
             </div>
@@ -209,9 +236,7 @@
           </v-col>
           <v-col class="py-0" cols="12" md="3" sm="6">
             <div class="field-wrapper">
-              <label class="label-text-1"
-                >Expected Tuition Fee <small>(per Hours)</small> :</label
-              >
+              <label class="label-text-1">Expected Tuition Fee <small>(per Hours)</small> :</label>
               <p class="text-1">
                 {{
                   tutor_data.tuition_fee.toLocaleString("en-IN", {
@@ -224,29 +249,31 @@
           </v-col>
           <v-col class="py-0" cols="12" md="3" sm="6">
             <div class="field-wrapper">
-              <label class="label-text-1"
-                >{{ $lang.ACHIEVEMENTS}}</small> :</label>
+              <label class="label-text-1">{{ $lang.ACHIEVEMENTS }}</small> :</label>
               <p class="text-1">
-                {{tutor_data.achievements}}
+                {{ tutor_data.achievements }}
               </p>
             </div>
           </v-col>
         </v-row>
       </v-card-text>
     </v-card>
-    <v-card flat outlined class="px-0" color="transparent">
+    <v-card flat class="mb-5 pb-3" color="">
       <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1">mdi-information</v-icon>
         {{ $lang.OTHER_DETAILS }}
       </v-card-title>
-      <v-divider></v-divider>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="py-0" cols="12" md="6" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.PERSONAL_COMPUTER }} :</label>
               <p class="text-1">
-              <span v-if="tutor_data.personal_computer">Yes</span>
-              <span v-else>No</span>
+                <span v-if="tutor_data.personal_computer">Yes</span>
+                <span v-else>No</span>
               </p>
             </div>
           </v-col>
@@ -263,8 +290,9 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
               <p class="text-1">
-                <span v-for="item in tutor_data.teaching_preference" :key="item">
-                  {{ item }} ,
+                <span v-for="(item, i) in tutor_data.teaching_preference" :key="item.id">
+                  {{ item }}
+                  <span v-if="tutor_data.teaching_preference.length > (i + 1)">,</span>
                 </span>
               </p>
             </div>
@@ -272,8 +300,11 @@
           <v-col class="py-0" cols="12" md="6" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.MODE_OF_CLASS }} :</label>
-              <p class="text-1">
-                {{ tutor_data.class_mode[0] }}, {{ tutor_data.class_mode[1] }}
+              <p class="text-1" v-if="tutor_data.class_mode.length > 0">
+                <span v-for="(item, i) in tutor_data.class_mode" :key="item.id">
+                  {{ item }}
+                  <span v-if="tutor_data.class_mode.length > (i + 1)">,</span>
+                </span>
               </p>
             </div>
           </v-col>
@@ -283,12 +314,9 @@
               <label class="label-text-1">{{ $lang.SUITABLE_DAYS }} :</label>
 
               <p class="text-1">
-                <span
-                  class="text-1"
-                  v-for="(item, i) in tutor_data.suitable_days"
-                  :key="item.id"
-                >
-                  {{ item }},
+                <span v-for="(item, i) in tutor_data.suitable_days" :key="item.id">
+                  {{ item }}
+                  <span v-if="tutor_data.suitable_days.length > (i + 1)">,</span>
                 </span>
               </p>
             </div>
@@ -297,26 +325,16 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUITABLE_TIME_SLOT }} :</label> <br />
               <span v-for="item in morning_time_slots" :key="item.id">
-                <span
-                  class="text-1"
-                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
-                >
+                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>
               <span v-for="item in afternoon_time_slots" :key="item.id">
-                <span
-                  class="text-1"
-                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
-                >
-                  {{ item.slot_from + " - " + item.slot_to }} ,</span
-                >
+                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
+                  {{ item.slot_from + " - " + item.slot_to }} ,</span>
               </span>
               <span v-for="item in evening_time_slots" :key="item.id">
-                <span
-                  class="text-1"
-                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
-                >
+                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>

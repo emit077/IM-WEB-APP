@@ -1,5 +1,6 @@
 <template>
   <div
+    class="px-3"
     v-if="
       [
         $keys.ACCOUNT_BUSINESS_DEVELOPER,
@@ -9,11 +10,18 @@
     "
   >
     <!--  ################ Settings  #################    -->
-    <v-card flat outlined color="transparent">
-      <v-card-title class="py-2 primary--text text-body-1 font-weight-medium">
+    <v-card
+      flat
+      class="mb-3 pb-3"
+      style="border-radius: 10px; background-color: var(--admin_setting_bg)"
+    >
+      <v-card-title class="primary--text text-body-1 font-weight-medium">
+        <v-icon color="primary" class="mr-1">mdi-cog</v-icon>
         {{ $lang.SETTINGS }}
       </v-card-title>
-      <v-divider></v-divider>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="py-0" cols="12" md="4" sm="6">

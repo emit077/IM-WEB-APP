@@ -2,6 +2,9 @@
 .field-wrapper {
   margin-bottom: 8px;
 }
+.student-card .v-card {
+  border-radius: 10px !important;
+}
 
 @media screen and (max-width: 1260px) {
   .student-card {
@@ -25,8 +28,8 @@
 }
 </style>
 <template>
-  <div class="student-card">
-    <v-card flat outlined class="px-3" color="transparent">
+  <div class="student-card px-3">
+    <v-card flat class="px-3" color="transparent">
       <v-card-text class="my-3">
         <v-row no-gutter>
           <!-- for mobile view -->
@@ -67,11 +70,14 @@
     </v-card>
 
     <!--  ################ CONTACT_DETAILS #################    -->
-    <v-card flat outlined class="" color="transparent">
-      <v-card-title class="primary--text text-body-1 font-weight-bold">{{
-        $lang.CONTACT_DETAILS
-      }}</v-card-title>
-      <v-divider></v-divider>
+    <v-card flat class="mb-5 pb-3" color="">
+      <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1" size="20">mdi-contacts</v-icon>
+        {{ $lang.CONTACT_DETAILS }}</v-card-title
+      >
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="py-0" cols="12" md="3">
@@ -161,12 +167,14 @@
       </v-card-text>
     </v-card>
     <!--  ############## ADDRESS DETAILS #################    -->
-    <v-card flat outlined class="my-3" color="transparent">
-      <v-card-title class="py-2 primary--text text-body-1 font-weight-bold">
-        <!-- <v-icon color="primary" class="mr-1">mdi-home</v-icon> -->
+    <v-card flat class="mb-5 pb-3" color="">
+      <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1">mdi-home-circle</v-icon>
         {{ $lang.STUDENT_ADDRESS_DETAILS }}
       </v-card-title>
-      <v-divider></v-divider>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="py-0" cols="12" md="2">
@@ -206,12 +214,14 @@
       </v-card-text>
     </v-card>
     <!--  ############## ACADEMIC DETAILS ################    -->
-    <v-card flat outlined color="transparent">
-      <v-card-title class="py-2 primary--text text-body-1 font-weight-bold">
-        <!-- <v-icon color="primary" class="mr-1">mdi-school</v-icon> -->
+    <v-card flat color="" class="mb-5 pb-3">
+      <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1">mdi-bank-circle</v-icon>
         {{ $lang.STUDENT_ACADEMIC_DETAILS }}
       </v-card-title>
-      <v-divider></v-divider>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="py-0" cols="12" md="3">
@@ -263,20 +273,22 @@
       </v-card-text>
     </v-card>
     <!--  ############## OTHER DETAILS ################    -->
-    <v-card flat outlined color="transparent">
-      <v-card-title class="py-2 primary--text text-body-1 font-weight-bold">
-        <!-- <v-icon color="primary" size="27">mdi-information</v-icon> -->
+    <v-card flat color="" class="mb-5 pb-3">
+      <v-card-title class="primary--text text-body-1 font-weight-bold">
+        <v-icon color="primary" class="mr-1">mdi-information</v-icon>
         {{ $lang.OTHER_DETAILS }}
       </v-card-title>
-      <v-divider></v-divider>
+      <div class="px-5">
+        <v-divider></v-divider>
+      </div>
       <v-card-text class="my-3">
         <v-row no-gutter>
           <v-col class="py-0" cols="12" md="6" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
 
-              <p class="text-1">
-                {{ student_basic_data.teaching_preference }}
+              <p class="text-1" v-if="student_basic_data.teaching_preference.length > 0">
+                {{ student_basic_data.teaching_preference || "-" }}
               </p>
             </div>
           </v-col>
