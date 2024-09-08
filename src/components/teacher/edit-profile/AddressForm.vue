@@ -42,7 +42,7 @@
               maxlength="6"
               outlined
               single-line
-              @change="getPincodeData(form.pin_code)"
+              @change="getCityFromPincode(form.pin_code)"
               :loading="pin_loading"
             ></v-text-field>
           </div>
@@ -184,6 +184,32 @@ export default {
         self,
         this.$urls.ADD_TUTOR_DATA,
         form,
+        successHandler,
+        null,
+        null,
+        finallyHandler
+      );
+    },
+    getCityFromPincode(pin_code) {
+      const self = this;
+      self.pin_loading = true;
+      let params = {
+        pin_code: pin_code,
+      };
+      const successHandler = (response) => {
+        if (response.data.success) {
+          this.form.city = response.data.city;
+          this.form.state = response.data.state;
+          return response.data;
+        }
+      };
+      const finallyHandler = () => {
+        self.pin_loading = false;
+      };
+      self.request_GET(
+        self,
+        self.$urls.MATCH_PIN_CODE,
+        params,
         successHandler,
         null,
         null,

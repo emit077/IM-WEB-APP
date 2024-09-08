@@ -80,6 +80,7 @@ export default {
         if (response.data.success) {
           this.city = response.data.city;
           this.state = response.data.state;
+          return response.data
         }
       };
       const finallyHandler = () => {

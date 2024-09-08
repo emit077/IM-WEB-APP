@@ -49,7 +49,7 @@
             <label class="label-text-1 pb-0">{{ $lang.TEACHING_PREFERENCE }}:</label>
             <div class="px-2 d-flex v-align-top">
               <v-checkbox
-                v-for="(item, i) in $keys.STUDENT_TEACHING_PREFERENCE_OPTION"
+                v-for="(item, i) in $keys.TUTOR_TEACHING_PREFERENCE_OPTION"
                 :key="item"
                 v-model="form.teaching_preference"
                 :label="item"
