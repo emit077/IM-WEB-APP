@@ -276,14 +276,7 @@
               <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
 
               <p class="text-1">
-                <span
-                  class="text-1"
-                  v-for="(item, i) in student_basic_data.teaching_preference"
-                  :key="item.id"
-                >
-                  {{ item
-                  }}<span v-if="i + 1 < student_basic_data.suitable_days.length">,</span>
-                </span>
+                {{ student_basic_data.teaching_preference }}
               </p>
             </div>
           </v-col>

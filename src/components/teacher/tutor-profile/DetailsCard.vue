@@ -186,7 +186,7 @@
           </v-col>
           <v-col class="pa-0" cols="12" md="10">
             <span class="text-1" v-for="item in grade.subject_list" :key="item.id">
-              {{ item.subject_name }},
+            <span v-if="item.selected">{{ item.subject_name }},</span>
             </span>
           </v-col>
         </v-row>
