@@ -16,7 +16,7 @@
       style="border-radius: 10px; background-color: var(--admin_setting_bg)"
     >
       <v-card-title class="primary--text text-body-1 font-weight-medium">
-        <v-icon color="primary" class="mr-1">mdi-cog</v-icon>
+        <v-icon color="primary" class="mr-1" size="20">mdi-cog</v-icon>
         {{ $lang.SETTINGS }}
       </v-card-title>
       <div class="px-5">
