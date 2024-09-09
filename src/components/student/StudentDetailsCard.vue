@@ -306,9 +306,24 @@
           <v-col class="py-0" cols="12" md="3" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
-              <p class="text-1" v-if="student_basic_data.teaching_preference.length > 0">
-                {{ student_basic_data.teaching_preference || "-" }}
+              <p
+                class="text-1"
+                v-if="
+                  student_basic_data.teaching_preference &&
+                  student_basic_data.teaching_preference.length > 0
+                "
+              >
+                <span
+                  v-for="(item, i) in student_basic_data.teaching_preference"
+                  :key="item.id"
+                >
+                  {{ item }}
+                  <span v-if="student_basic_data.teaching_preference.length > i + 1"
+                    >,</span
+                  >
+                </span>
               </p>
+              <p class="text-1" v-else>-</p>
             </div>
           </v-col>
           <v-col class="py-0" cols="12" md="6" sm="6">

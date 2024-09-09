@@ -42,8 +42,11 @@
           <v-col class="py-0 small-screen" cols="12" md="3">
             <label class="label-text-1">{{ $lang.PROFILE_STATUS }} :</label>
             <p class="text-1 py-1">
-              <span v-if="tutor_data.profile_status" :class="'status-' + tutor_data.profile_status.toLowerCase()">{{
-                tutor_data.profile_status }}</span>
+              <span
+                v-if="tutor_data.profile_status"
+                :class="'status-' + tutor_data.profile_status.toLowerCase()"
+                >{{ tutor_data.profile_status }}</span
+              >
             </p>
           </v-col>
           <v-col class="py-1" cols="12" md="3">
@@ -219,7 +222,12 @@
       </div>
       <v-card-text class="my-3">
         <v-row v-for="grade in grade_list" :key="grade.id" class="mx-0 my-1 text-left">
-          <v-col class="pa-0" cols="12" md="2" v-if="grade.subject_list.some(x => x.selected)">
+          <v-col
+            class="pa-0"
+            cols="12"
+            md="2"
+            v-if="grade.subject_list.some((x) => x.selected)"
+          >
             <p class="label-text-1 mt-2">{{ grade.grade_name }}</p>
           </v-col>
           <v-col class="pa-0" cols="12" md="10">
@@ -232,23 +240,32 @@
           <v-col class="py-1" cols="12" md="3" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">Preferred board :</label>
-              <p class="text-1" v-if="tutor_data.preferred_boards && tutor_data.preferred_boards.length > 0">
+              <p
+                class="text-1"
+                v-if="
+                  tutor_data.preferred_boards && tutor_data.preferred_boards.length > 0
+                "
+              >
                 <span v-for="(item, i) in tutor_data.preferred_boards" :key="item.id">
                   {{ item }}
-                  <span v-if="tutor_data.preferred_boards.length > (i + 1)">,</span>
+                  <span v-if="tutor_data.preferred_boards.length > i + 1">,</span>
                 </span>
               </p>
             </div>
           </v-col>
           <v-col class="py-1" cols="12" md="3" sm="6">
             <div class="field-wrapper">
-              <label class="label-text-1">{{ $lang.EXPERIENCE }} <small>(in Years)</small>:</label>
+              <label class="label-text-1"
+                >{{ $lang.EXPERIENCE }} <small>(in Years)</small>:</label
+              >
               <p class="text-1">{{ tutor_data.experience }}</p>
             </div>
           </v-col>
           <v-col class="py-1" cols="12" md="3" sm="6">
             <div class="field-wrapper">
-              <label class="label-text-1">Expected Tuition Fee <small>(per Hours)</small> :</label>
+              <label class="label-text-1"
+                >Expected Tuition Fee <small>(per Hours)</small> :</label
+              >
               <p class="text-1" v-if="tutor_data.tuition_fee">
                 {{
                   tutor_data.tuition_fee.toLocaleString("en-IN", {
@@ -304,23 +321,31 @@
           <v-col class="py-1" cols="12" md="6" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
-              <p class="text-1" v-if="tutor_data.teaching_preference && tutor_data.teaching_preference.length > 0">
+              <p
+                class="text-1"
+                v-if="
+                  tutor_data.teaching_preference &&
+                  tutor_data.teaching_preference.length > 0
+                "
+              >
                 <span v-for="(item, i) in tutor_data.teaching_preference" :key="item.id">
                   {{ item }}
-                  <span v-if="tutor_data.teaching_preference.length > (i + 1)">,</span>
+                  <span v-if="tutor_data.teaching_preference.length > i + 1">,</span>
                 </span>
               </p>
               <p class="text-1" v-else>-</p>
-
             </div>
           </v-col>
           <v-col class="py-1" cols="12" md="6" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.MODE_OF_CLASS }} :</label>
-              <p class="text-1" v-if="tutor_data.class_mode && tutor_data.class_mode.length > 0">
+              <p
+                class="text-1"
+                v-if="tutor_data.class_mode && tutor_data.class_mode.length > 0"
+              >
                 <span v-for="(item, i) in tutor_data.class_mode" :key="item.id">
                   {{ item }}
-                  <span v-if="tutor_data.class_mode.length > (i + 1)">,</span>
+                  <span v-if="tutor_data.class_mode.length > i + 1">,</span>
                 </span>
               </p>
               <p class="text-1" v-else>-</p>
@@ -331,10 +356,13 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUITABLE_DAYS }} :</label>
 
-              <p class="text-1" v-if="tutor_data.suitable_days && tutor_data.suitable_days.length > 0">
+              <p
+                class="text-1"
+                v-if="tutor_data.suitable_days && tutor_data.suitable_days.length > 0"
+              >
                 <span v-for="(item, i) in tutor_data.suitable_days" :key="item.id">
                   {{ item }}
-                  <span v-if="tutor_data.suitable_days.length > (i + 1)">,</span>
+                  <span v-if="tutor_data.suitable_days.length > i + 1">,</span>
                 </span>
               </p>
               <p class="text-1" v-else>-</p>
@@ -344,16 +372,26 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUITABLE_TIME_SLOT }} :</label> <br />
               <span v-for="item in morning_time_slots" :key="item.id">
-                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
+                <span
+                  class="text-1"
+                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
+                >
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>
               <span v-for="item in afternoon_time_slots" :key="item.id">
-                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
-                  {{ item.slot_from + " - " + item.slot_to }} ,</span>
+                <span
+                  class="text-1"
+                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
+                >
+                  {{ item.slot_from + " - " + item.slot_to }} ,</span
+                >
               </span>
               <span v-for="item in evening_time_slots" :key="item.id">
-                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
+                <span
+                  class="text-1"
+                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
+                >
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>
