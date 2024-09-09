@@ -3,7 +3,7 @@
     <div>
         <div class="text-right mb-2 pr-3">
             <v-btn class="ma-2" outlined color="success" rounded
-                v-if="[$keys.ACCOUNT_SUPER_ADMIN,$keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR].includes($store.state.user.account_type)"
+                v-if="[$keys.ACCOUNT_SUPER_ADMIN,$keys.ACCOUNT_ACADEMIC_COUNSELLOR].includes($store.state.user.account_type)"
                 @click="
                     confirmation_dialog_data.flag = true;
                 confirmation_dialog_data.message = 'Modifying the status to Selected'; confirmation_dialog_data.status = 'Selected'">{{
@@ -16,7 +16,7 @@
                     $lang.REJECT
                 }}</v-btn>
             <v-btn class="ma-2" outlined color="primary" rounded
-                v-if="[$keys.ACCOUNT_SUPER_ADMIN, $keys.ACCOUNT_BUSINESS_DEVELOPER].includes($store.state.user.account_type)"
+                v-if="[$keys.ACCOUNT_SUPER_ADMIN, $keys.ACCOUNT_ADMISSION_COUNSELLOR].includes($store.state.user.account_type)"
                 @click="remark_dialog_data.remark = remark; remark_dialog_data.demo_table_id = demo_table_id; remark_dialog_data.flag = true">+{{
                     $lang.ADD + " " +
                     $lang.REMARK }}</v-btn>
@@ -35,12 +35,12 @@
                 <p class="text-1">{{ tutor_mobile }}</p>
             </v-col>
             <v-col class="py-2" cols="12" md="4" sm="6">
-                <label class="label-text-1">{{ $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR }} Details</label>
+                <label class="label-text-1">{{ $keys.ACCOUNT_ACADEMIC_COUNSELLOR }} Details</label>
                 <p class="text-1">{{ sac_name }}</p>
                 <p class="text-1">{{ sac_mobile }}</p>
             </v-col>
             <v-col class="py-2" cols="12" md="4" sm="6">
-                <label class="label-text-1">{{ $keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR }} Details</label>
+                <label class="label-text-1">{{ $keys.ACCOUNT_ADMISSION_COORDINATOR }} Details</label>
                 <p class="text-1">{{ bda_name }}</p>
                 <p class="text-1">{{ bda_mobile }}</p>
             </v-col>

@@ -7,7 +7,7 @@
 <template>
   <div class="px-3" v-if="
     [
-      $keys.ACCOUNT_BUSINESS_DEVELOPER,
+      $keys.ACCOUNT_ADMISSION_COUNSELLOR,
       $keys.ACCOUNT_ADMIN,
       $keys.ACCOUNT_SUPER_ADMIN,
     ].includes($store.state.user.account_type)

@@ -8,7 +8,7 @@
             class="text-right"
             v-if="
               [
-                $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+                $keys.ACCOUNT_ACADEMIC_COUNSELLOR,
                 $keys.ACCOUNT_SUPER_ADMIN,
                 $keys.ACCOUNT_ADMIN,
               ].includes($store.state.user.account_type)

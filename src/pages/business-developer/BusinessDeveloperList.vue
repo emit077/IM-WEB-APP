@@ -83,12 +83,6 @@
           </div>
         </template>
 
-        <template v-slot:[`item.account_type`]="{ item }">
-          <span :title="item.account_type">
-            {{ $lang.BDA_ABBREVIATION[item.account_type] }}
-          </span>
-        </template>
-
         <template v-slot:[`item.action1`]="{ item }">
           <v-switch
             v-model="item.is_active"
@@ -171,7 +165,7 @@ export default {
         { text: "Contact info", align: "start", value: "mobile" },
         { text: "Gender", align: "center", value: "gender" },
         { text: "City", value: "city" },
-        { text: "Type", align: "center", value: "account_type" },
+        { text: "Designation", align: "center", value: "account_type" },
         { text: "Blocked", value: "action1", align: "end", width: "40px" },
         { text: "", value: "action", align: "end", width: "110px" },
       ],

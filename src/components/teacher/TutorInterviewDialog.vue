@@ -197,7 +197,7 @@ export default {
       const self = this;
       let params = {
         search_query: self.bda_search_query,
-        account_type: this.$keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+        account_type: this.$keys.ACCOUNT_ACADEMIC_COUNSELLOR,
       };
       self.loading = true;
       const successHandler = (response) => {

@@ -76,7 +76,7 @@ export default {
             /* redirect the user accounding to the thie account type*/
             if (response.data.account_type == this.$keys.ACCOUNT_SUPER_ADMIN) {
               self.$router.push({ name: 'overview' })
-            } else if ([this.$keys.ACCOUNT_BUSINESS_DEVELOPER, this.$keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR, this.$keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR].includes(response.data.account_type)) {
+            } else if ([this.$keys.ACCOUNT_ADMISSION_COUNSELLOR, this.$keys.ACCOUNT_ACADEMIC_COUNSELLOR, this.$keys.ACCOUNT_ADMISSION_COORDINATOR].includes(response.data.account_type)) {
               self.$router.push({ name: 'bda_profile' })
             }
           } else {

@@ -99,7 +99,7 @@
               [
                 $keys.ACCOUNT_SUPER_ADMIN,
                 $keys.ACCOUNT_ADMIN,
-                $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+                $keys.ACCOUNT_ACADEMIC_COUNSELLOR,
                 $keys.ACCOUNT_STUDENT,
               ].includes(getUser.account_type)
             "

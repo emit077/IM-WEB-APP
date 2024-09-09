@@ -126,13 +126,13 @@
             </v-col>
 
             <v-col class="py-0" cols="12" md="12">
-              <label class="label-text-1">{{ $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR }} </label>
+              <label class="label-text-1">{{ $keys.ACCOUNT_ACADEMIC_COUNSELLOR }} </label>
               <v-combobox
                   v-model="form.bda"
                   :items="bda_list"
                   :search-input.sync="bda_search_query"
-                  :placeholder="$keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR"
-                  :rules="[$rules.REQUIRED_FIELD($keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR)]"
+                  :placeholder="$keys.ACCOUNT_ACADEMIC_COUNSELLOR"
+                  :rules="[$rules.REQUIRED_FIELD($keys.ACCOUNT_ACADEMIC_COUNSELLOR)]"
                   clearable
                   dense
                   outlined
@@ -344,7 +344,7 @@ export default {
         page_number: this.page_number,
         page_length: this.$keys.PAGE_LENGTH,
         search_query: this.bda_search_query,
-        account_type:this.$keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR
+        account_type:this.$keys.ACCOUNT_ACADEMIC_COUNSELLOR
       };
       const successHandler = (response) => {
         if (response.data.success) {

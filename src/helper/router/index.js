@@ -574,9 +574,9 @@ router.beforeEach((to, from, next) => {
       case keys.ACCOUNT_TEACHER:
         next({ name: "tutor_profile" });
         break;
-      case keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR:
-      case keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR:
-      case keys.ACCOUNT_BUSINESS_DEVELOPER:
+      case keys.ACCOUNT_ACADEMIC_COUNSELLOR:
+      case keys.ACCOUNT_ADMISSION_COORDINATOR:
+      case keys.ACCOUNT_ADMISSION_COUNSELLOR:
         next({ name: "bda_profile" });
         break;
       case keys.ACCOUNT_SUPER_ADMIN:

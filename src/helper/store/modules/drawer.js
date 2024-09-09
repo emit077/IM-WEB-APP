@@ -32,9 +32,9 @@ export const state = {
       url: { name: "bda_profile" },
       is_active_tab: false,
       access_by: [
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
-        keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
+        keys.ACCOUNT_ADMISSION_COORDINATOR,
       ],
     },
     {
@@ -56,7 +56,7 @@ export const state = {
       access_by: [
         keys.SUPER_ADMIN,
         keys.ADMIN,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
       ],
     },
     {
@@ -66,8 +66,8 @@ export const state = {
       access_by: [
         keys.SUPER_ADMIN,
         keys.ADMIN,
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
       ],
     },
     {
@@ -77,8 +77,8 @@ export const state = {
       access_by: [
         keys.SUPER_ADMIN,
         keys.ADMIN,
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
       ],
     },
     {
@@ -88,8 +88,8 @@ export const state = {
       access_by: [
         keys.SUPER_ADMIN,
         keys.ADMIN,
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
       ],
     },
     {
@@ -106,8 +106,8 @@ export const state = {
       access_by: [
         keys.SUPER_ADMIN,
         keys.ADMIN,
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
       ],
     },
     {
@@ -130,7 +130,7 @@ export const state = {
       access_by: [
         keys.SUPER_ADMIN,
         keys.ADMIN,
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
       ],
     },
     {
@@ -148,8 +148,8 @@ export const state = {
         keys.SUPER_ADMIN,
         keys.ADMIN,
         keys.ACCOUNT_STUDENT,
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
       ],
     },
     {
@@ -159,8 +159,8 @@ export const state = {
       access_by: [
         keys.SUPER_ADMIN,
         keys.ADMIN,
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
-        keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
+        keys.ACCOUNT_ADMISSION_COORDINATOR,
       ],
     },
     {
@@ -171,8 +171,8 @@ export const state = {
         keys.SUPER_ADMIN,
         keys.ADMIN,
         keys.ACCOUNT_TEACHER,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
-        keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
+        keys.ACCOUNT_ADMISSION_COORDINATOR,
       ],
     },
     {
@@ -196,10 +196,10 @@ export const state = {
         keys.SUPER_ADMIN,
         keys.ADMIN,
         keys.ACCOUNT_TEACHER,
-        keys.ACCOUNT_BUSINESS_DEVELOPER,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
         keys.ACCOUNT_STUDENT,
-        keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
-        keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
+        keys.ACCOUNT_ADMISSION_COORDINATOR,
       ],
     },
     // {

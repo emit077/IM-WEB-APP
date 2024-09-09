@@ -60,7 +60,7 @@
         <!-- BDA details -->
         <template v-slot:[`item.bda`]="{ item }">
           <AccountInfoCard
-            :type="$keys.ACCOUNT_BUSINESS_DEVELOPER"
+            :type="$keys.ACCOUNT_ADMISSION_COUNSELLOR"
             :account_details="{
               name: item.bda.name,
               mobile: item.bda.mobile,

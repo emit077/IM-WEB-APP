@@ -206,11 +206,13 @@ export default {
   AMOUNT: "Amount",
   BALANCE: "Balance",
   LOAD_MORE: "Load more",
+  DESIGNATION: "Designation",
 
   BDA_ABBREVIATION: {
-    "Business Developer": "BD",
-    "Senior Academic Counselor": "SAC",
-    "Junior Academic Counselor": "JAC",
+    "Admission Counsellor": "AdC",
+    "Academic Counsellor": "AcC",
+    "Admission Coordinator": "ACo",
+    "Recruitment Manager": "RM",
   },
 
   RAISE_WITHDRAW_REQUEST: "Raise Withdraw Request",

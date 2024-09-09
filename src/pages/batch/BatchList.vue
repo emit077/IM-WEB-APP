@@ -4,7 +4,7 @@
     <div
       v-if="
         [
-          $keys.ACCOUNT_BUSINESS_DEVELOPER,
+          $keys.ACCOUNT_ADMISSION_COUNSELLOR,
           $keys.ACCOUNT_ADMIN,
           $keys.ACCOUNT_SUPER_ADMIN,
         ].includes($store.state.user.account_type)
@@ -117,7 +117,7 @@
             class="d-inline"
             v-if="
               [
-                $keys.ACCOUNT_BUSINESS_DEVELOPER,
+                $keys.ACCOUNT_ADMISSION_COUNSELLOR,
                 $keys.ACCOUNT_ADMIN,
                 $keys.ACCOUNT_SUPER_ADMIN,
               ].includes($store.state.user.account_type)

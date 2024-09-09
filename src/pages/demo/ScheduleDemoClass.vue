@@ -66,20 +66,20 @@
               class="py-0"
               cols="12"
               md="6"
-              v-if="getUser.account_type != this.$keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR"
+              v-if="getUser.account_type != this.$keys.ACCOUNT_ACADEMIC_COUNSELLOR"
             >
               <label class="label-text-1"
-                >{{ $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR }}
+                >{{ $keys.ACCOUNT_ACADEMIC_COUNSELLOR }}
               </label>
               <v-combobox
                 v-model="form.sac"
                 :items="bda_list"
                 :search-input.sync="sac_search_query"
-                :placeholder="$keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR"
+                :placeholder="$keys.ACCOUNT_ACADEMIC_COUNSELLOR"
                 :rules="
                   demo_table_id
                     ? []
-                    : [$rules.REQUIRED_FIELD($keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR)]
+                    : [$rules.REQUIRED_FIELD($keys.ACCOUNT_ACADEMIC_COUNSELLOR)]
                 "
                 clearable
                 dense
@@ -88,8 +88,8 @@
                 item-text="name"
                 item-value="id"
                 :disabled="is_reschedule"
-                @focus="bdaAutocomplete($keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR)"
-                @keyup="bdaAutocomplete($keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR)"
+                @focus="bdaAutocomplete($keys.ACCOUNT_ACADEMIC_COUNSELLOR)"
+                @keyup="bdaAutocomplete($keys.ACCOUNT_ACADEMIC_COUNSELLOR)"
               >
                 <template v-slot:item="{ index, item }">
                   <div>
@@ -102,14 +102,14 @@
             <!-- JAC -->
             <v-col class="py-0" cols="12" md="6">
               <label class="label-text-1"
-                >{{ $keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR }}
+                >{{ $keys.ACCOUNT_ADMISSION_COORDINATOR }}
               </label>
               <v-combobox
                 v-model="form.bda"
                 :items="bda_list"
                 :search-input.sync="bda_search_query"
-                :placeholder="$keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR"
-                :rules="[$rules.REQUIRED_FIELD($keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR)]"
+                :placeholder="$keys.ACCOUNT_ADMISSION_COORDINATOR"
+                :rules="[$rules.REQUIRED_FIELD($keys.ACCOUNT_ADMISSION_COORDINATOR)]"
                 clearable
                 dense
                 outlined
@@ -117,8 +117,8 @@
                 item-text="name"
                 item-value="id"
                 :disabled="is_reschedule"
-                @focus="bdaAutocomplete($keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR)"
-                @keyup="bdaAutocomplete($keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR)"
+                @focus="bdaAutocomplete($keys.ACCOUNT_ADMISSION_COORDINATOR)"
+                @keyup="bdaAutocomplete($keys.ACCOUNT_ADMISSION_COORDINATOR)"
               >
                 <template v-slot:item="{ index, item }">
                   <div>

@@ -7,7 +7,7 @@
         v-if="
           [
             $keys.ACCOUNT_SUPER_ADMIN,
-            $keys.ACCOUNT_BUSINESS_DEVELOPER,
+            $keys.ACCOUNT_ADMISSION_COUNSELLOR,
             $keys.ACCOUNT_ADMIN,
           ].includes($store.state.user.account_type)
         "

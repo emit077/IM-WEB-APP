@@ -14,9 +14,12 @@ const keys = {
   ACCOUNT_TEACHER: "Teacher",
   ACCOUNT_ADMIN: "Admin",
   ACCOUNT_SUPER_ADMIN: "Super Admin",
-  ACCOUNT_BUSINESS_DEVELOPER: "Business Developer",
-  ACCOUNT_SENIOR_ACADEMIC_COUNSELOR: "Senior Academic Counselor",
-  ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR: "Junior Academic Counselor",
+
+
+  ACCOUNT_ADMISSION_COUNSELLOR: "Admission Counsellor",
+  ACCOUNT_ACADEMIC_COUNSELLOR: "Academic Counsellor",
+  ACCOUNT_ADMISSION_COORDINATOR: "Admission Coordinator",
+  ACCOUNT_RECRUITMENT_MANAGER: "Recruitment Manager",
 
   PRODUCTION: "PRODUCTION",
   STAGING: "STAGING",
@@ -101,11 +104,30 @@ const keys = {
   PAYOUT_STATUS_APPROVED: "Approved",
   PAYOUT_STATUS_REJECTED: "Rejected",
 
-  WEEKDAYS_OPTION: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  CLASS_MODE_OPTION: ['Online', 'Offline'],
-  STUDENT_TEACHING_PREFERENCE_OPTION: ["My Home", "Tutor's Home", "Tuition Center", "Coaching Center"],
-  TUTOR_TEACHING_PREFERENCE_OPTION: ["My Home", "Student's Home", "Tuition Center", "Coaching Center", 'School', "College"],
-
+  WEEKDAYS_OPTION: [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ],
+  CLASS_MODE_OPTION: ["Online", "Offline"],
+  STUDENT_TEACHING_PREFERENCE_OPTION: [
+    "My Home",
+    "Tutor's Home",
+    "Tuition Center",
+    "Coaching Center",
+  ],
+  TUTOR_TEACHING_PREFERENCE_OPTION: [
+    "My Home",
+    "Student's Home",
+    "Tuition Center",
+    "Coaching Center",
+    "School",
+    "College",
+  ],
 };
 
 export default keys;

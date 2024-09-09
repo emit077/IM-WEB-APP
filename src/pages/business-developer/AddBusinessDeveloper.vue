@@ -213,17 +213,18 @@
             >
               <div class="form-filed-wrapper">
                 <label class="label-text-1">
-                  {{ $lang.TYPE }} <sup class="error--text">*</sup></label
+                  {{ $lang.DESIGNATION }} <sup class="error--text">*</sup></label
                 >
                 <v-select
                   v-model="form.account_type"
                   :items="[
-                    $keys.ACCOUNT_BUSINESS_DEVELOPER,
-                    $keys.ACCOUNT_SENIOR_ACADEMIC_COUNSELOR,
-                    $keys.ACCOUNT_JUNIOR_ACADEMIC_COUNSELOR,
+                    $keys.ACCOUNT_ADMISSION_COUNSELLOR,
+                    $keys.ACCOUNT_ACADEMIC_COUNSELLOR,
+                    $keys.ACCOUNT_ADMISSION_COORDINATOR,
+                    $keys.ACCOUNT_RECRUITMENT_MANAGER,
                   ]"
                   :placeholder="$lang.TYPE"
-                  :rules="[$rules.REQUIRED_FIELD($lang.TYPE)]"
+                  :rules="[$rules.REQUIRED_FIELD($lang.DESIGNATION)]"
                   class="mt-1"
                   dense
                   maxlength="80"
