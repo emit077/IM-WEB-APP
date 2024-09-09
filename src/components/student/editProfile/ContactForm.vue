@@ -108,7 +108,9 @@
         </v-col>
         <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
-            <label class="label-text-1">{{ $lang.WA_MOBILE_NUMBER }} </label>
+            <label class="label-text-1"
+              >{{ $lang.WA_MOBILE_NUMBER }} <sup class="error--text">*</sup>
+            </label>
             <v-text-field
               v-model="form.whatsapp_number"
               :placeholder="$lang.WA_MOBILE_NUMBER"
@@ -184,9 +186,7 @@
 
         <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
-            <label class="label-text-1">
-              {{ $lang.MOTHER_NAME }} <sup class="error--text">*</sup></label
-            >
+            <label class="label-text-1"> {{ $lang.MOTHER_NAME }}</label>
             <v-text-field
               v-model="form.mother_name"
               :placeholder="$lang.MOTHER_NAME"
@@ -200,13 +200,11 @@
         </v-col>
         <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
-            <label class="label-text-1">
-              Mother's {{ $lang.MOBILE_NUMBER }} <sup class="error--text">*</sup></label
-            >
+            <label class="label-text-1"> Mother's {{ $lang.MOBILE_NUMBER }} </label>
             <v-text-field
-              v-model="form.father_contact_number"
+              v-model="form.mother_contact_number"
               :placeholder="$lang.MOBILE_NUMBER"
-              :rules="$rules.MOBILE"
+              :rules="$rules.OPTIONAL_MOBILE"
               class="mt-1"
               dense
               maxlength="10"
@@ -245,7 +243,8 @@
             >
             <v-text-field
               v-model="form.contact_person_name"
-              :placeholder="$lang.MOTHER_NAME"
+              :placeholder="$lang.CONTACT_PERSON"
+              :rules="[$rules.REQUIRED_FIELD($lang.CONTACT_PERSON)]"
               class="mt-1"
               dense
               maxlength="80"
@@ -325,6 +324,7 @@ export default {
       form.append("email", self.form.email);
       form.append("father_name", self.form.father_name);
       form.append("father_contact_number", self.form.father_contact_number);
+      form.append("mother_contact_number", self.form.mother_contact_number);
       form.append("mother_name", self.form.mother_name);
       form.append("parent_email", self.form.parent_email);
       form.append("whatsapp_number", self.form.whatsapp_number);

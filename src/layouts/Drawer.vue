@@ -20,11 +20,13 @@
   color: rgb(var(--primary_rgb)) !important;
   font-weight: bold !important;
 }
+
 a.v-list-item {
   border-left: 7px solid transparent;
   border-radius: 10px;
   font-weight: bold !important;
 }
+
 a.v-list-item--active {
   border-left: 7px solid rgb(var(--primary_rgb));
 }
@@ -32,14 +34,8 @@ a.v-list-item--active {
 
 <template>
   <v-card>
-    <v-navigation-drawer
-      v-model="$store.state.drawer.drawer"
-      app
-      class="elevation-0 navbar-custome-style"
-      color="surface"
-      width="220"
-      height="99.9%"
-    >
+    <v-navigation-drawer v-model="$store.state.drawer.drawer" app class="elevation-0 navbar-custome-style"
+      color="surface" width="220" height="99.9%">
       <template v-slot:prepend>
         <!-- user profile  -->
         <div class="d-flex py-3 px-2" style="align-items: center">
@@ -47,15 +43,12 @@ a.v-list-item--active {
             <img src="@/assets/im-logo/im-logo-icon.svg" alt="" />
           </v-avatar>
           <div class="pl-2">
-            <p
-              class="ma-0 fs-16 primary--text overflow-hidden"
-              style="
+            <p class="ma-0 fs-16 primary--text overflow-hidden" style="
                 line-height: 110%;
                 width: 150px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-              "
-            >
+              ">
               {{ $store.state.user.name }}
             </p>
             <small class="ma-0">{{ $store.state.user.account_type }}</small>
@@ -76,14 +69,9 @@ a.v-list-item--active {
       <v-divider></v-divider>
       <div class="py-2">
         <v-list class="pa-0 drawer_list" dense nav>
-          <div v-for="(item, i) in getDrawerItems" :key="i">
-            <v-list-item
-              v-if="item.access_by.includes(getUser.account_type)"
-              :to="item.url"
-              class="py-0"
-              link
-              @click="setActiveTab(item)"
-            >
+          <div v-for="(item, i) in getDrawerItems" :key="i" class="">
+            <v-list-item v-if="item.access_by.includes(getUser.account_type)" :to="item.url" class="py-0" link
+              @click="setActiveTab(item)">
               <v-list-item-content>
                 <v-list-item-title class="drawer-text pl-0">
                   {{ item.title }}

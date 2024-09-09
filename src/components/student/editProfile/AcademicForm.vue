@@ -107,13 +107,10 @@
         </v-col>
         <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
-            <label class="label-text-1">
-              {{ $lang.HOBBIES }} <sup class="error--text">*</sup></label
-            >
+            <label class="label-text-1"> {{ $lang.HOBBIES }}</label>
             <v-text-field
               v-model="form.hobbies"
               :placeholder="$lang.HOBBIES"
-              :rules="[$rules.REQUIRED_FIELD($lang.HOBBIES)]"
               class="mt-1"
               dense
               maxlength="350"

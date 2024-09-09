@@ -63,13 +63,11 @@
         </v-col>
         <v-col class="py-0" cols="12" md="4">
           <div class="form-filed-wrapper">
-            <label class="label-text-1">
-              {{ $lang.ALTERNATE_MOBILE_NUMBER }} <sup class="error--text">*</sup></label
-            >
+            <label class="label-text-1"> {{ $lang.ALTERNATE_MOBILE_NUMBER }}</label>
             <v-text-field
               v-model="form.alternate_number"
               :placeholder="$lang.ALTERNATE_NUMBER"
-              :rules="$rules.MOBILE"
+              :rules="$rules.OPTIONAL_MOBILE"
               class="mt-1"
               dense
               maxlength="10"
