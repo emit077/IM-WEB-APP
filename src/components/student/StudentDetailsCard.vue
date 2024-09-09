@@ -306,7 +306,6 @@
           <v-col class="py-0" cols="12" md="3" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
-
               <p class="text-1" v-if="student_basic_data.teaching_preference.length > 0">
                 {{ student_basic_data.teaching_preference || "-" }}
               </p>
@@ -315,7 +314,6 @@
           <v-col class="py-0" cols="12" md="6" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUITABLE_DAYS }} :</label>
-
               <p class="text-1">
                 <span
                   class="text-1"

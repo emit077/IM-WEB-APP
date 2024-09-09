@@ -135,6 +135,7 @@ export default {
           this.settings.registration_fee_amount = response.data.registration_fee_amount;
           this.settings.profile_status = response.data.profile_status;
 
+          // sorting the days
           if (response.data.profile_status == this.$keys.PROFILE_INCOMPLETE) {
             this.dialog_data.flag = true;
             this.dialog_data.title = "Complete Your profile";
@@ -149,6 +150,12 @@ export default {
             this.dialog_data.title = "Just one more step to go!";
             this.dialog_data.message = `Complete your profile by paying the <b>₹${this.settings.registration_fee_amount}</b> registration fee and embark on your learning journey today.`;
           }
+
+          self.student_basic_data.suitable_days = self.student_basic_data.suitable_days.sort(
+            (a, b) =>
+              this.$keys.WEEKDAYS_OPTION.indexOf(a) -
+              this.$keys.WEEKDAYS_OPTION.indexOf(b)
+          );
         }
       };
       const finallyHandler = () => {

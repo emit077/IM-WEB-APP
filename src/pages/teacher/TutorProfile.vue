@@ -130,6 +130,12 @@ export default {
             this.dialog_data.title = "Just one more step to go!";
             this.dialog_data.message = `Complete your profile by paying the <b>₹${this.settings.registration_fee_amount}</b> registration fee and embark on your learning journey today.`;
           }
+
+          self.tutor_data.suitable_days = self.tutor_data.suitable_days.sort(
+            (a, b) =>
+              this.$keys.WEEKDAYS_OPTION.indexOf(a) -
+              this.$keys.WEEKDAYS_OPTION.indexOf(b)
+          );
         }
       };
       const finallyHandler = () => {

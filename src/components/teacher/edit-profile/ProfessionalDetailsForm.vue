@@ -18,7 +18,7 @@
         </v-col>
       </v-row>
       <v-row class="ma-0">
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="5">
           <label class="label-text-1">
             {{ $lang.PREFERRED_BOARD }} <sup class="error--text">*</sup></label
           >
@@ -35,7 +35,7 @@
             single-line
           ></v-select>
         </v-col>
-        <v-col cols="12" md="2">
+        <v-col cols="12" md="4">
           <label class="label-text-1"
             >{{ $lang.EXPERIENCE }} <small>(in Years)</small></label
           >
