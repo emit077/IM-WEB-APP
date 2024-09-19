@@ -37,7 +37,7 @@
 <template>
   <!-- -->
   <v-app :class="$project.NAME.toLowerCase() + '-bg'">
-    <div class="justify-center h-100 d-flex" style="align-items: center;">
+    <div class="justify-center h-100 d-flex" style="align-items: center">
       <div>
         <!-- brand logo -->
         <div class="text-center mb-10">
@@ -48,12 +48,7 @@
             src="@/assets/im-logo/logo-white.svg"
             v-if="$project.NAME == 'IM'"
           />
-          <img
-            alt="logo"
-            class="logo-img"
-            src="@/assets/logo/logo.svg"
-            v-else
-          />
+          <img alt="logo" class="logo-img" src="@/assets/logo/logo.svg" v-else />
         </div>
         <!-- brand logo end -->
         <v-row justify="center" class="mx-5">
@@ -65,14 +60,11 @@
           >
             <div
               class="text-center d-flex justify-center mb-5 h-100"
-              style="align-items: center;"
+              style="align-items: center"
             >
               <div>
                 <div class="mb-4">
-                  <h1
-                    class="color-theme-yellow"
-                    v-if="$project.NAME == $keys.TF"
-                  >
+                  <h1 class="color-theme-yellow" v-if="$project.NAME == $keys.TF">
                     Welcome to Tutors Factory
                   </h1>
                   <h1 class="white--text" v-else>Welcome to Indian Mentors</h1>
@@ -120,7 +112,7 @@
           >
             <div
               class="px-md-12 mx-3 d-flex justify-center h-100"
-              style="align-items: center;"
+              style="align-items: center"
             >
               <div class="py-5">
                 <p class="auth-title">
@@ -136,11 +128,19 @@
                         @submit.prevent="signUp()"
                       >
                         <div class="form-filed-wrapper">
-                          <label>{{ is_student_form ? $lang.STUDENT_NAME : $lang.TUTOR_NAME }}</label>
+                          <label>{{
+                            is_student_form ? $lang.STUDENT_NAME : $lang.TUTOR_NAME
+                          }}</label>
                           <v-text-field
                             v-model="form.name"
-                            :placeholder="is_student_form ? $lang.STUDENT_NAME : $lang.TUTOR_NAME "
-                            :rules="[$rules.REQUIRED_FIELD(is_student_form ? $lang.STUDENT_NAME : $lang.TUTOR_NAME )]"
+                            :placeholder="
+                              is_student_form ? $lang.STUDENT_NAME : $lang.TUTOR_NAME
+                            "
+                            :rules="[
+                              $rules.REQUIRED_FIELD(
+                                is_student_form ? $lang.STUDENT_NAME : $lang.TUTOR_NAME
+                              ),
+                            ]"
                             class="mt-1"
                             dense
                             maxlength="80"
@@ -168,18 +168,14 @@
                         <p class="d-inline-flex">
                           <v-checkbox
                             v-model="form.agree"
-                            :rules="[
-                              $rules.REQUIRED_FIELD($lang.CONFIRM_PASSWORD),
-                            ]"
+                            :rules="[$rules.REQUIRED_FIELD($lang.CONFIRM_PASSWORD)]"
                             class="shrink ma-0"
                             hide-details
-                            style="display: inline-flex;"
+                            style="display: inline-flex"
                           ></v-checkbox>
                           <small class="agree-text">
                             I agree to the
-                            <span v-if="$project.NAME == 'IM'">
-                              Indian Mentors
-                            </span>
+                            <span v-if="$project.NAME == 'IM'"> Indian Mentors </span>
                             <span v-else> Tutors Factory </span>
                             <a
                               v-if="$project.NAME == 'IM'"
@@ -216,10 +212,21 @@
                             class="pa-6 mt-5"
                             type="submit"
                             color="primary"
+                            id="StudentFormSubmit"
+                            v-if="is_student_form"
                           >
-                            <span style="font-size: 17px;">{{
-                              $lang.SING_UP
-                            }}</span>
+                            <span style="font-size: 17px">{{ $lang.SING_UP }}</span>
+                          </v-btn>
+                          <v-btn
+                            :loading="btn_loading"
+                            block
+                            class="pa-6 mt-5"
+                            type="submit"
+                            color="primary"
+                            id="TutorFormSubmit"
+                            v-else
+                          >
+                            <span style="font-size: 17px">{{ $lang.CONTINUE }}</span>
                           </v-btn>
                         </div>
                         <p class="text-center mt-5">
@@ -315,8 +322,7 @@ export default {
     ).outerHTML = `<link rel="icon" href="./${this.$project.NAME}-fevicon.png">`;
 
     /*  show and hide the back btn*/
-    this.is_student_form =
-      this.$route.name == "student_registration" ? true : false;
+    this.is_student_form = this.$route.name == "student_registration" ? true : false;
   },
   methods: {
     getOtp(otp) {
@@ -333,9 +339,7 @@ export default {
         form.append("name", self.form.name);
         form.append(
           "account_type",
-          self.is_student_form
-            ? self.$keys.ACCOUNT_STUDENT
-            : self.$keys.ACCOUNT_TEACHER
+          self.is_student_form ? self.$keys.ACCOUNT_STUDENT : self.$keys.ACCOUNT_TEACHER
         );
         const successHandler = (response) => {
           if (response.data.success) {
@@ -416,13 +420,7 @@ export default {
           });
         }
       };
-      self.request_POST(
-        self,
-        self.$urls.RESEND_OTP,
-        form,
-        successHandler,
-        header
-      );
+      self.request_POST(self, self.$urls.RESEND_OTP, form, successHandler, header);
     },
   },
 };
