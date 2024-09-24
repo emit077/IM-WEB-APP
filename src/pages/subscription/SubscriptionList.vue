@@ -30,7 +30,21 @@
         ></v-text-field>
       </v-col>
       <v-col class="text-right" cols="12" md="3">
-        <v-select
+        <v-combobox
+          v-model="city"
+          :items="cities"
+          :search-input.sync="city_search_query"
+          item-text="name"
+          item-value="id"
+          @keyup="cityList(city_search_query)"
+          placeholder="Select City"
+          dense
+          outlined
+          single-line
+          clearable
+          @change="getSubscriptionPlanList"
+        ></v-combobox>
+        <!-- <v-select
           v-model="city"
           :items="cities"
           :placeholder="$lang.CITY"
@@ -41,7 +55,7 @@
           dense
           clearable
           @change="getSubscriptionPlanList"
-        ></v-select>
+        ></v-select> -->
       </v-col>
       <v-col class="" cols="9" md="2">
         <!--        <div class="cursor-pointer w-max-content" @click="openFilterDialog">-->
@@ -112,6 +126,7 @@ export default {
       table_loading: false,
       cities: [],
       city: "",
+      city_search_query: "",
       subscription_plan_list: [],
       search_query: "",
       headers: [
@@ -155,7 +170,7 @@ export default {
         page_number: this.page_number,
         page_length: this.$keys.PAGE_LENGTH,
         search_query: this.search_query,
-        city_id: this.city,
+        city_id: this.city?.id,
       };
       const successHandler = (response) => {
         if (response.data.success) {

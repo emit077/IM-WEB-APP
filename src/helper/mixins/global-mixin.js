@@ -208,9 +208,11 @@ Vue.mixin({
       );
     },
     /* city auto complete */
-    cityList() {
+    cityList(search_query=null) {
       const self = this;
-      let params = {};
+      let params = {
+        search_query: search_query,
+      };
       const successHandler = (response) => {
         this.cities = response.data.city_list;
       };
