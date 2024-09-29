@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@cashfreepayments/cashfree-js": "^1.0.4",
+    "@googlemaps/js-api-loader": "^1.16.8",
     "axios": "^1.6.7",
     "chart.js": "^4.4.3",
     "core-js": "^3.6.5",

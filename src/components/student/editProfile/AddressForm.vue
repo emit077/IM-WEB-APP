@@ -82,21 +82,17 @@
             ></v-textarea>
           </div>
         </v-col>
-
-        <!--     not using the map for now       -->
-        <!-- <v-col class="py-0" cols="12" md="12">
+        <v-col class="py-0" cols="12" md="12">
           <GoogleMap
             ref="map_elm"
-            :class_name="class_name"
-            @update-center="get_location"
+            @update-center="catchLocation"
+            :coordeinates="{
+              lat: parseFloat(this.form.latitude),
+              lng: parseFloat(this.form.longitude),
+            }"
           ></GoogleMap>
-
-          <p v-if="!form.latitude" class="red&#45;&#45;text">
-            Please update your location
-          </p>
-        </v-col> -->
+        </v-col>
       </v-row>
-
       <div class="text-center mt-5 px-3">
         <v-btn
           text
@@ -134,24 +130,7 @@ export default {
     btn_loader: false,
     pin_loading: false,
   }),
-  created() {
-    /* not using the map for now */
-    // get current location for new registration
-    // if (!this.$route.query.student_table_id) {
-    //   this.$getLocation({
-    //     enableHighAccuracy: true,
-    //   })
-    //       .then(coordinates => {
-    //         this.form.latitude = coordinates.lat
-    //         this.form.longitude = coordinates.lng
-    //         this.$refs.map_elm.center = {
-    //           lat: parseFloat(coordinates.lat),
-    //           lng: parseFloat(coordinates.lng)
-    //         }
-    //         this.$refs.map_elm.intMap(this.$refs.map_elm.center)
-    //       });
-    // }
-  },
+  created() {},
   methods: {
     getCityFromPincode(pin_code) {
       const self = this;
@@ -192,8 +171,8 @@ export default {
       form.append("state", self.form.state);
       form.append("pin_code", self.form.pin_code);
       form.append("landmark", self.form.landmark);
-      // form.append("latitude", self.form.latitude);
-      // form.append("longitude", self.form.longitude);
+      form.append("latitude", self.form.latitude);
+      form.append("longitude", self.form.longitude);
       if (this.student_table_id) form.append("student_table_id", self.student_table_id);
 
       const successHandler = (response) => {
@@ -214,6 +193,10 @@ export default {
         null,
         finallyHandler
       );
+    },
+    catchLocation(latitude, longitude) {
+      this.form.latitude = latitude;
+      this.form.longitude = longitude;
     },
   },
 };

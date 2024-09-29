@@ -237,4 +237,10 @@ export default {
   IM: {
     CONTACT_NUMBER: "+91 7389563564",
   },
+
+
+
+  LOACTION_PERMISSION_MSG: "Location permission is required to open the map.",
+  LOACTION_PERMISSION_BTN_TEXT: "Click here to grant location access",
+
 };

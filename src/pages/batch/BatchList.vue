@@ -229,7 +229,7 @@ export default {
       this.headers = [
         { text: "Tutor info", align: "start", value: "tutor_name" },
         { text: "Batch ID", align: "start", value: "batch_id" },
-        { text: "SAC info", value: "bda_name" },
+        { text: "Academic Counsellor", value: "bda_name" },
         { text: "", value: "action", align: "end", width: "120px" },
       ];
   },

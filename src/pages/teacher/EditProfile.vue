@@ -34,6 +34,7 @@
         <h3 class="font-weight-bold pl-3 mb-3">{{ $lang.STUDENT_ADDRESS_DETAILS }}</h3>
         <v-divider></v-divider>
         <AddressForm
+          v-if="step == 2"
           :form="tutor_data"
           :tutor_table_id="tutor_table_id"
           @next="nextStep"

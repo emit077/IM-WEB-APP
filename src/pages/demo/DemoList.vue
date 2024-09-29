@@ -156,9 +156,9 @@ export default {
       demo_list: [],
       search_query: "",
       headers: [
-        { text: "Student info", align: "start", value: "student_info" },
-        { text: "Tutor info", align: "start", value: "tutor_info" },
-        { text: "JAC info", align: "start", value: "bda_info" },
+        { text: "Student", align: "start", value: "student_info" },
+        { text: "Tutor", align: "start", value: "tutor_info" },
+        { text: "Admission Coordinator", align: "start", value: "bda_info" },
         { text: "Date", value: "display_date" },
         { text: "Mode", value: "mode" },
         { text: "Status", value: "status" },

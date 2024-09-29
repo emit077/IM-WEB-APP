@@ -43,9 +43,11 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.PROFILE_STATUS }} :</label>
               <p class="text-1">
-                <span v-if="student_basic_data.profile_status"
-                  :class="'status-' + student_basic_data.profile_status.toLowerCase()">{{
-                    student_basic_data.profile_status }}</span>
+                <span
+                  v-if="student_basic_data.profile_status"
+                  :class="'status-' + student_basic_data.profile_status.toLowerCase()"
+                  >{{ student_basic_data.profile_status }}</span
+                >
               </p>
             </div>
           </v-col>
@@ -77,7 +79,8 @@
     <v-card flat class="mb-5 pb-3" color="">
       <v-card-title class="primary--text text-body-1 font-weight-bold">
         <v-icon color="primary" class="mr-1" size="20">mdi-contacts</v-icon>
-        {{ $lang.CONTACT_DETAILS }}</v-card-title>
+        {{ $lang.CONTACT_DETAILS }}</v-card-title
+      >
       <div class="px-5">
         <v-divider class="card-divider" color="secondary"></v-divider>
       </div>
@@ -140,7 +143,12 @@
             </div>
           </v-col>
 
-          <v-col class="py-0" cols="12" md="3" v-if="student_basic_data.contact_person == 'Other'">
+          <v-col
+            class="py-0"
+            cols="12"
+            md="3"
+            v-if="student_basic_data.contact_person == 'Other'"
+          >
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.CONTACT_PERSON }} Name :</label>
               <p class="text-1">
@@ -148,7 +156,12 @@
               </p>
             </div>
           </v-col>
-          <v-col class="py-0" cols="12" md="3" v-if="student_basic_data.contact_person == 'Other'">
+          <v-col
+            class="py-0"
+            cols="12"
+            md="3"
+            v-if="student_basic_data.contact_person == 'Other'"
+          >
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.CONTACT_PERSON }} Mobile :</label>
               <p class="text-1">
@@ -164,7 +177,13 @@
       <v-card-title class="primary--text text-body-1 font-weight-bold">
         <v-icon color="primary" class="mr-1">mdi-home-circle</v-icon>
         {{ $lang.STUDENT_ADDRESS_DETAILS }}
+        <MapNavigationBtn
+          style="position: absolute; right: 15px"
+          :lat="student_basic_data.latitude"
+          :lng="student_basic_data.longitude"
+        />
       </v-card-title>
+
       <div class="px-5">
         <v-divider class="card-divider" color="secondary"></v-divider>
       </div>
@@ -187,9 +206,6 @@
               <label class="label-text-1">{{ $lang.PIN_CODE }} :</label>
               <p class="text-1">{{ student_basic_data.pin_code || "-" }}</p>
             </div>
-            <!--        <GoogleMap ref="map_elm" :class_name="map_class_name" :clickable="false" :draggable="false"-->
-            <!--                   :search_enable="false"-->
-            <!--                   :zoom_control="false"></GoogleMap>-->
           </v-col>
           <v-col class="py-0" cols="12" md="6">
             <div class="field-wrapper">
@@ -200,7 +216,7 @@
           <v-col class="py-0" cols="12" md="12">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.ADDRESS }} :</label>
-              <p class="text-1">{{ student_basic_data.address || "-" }}</p>
+              <p class="text-1 mr-3">{{ student_basic_data.address || "-" }}</p>
             </div>
           </v-col>
         </v-row>
@@ -239,8 +255,10 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUBJECTS }} :</label>
               <p class="text-1">
-                <span v-for="(subject, i) in student_basic_data.subjects_list" :key="i">{{ subject }}
-                  <span v-if="i >= 0 && i + 1 < student_basic_data.subjects_list.length">,
+                <span v-for="(subject, i) in student_basic_data.subjects_list" :key="i"
+                  >{{ subject }}
+                  <span v-if="i >= 0 && i + 1 < student_basic_data.subjects_list.length"
+                    >,
                   </span>
                 </span>
               </p>
@@ -291,13 +309,21 @@
           <v-col class="py-0" cols="12" md="3" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
-              <p class="text-1" v-if="
-                student_basic_data.teaching_preference &&
-                student_basic_data.teaching_preference.length > 0
-              ">
-                <span v-for="(item, i) in student_basic_data.teaching_preference" :key="item.id">
+              <p
+                class="text-1"
+                v-if="
+                  student_basic_data.teaching_preference &&
+                  student_basic_data.teaching_preference.length > 0
+                "
+              >
+                <span
+                  v-for="(item, i) in student_basic_data.teaching_preference"
+                  :key="item.id"
+                >
                   {{ item }}
-                  <span v-if="student_basic_data.teaching_preference.length > i + 1">,</span>
+                  <span v-if="student_basic_data.teaching_preference.length > i + 1"
+                    >,</span
+                  >
                 </span>
               </p>
               <p class="text-1" v-else>-</p>
@@ -307,7 +333,11 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUITABLE_DAYS }} :</label>
               <p class="text-1">
-                <span class="text-1" v-for="(item, i) in student_basic_data.suitable_days" :key="item.id">
+                <span
+                  class="text-1"
+                  v-for="(item, i) in student_basic_data.suitable_days"
+                  :key="item.id"
+                >
                   {{ item
                   }}<span v-if="i + 1 < student_basic_data.suitable_days.length">,</span>
                 </span>
@@ -319,16 +349,26 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUITABLE_TIME_SLOT }} :</label> <br />
               <span v-for="item in morning_time_slots" :key="item.id">
-                <span class="text-1" v-if="student_basic_data.time_slots_id_list.includes(item.id)">
+                <span
+                  class="text-1"
+                  v-if="student_basic_data.time_slots_id_list.includes(item.id)"
+                >
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>
               <span v-for="item in afternoon_time_slots" :key="item.id">
-                <span class="text-1" v-if="student_basic_data.time_slots_id_list.includes(item.id)">
-                  {{ item.slot_from + " - " + item.slot_to }} ,</span>
+                <span
+                  class="text-1"
+                  v-if="student_basic_data.time_slots_id_list.includes(item.id)"
+                >
+                  {{ item.slot_from + " - " + item.slot_to }} ,</span
+                >
               </span>
               <span v-for="item in evening_time_slots" :key="item.id">
-                <span class="text-1" v-if="student_basic_data.time_slots_id_list.includes(item.id)">
+                <span
+                  class="text-1"
+                  v-if="student_basic_data.time_slots_id_list.includes(item.id)"
+                >
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>
@@ -352,7 +392,7 @@ export default {
     "afternoon_time_slots",
   ],
   components: {
-    // GoogleMap: () => import('@/components/shared/GoogleMap'),
+    MapNavigationBtn: () => import("@/components/shared/buttons/MapNavigationBtn"),
   },
   data() {
     return {

@@ -68,9 +68,7 @@
               md="6"
               v-if="getUser.account_type != this.$keys.ACCOUNT_ACADEMIC_COUNSELLOR"
             >
-              <label class="label-text-1"
-                >{{ $keys.ACCOUNT_ACADEMIC_COUNSELLOR }}
-              </label>
+              <label class="label-text-1">{{ $keys.ACCOUNT_ACADEMIC_COUNSELLOR }} </label>
               <v-combobox
                 v-model="form.sac"
                 :items="bda_list"
@@ -99,7 +97,7 @@
                 </template>
               </v-combobox>
             </v-col>
-            <!-- JAC -->
+            <!-- BDA -->
             <v-col class="py-0" cols="12" md="6">
               <label class="label-text-1"
                 >{{ $keys.ACCOUNT_ADMISSION_COORDINATOR }}

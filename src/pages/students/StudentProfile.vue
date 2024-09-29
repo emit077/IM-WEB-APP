@@ -25,6 +25,7 @@
           :morning_time_slots="morning_time_slots"
           :student_basic_data="student_basic_data"
           :student_name="student_name"
+          v-if="student_basic_data.class_mode"
         ></StudentDetailsCard>
       </v-col>
     </v-row>

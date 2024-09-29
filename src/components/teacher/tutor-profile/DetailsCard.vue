@@ -42,8 +42,11 @@
           <v-col class="py-0 small-screen" cols="12" md="3">
             <label class="label-text-1">{{ $lang.PROFILE_STATUS }} :</label>
             <p class="text-1 py-1">
-              <span v-if="tutor_data.profile_status" :class="'status-' + tutor_data.profile_status.toLowerCase()">{{
-                tutor_data.profile_status }}</span>
+              <span
+                v-if="tutor_data.profile_status"
+                :class="'status-' + tutor_data.profile_status.toLowerCase()"
+                >{{ tutor_data.profile_status }}</span
+              >
             </p>
           </v-col>
           <v-col class="py-1" cols="12" md="3">
@@ -124,6 +127,11 @@
       <v-card-title class="primary--text text-body-1 font-weight-bold">
         <v-icon color="primary" class="mr-1">mdi-home-circle</v-icon>
         {{ $lang.STUDENT_ADDRESS_DETAILS }}
+        <MapNavigationBtn
+          style="position: absolute; right: 15px"
+          :lat="tutor_data.latitude"
+          :lng="tutor_data.longitude"
+        />
       </v-card-title>
       <div class="px-5">
         <v-divider color="secondary" class="card-divider"></v-divider>
@@ -147,9 +155,6 @@
               <label class="label-text-1">{{ $lang.PIN_CODE }} :</label>
               <p class="text-1">{{ tutor_data.pin_code || "-" }}</p>
             </div>
-            <!--        <GoogleMap ref="map_elm" :class_name="map_class_name" :clickable="false" :draggable="false"-->
-            <!--                   :search_enable="false"-->
-            <!--                   :zoom_control="false"></GoogleMap>-->
           </v-col>
           <v-col class="py-1" cols="12" md="6">
             <div class="field-wrapper">
@@ -219,7 +224,12 @@
       </div>
       <v-card-text class="my-3">
         <v-row v-for="grade in grade_list" :key="grade.id" class="mx-0 my-1 text-left">
-          <v-col class="pa-0" cols="12" md="2" v-if="grade.subject_list.some((x) => x.selected)">
+          <v-col
+            class="pa-0"
+            cols="12"
+            md="2"
+            v-if="grade.subject_list.some((x) => x.selected)"
+          >
             <p class="label-text-1 mt-2">{{ grade.grade_name }}</p>
           </v-col>
           <v-col class="pa-0" cols="12" md="10">
@@ -232,9 +242,12 @@
           <v-col class="py-1" cols="12" md="3" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">Preferred board :</label>
-              <p class="text-1" v-if="
-                tutor_data.preferred_boards && tutor_data.preferred_boards.length > 0
-              ">
+              <p
+                class="text-1"
+                v-if="
+                  tutor_data.preferred_boards && tutor_data.preferred_boards.length > 0
+                "
+              >
                 <span v-for="(item, i) in tutor_data.preferred_boards" :key="item.id">
                   {{ item }}
                   <span v-if="tutor_data.preferred_boards.length > i + 1">,</span>
@@ -244,13 +257,17 @@
           </v-col>
           <v-col class="py-1" cols="12" md="3" sm="6">
             <div class="field-wrapper">
-              <label class="label-text-1">{{ $lang.EXPERIENCE }} <small>(in Years)</small>:</label>
+              <label class="label-text-1"
+                >{{ $lang.EXPERIENCE }} <small>(in Years)</small>:</label
+              >
               <p class="text-1">{{ tutor_data.experience }}</p>
             </div>
           </v-col>
           <v-col class="py-1" cols="12" md="3" sm="6">
             <div class="field-wrapper">
-              <label class="label-text-1">Expected Tuition Fee <small>(per Hours)</small> :</label>
+              <label class="label-text-1"
+                >Expected Tuition Fee <small>(per Hours)</small> :</label
+              >
               <p class="text-1" v-if="tutor_data.tuition_fee">
                 {{
                   tutor_data.tuition_fee.toLocaleString("en-IN", {
@@ -306,10 +323,13 @@
           <v-col class="py-1" cols="12" md="6" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.TEACHING_PREFERENCE }} :</label>
-              <p class="text-1" v-if="
-                tutor_data.teaching_preference &&
-                tutor_data.teaching_preference.length > 0
-              ">
+              <p
+                class="text-1"
+                v-if="
+                  tutor_data.teaching_preference &&
+                  tutor_data.teaching_preference.length > 0
+                "
+              >
                 <span v-for="(item, i) in tutor_data.teaching_preference" :key="item.id">
                   {{ item }}
                   <span v-if="tutor_data.teaching_preference.length > i + 1">,</span>
@@ -321,7 +341,10 @@
           <v-col class="py-1" cols="12" md="6" sm="6">
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.MODE_OF_CLASS }} :</label>
-              <p class="text-1" v-if="tutor_data.class_mode && tutor_data.class_mode.length > 0">
+              <p
+                class="text-1"
+                v-if="tutor_data.class_mode && tutor_data.class_mode.length > 0"
+              >
                 <span v-for="(item, i) in tutor_data.class_mode" :key="item.id">
                   {{ item }}
                   <span v-if="tutor_data.class_mode.length > i + 1">,</span>
@@ -335,7 +358,10 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUITABLE_DAYS }} :</label>
 
-              <p class="text-1" v-if="tutor_data.suitable_days && tutor_data.suitable_days.length > 0">
+              <p
+                class="text-1"
+                v-if="tutor_data.suitable_days && tutor_data.suitable_days.length > 0"
+              >
                 <span v-for="(item, i) in tutor_data.suitable_days" :key="item.id">
                   {{ item }}
                   <span v-if="tutor_data.suitable_days.length > i + 1">,</span>
@@ -348,16 +374,26 @@
             <div class="field-wrapper">
               <label class="label-text-1">{{ $lang.SUITABLE_TIME_SLOT }} :</label> <br />
               <span v-for="item in morning_time_slots" :key="item.id">
-                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
+                <span
+                  class="text-1"
+                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
+                >
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>
               <span v-for="item in afternoon_time_slots" :key="item.id">
-                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
-                  {{ item.slot_from + " - " + item.slot_to }} ,</span>
+                <span
+                  class="text-1"
+                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
+                >
+                  {{ item.slot_from + " - " + item.slot_to }} ,</span
+                >
               </span>
               <span v-for="item in evening_time_slots" :key="item.id">
-                <span class="text-1" v-if="tutor_data.time_slots_id_list.includes(item.id)">
+                <span
+                  class="text-1"
+                  v-if="tutor_data.time_slots_id_list.includes(item.id)"
+                >
                   {{ item.slot_from + " - " + item.slot_to }} ,
                 </span>
               </span>
@@ -382,7 +418,7 @@ export default {
     "academic_data",
   ],
   components: {
-    // GoogleMap: () => import('@/components/shared/GoogleMap'),
+    MapNavigationBtn: () => import("@/components/shared/buttons/MapNavigationBtn"),
   },
   data() {
     return {
