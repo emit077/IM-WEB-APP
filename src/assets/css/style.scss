@@ -126,7 +126,7 @@ a {
   border-radius: 20px;
   padding: 5px;
 }
-
+.status-approved,
 .status-selected,
 .status-active,
 .emi-paid,
@@ -207,17 +207,20 @@ a {
   padding: 4px 15px;
 }
 
-.rejected {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 13px;
-  line-height: 18px;
-  letter-spacing: 0.015em;
-  color: #e9be00;
-  background: #fcf7e0;
-  border-radius: 20px;
-  padding: 4px 15px;
-}
+ /*.rejected {
+   font-style: normal;
+   font-weight: bold;
+   font-size: 13px;
+   line-height: 18px;
+   letter-spacing: 0.015em;
+   color: #e9be00;
+   background: #fcf7e0;
+   border-radius: 20px;
+   padding: 4px 15px;
+ }*/
+
+
+.rejected,
 .payout-rejected,
 .hot_lead {
   font-weight: bold;
@@ -242,4 +245,20 @@ a {
 
 .align-items-center {
   align-items: center !important;
+}
+
+
+@media screen and (max-width: 1260px) {
+    .label-text-1 {
+      display: inline-block;
+      width: 40%;
+      vertical-align: top;
+    }
+
+    .text-1 {
+      display: inline-block;
+      width: 60%;
+      vertical-align: top;
+      margin-bottom: 0px;
+    }
 }

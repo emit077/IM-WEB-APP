@@ -492,7 +492,7 @@ const routes = [
         name: "demo_list",
         meta: { requiresAuth: true, title: "Demo", show_back_btn: false },
         component: () =>
-          import(/* webpackChunkName: "demo" */ "../../pages/demo/DemoList"),
+          import(/* webpackChunkName: "DemoList" */ "../../pages/demo/DemoList"),
       },
       {
         path: "/demo/schedule/",
@@ -504,7 +504,7 @@ const routes = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "demo" */ "../../pages/demo/ScheduleDemoClass"
+            /* webpackChunkName: "ScheduleDemoClass" */ "../../pages/demo/ScheduleDemoClass"
           ),
       },
       {
@@ -530,7 +530,7 @@ const routes = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "demo" */ "../../pages/demo/DemoDetails.vue"
+            /* webpackChunkName: "DemoDetails" */ "../../pages/demo/DemoDetails.vue"
           ),
       },
       {
@@ -543,9 +543,10 @@ const routes = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "demo" */ "../../pages/interviews/InterviewList.vue"
+            /* webpackChunkName: "InterviewList" */ "../../pages/interviews/InterviewList.vue"
           ),
       },
+     
     ],
   },
 ];

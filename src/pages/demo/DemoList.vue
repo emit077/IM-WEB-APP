@@ -40,15 +40,26 @@
           @keyup="getDemoList"
         ></v-text-field>
       </v-col>
-      <v-col class="" cols="3" md="2">
-        <!--        <div>-->
-        <!--          <div @click="openFilterDialog">-->
-        <!--            <TableFilterBtn :filter_count="filter_data.filter_count"/>-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </v-col>
-      <v-col class="" cols="9" md="2"> </v-col>
+      <v-col class="" cols="3" md="2"> </v-col>
     </v-row>
+
+    <!-- status filter -->
+    <div class="mb-5">
+      <div
+        v-for="(item, i) in status_options"
+        :key="i"
+        :class="demo_status == item.status ? 'elevation-5 ' : ''"
+        class="px-3 py-1 d-inline mr-2 border-r-30 cursor-pointer"
+        @click="(demo_status = item.status), getDemoList()"
+      >
+        <span>{{ item.status || "All" }}</span>
+        <v-icon v-if="i > 0" size="10" class="pl-2" :color="item.color">
+          mdi-checkbox-blank-circle
+        </v-icon>
+      </div>
+    </div>
+    <!-- status filter end -->
+
     <div>
       <v-data-table
         :disable-sort="true"
@@ -176,6 +187,29 @@ export default {
         { text: "Selected", value: "Selected" },
         { text: "Rejected", value: "Rejected" },
       ],
+      status_options: [
+        {
+          status: "All",
+          color: "#fffff",
+        },
+        {
+          status: "Scheduled",
+          color: "#dc63d0",
+        },
+        {
+          status: "Rescheduled",
+          color: "#f2994a",
+        },
+        {
+          status: "Selected",
+          color: "#27AE60",
+        },
+        {
+          status: "Rejected",
+          color: "#EB5757",
+        },
+      ],
+      demo_status: "All",
     };
   },
   computed: mapGetters({}),
@@ -192,6 +226,8 @@ export default {
         page_length: this.$keys.PAGE_LENGTH,
         search_query: this.search_query,
       };
+      if (this.demo_status != "All") params.status = this.demo_status;
+
       const successHandler = (response) => {
         if (response.data.success) {
           self.demo_list = response.data.demo_list;
@@ -226,7 +262,7 @@ export default {
       const finallyHandler = () => {};
       this.request_POST(
         self,
-        self.$urls.TOGGLE_ACCOUNT_STATUS,
+        self.$urls.TOGGLE_demo_status,
         form,
         successHandler,
         null,

@@ -19,12 +19,16 @@
       overlap
       v-if="filter_count > 0"
     >
-      <v-btn outlined class="download-svg-btn">
+      <v-btn
+        depressed
+        class="download-svg-btn"
+        height="40"
+        width="40"
+        style="min-height: 20px; min-width: 20px"
+      >
         <v-icon>mdi-filter-variant</v-icon>
-        <!-- {{ $lang.FILTER }} -->
       </v-btn>
     </v-badge>
-
     <v-btn
       v-else
       depressed

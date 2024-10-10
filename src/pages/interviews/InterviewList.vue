@@ -9,7 +9,7 @@
           :key="i"
           :class="interview_status == item.status ? 'elevation-5 ' : ''"
           class="px-3 py-1 d-inline mr-2 border-r-30 cursor-pointer"
-          @click="(interview_status = item.status), getTutorList()"
+          @click="(interview_status = item.status), getInterviewList()"
         >
           <span>{{ item.status || "All" }}</span>
           <v-icon v-if="i > 0" size="10" class="pl-2" :color="item.color">
@@ -27,7 +27,7 @@
           hide-details
           outlined
           single-line
-          @keyup="getTutorList"
+          @keyup="getInterviewList"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -69,10 +69,6 @@
             }"
           />
         </template>
-        <!-- datetime -->
-        <template v-slot:[`item.datetime`]="{ item }">
-          <span>{{ item.time }}, {{ item.date }}</span>
-        </template>
 
         <!-- status -->
         <template v-slot:[`item.result`]="{ item }">
@@ -81,17 +77,28 @@
 
         <!-- action -->
         <template v-slot:[`item.action`]="{ item }">
-          <a
-            class="d-inline"
-            :href="
-              $router.resolve({
-                name: 'tutor_profile',
-                query: { tutor_table_id: encrypt(item.tutor_table_id) },
-              }).href
-            "
-          >
-            <TableDetailBtn></TableDetailBtn>
-          </a>
+          <div>
+            <div class="d-inline" @click="updateStatus(item, $keys.RESULT_SELECTED)">
+              <CustomBtn icon="mdi-check" color="success" />
+            </div>
+            <div class="d-inline" @click="updateStatus(item, $keys.RESULT_REJECTED)">
+              <CustomBtn icon="mdi-close" color="error" />
+            </div>
+            <div class="d-inline" @click="openResheduleDialog(item)">
+              <CustomBtn icon="mdi-calendar-refresh" color="info" />
+            </div>
+            <!-- <a
+              class="d-inline ml-n2"
+              :href="
+                $router.resolve({
+                  name: 'interview_details',
+                  params: { id: encrypt(item.id) },
+                }).href
+              "
+            >
+              <TableDetailBtn></TableDetailBtn>
+            </a> -->
+          </div>
         </template>
       </v-data-table>
       <v-pagination
@@ -99,9 +106,17 @@
         :length="total_page_count"
         :total-visible="7"
         class="custom-pagination"
-        @input="getTutorList"
+        @input="getInterviewList"
       ></v-pagination>
     </div>
+
+    <TutorInterviewDialog
+      :dialog="interview_dialog"
+      @update="getInterviewList()"
+      ref="interview_form"
+    ></TutorInterviewDialog>
+
+    <InterviewRatingDialog :dialog="ratingDialog" @update="getInterviewList()" />
   </div>
 </template>
 
@@ -110,6 +125,9 @@ export default {
   components: {
     AccountInfoCard: () => import("@/components/shared/table-components/AccountInfoCard"),
     TableDetailBtn: () => import("@/components/shared/buttons/TableDetailBtn"),
+    CustomBtn: () => import("@/components/shared/buttons/CustomBtn"),
+    TutorInterviewDialog: () => import("@/components/teacher/TutorInterviewDialog"),
+    InterviewRatingDialog: () => import("@/components/interview/InterviewRatingDialog"),
   },
   data() {
     return {
@@ -122,10 +140,10 @@ export default {
         { text: "Tutor ID", align: "start", value: "tutor_id", width: "120px" },
         { text: "Tutor info", align: "start", value: "name" },
         { text: "Interviewer", align: "start", value: "bda" },
-        { text: "Date ", value: "date", align: "center" },
-        { text: "time", value: "time", align: "center" },
+        { text: "Date ", value: "display_date", align: "center" },
+        { text: "time", value: "display_time", align: "center" },
         { text: "Result", value: "result", align: "center" },
-        { text: "", value: "action", align: "end", width: "150px" },
+        { text: "", value: "action", align: "end", width: "180px" },
       ],
       interview_status: this.$keys.RESULT_PENDING,
       interview_status_options: [
@@ -146,14 +164,23 @@ export default {
           color: "#EB5757",
         },
       ],
+      ratingDialog: {
+        flag: false,
+        action: "Interview Result",
+      },
+      interview_dialog: {
+        flag: false,
+        tutor_table_id: null,
+        action: "Reschedule Interview",
+      },
     };
   },
   created() {
-    this.getTutorList();
+    this.getInterviewList();
   },
   methods: {
     /* fetching shipment list */
-    getTutorList(is_cancel = true) {
+    getInterviewList(is_cancel = true) {
       const self = this;
       self.table_loading = true;
       let params = {
@@ -185,6 +212,23 @@ export default {
         finallyHandler,
         is_cancel
       );
+    },
+    openResheduleDialog(item) {
+      // prefill the form data
+      this.interview_dialog.tutor_table_id = item.tutor_table_id;
+      this.$refs.interview_form.form.bda = item.bda;
+      this.$refs.interview_form.form.date = item.date;
+      this.$refs.interview_form.form.time = item.time;
+      this.$refs.interview_form.form.is_online = item.is_online;
+      this.$refs.interview_form.form.meeting_url = item.meeting_url;
+      this.$refs.interview_form.form.special_concern = item.special_concern;
+      // open dialog
+      this.interview_dialog.flag = true;
+    },
+    updateStatus(item, result) {
+      this.ratingDialog.result = result;
+      this.ratingDialog.tutor_table_id = item.tutor_table_id;
+      this.ratingDialog.flag = true;
     },
   },
 };

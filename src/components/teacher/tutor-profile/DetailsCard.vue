@@ -1,8 +1,4 @@
 <style lang="scss" scoped>
-.field-wrapper {
-  margin-bottom: 8px;
-}
-
 .tutor-card .v-card {
   border-radius: 10px !important;
 }
@@ -10,27 +6,6 @@
 .card-divider {
   border: solid 1.5px !important;
   border-radius: 3px;
-}
-
-@media screen and (max-width: 1260px) {
-  .tutor-card {
-    label {
-      display: inline-block;
-      width: 40%;
-      vertical-align: top;
-    }
-
-    .text-1 {
-      display: inline-block;
-      width: 60%;
-      vertical-align: top;
-      margin-bottom: 0px;
-    }
-
-    .field-wrapper {
-      margin-bottom: 8px;
-    }
-  }
 }
 </style>
 <template>

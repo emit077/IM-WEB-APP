@@ -15,7 +15,6 @@ const keys = {
   ACCOUNT_ADMIN: "Admin",
   ACCOUNT_SUPER_ADMIN: "Super Admin",
 
-
   ACCOUNT_ADMISSION_COUNSELLOR: "Admission Counsellor",
   ACCOUNT_ACADEMIC_COUNSELLOR: "Academic Counsellor",
   ACCOUNT_ADMISSION_COORDINATOR: "Admission Coordinator",
@@ -103,6 +102,17 @@ const keys = {
   PAYOUT_STATUS_PENDING: "Pending",
   PAYOUT_STATUS_APPROVED: "Approved",
   PAYOUT_STATUS_REJECTED: "Rejected",
+
+  SESSION_STATUS : "session_status",
+  SESSION_PENDING : "Pending",
+  SESSION_REJECTED : "Rejected",
+  SESSION_APPROVED : "Approved",
+
+
+DEMO_SCHEDULED : "Scheduled",
+DEMO_RESCHEDULED : "Rescheduled",
+DEMO_SELECTED : "Selected",
+DEMO_REJECTED : "Rejected",
 
   WEEKDAYS_OPTION: [
     "Monday",

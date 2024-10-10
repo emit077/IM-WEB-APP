@@ -104,7 +104,7 @@ export default {
   async mounted() {
     // set the current location
     const loader = new Loader({
-      apiKey: "AIzaSyC_kd_VRTaoMWCvzx67MqTqqxa1R7AF51w",
+      apiKey: process.env.VUE_APP_GOOGLE_MAP_API_KEY,
       libraries: ["places", "geometry"],
     });
     loader
@@ -143,13 +143,18 @@ export default {
       const self = this;
       const map_config = {
         center: center,
-        zoom: this.zoom,
-        mapTypeId: "terrain",
-        scrollwheel: this.zoom_control, //false for stop
-        zoomControl: this.zoom_control, // false for stop
-        gestureHandling: this.zoom_control ? "" : "none",
+        zoom: 15,
+        mapTypeId: "roadmap",
+        scrollwheel: true, //false for stop
+        zoomControl: false, // false for stop
         isableDoubleClickZoom: this.zoom_control, // false to disbaled
+        clickableIcons: false,
+        fullscreenControl: false,
+        gestureHandling: "greedy",
+        mapTypeControl: false,
+        streetViewControl: false,
       };
+
       if (window.google.maps.Map)
         this.gMap = new window.google.maps.Map(
           document.getElementById("map"),

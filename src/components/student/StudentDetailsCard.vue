@@ -1,8 +1,4 @@
 <style lang="scss" scoped>
-.field-wrapper {
-  margin-bottom: 8px;
-}
-
 .student-card .v-card {
   border-radius: 10px !important;
 }
@@ -25,10 +21,6 @@
       width: 60%;
       vertical-align: top;
       margin-bottom: 0px;
-    }
-
-    .field-wrapper {
-      margin-bottom: 8px;
     }
   }
 }

@@ -1,16 +1,19 @@
 <style lang="scss" scoped>
 .card-bg {
   background-color: yellow;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-top: 20px;
   padding: 15px;
 }
 </style>
 <template>
-  <div :class="{
-    'profile_card-mobile': $vuetify.breakpoint.smAndDown,
-    'profile_card mx-5': $vuetify.breakpoint.mdAndUp,
-  }" class="card-bg">
+  <div
+    :class="{
+      'profile_card-mobile': $vuetify.breakpoint.smAndDown,
+      'profile_card mx-5': $vuetify.breakpoint.mdAndUp,
+    }"
+    class="card-bg"
+  >
     <div v-if="interview_data.result == $keys.RESULT_PENDING">
       <h3 class="text-center fc-primary mb-3">Interview Scheduled</h3>
       <v-row class="mx-0" justify="center">
@@ -28,29 +31,7 @@
           <b>{{ interview_data.interview_date }}, {{ interview_data.interview_time }}</b>
         </v-col>
       </v-row>
-      <div v-if="
-        [
-          $keys.ACCOUNT_SUPER_ADMIN,
-          $keys.ACCOUNT_ADMISSION_COUNSELLOR,
-          $keys.ACCOUNT_ACADEMIC_COUNSELLOR,
-          $keys.ACCOUNT_ADMIN,
-        ].includes($store.state.user.account_type)
-      " :class="{
-        'text-center mt-5 mb-n2': $vuetify.breakpoint.smAndDown,
-        'text-right': $vuetify.breakpoint.mdAndUp,
-      }">
-        <v-btn color="green" small class="mr-2" @click="ChangeInterviewStatus('Selected')">
-          <span style="color: #ffff">Select</span>
-        </v-btn>
-        <v-btn color="error" small class="mr-2" @click="ChangeInterviewStatus('Rejected')">
-          <span style="color: #ffff">Reject</span>
-        </v-btn>
-        <v-btn color="rgba(0, 121, 208, 1)" small @click="RescheduleInterview">
-          <span style="color: #ffff">{{ $keys.RE_SCHEDULE }}</span>
-        </v-btn>
-      </div>
     </div>
-
     <div v-if="interview_data.result == $keys.RESULT_SELECTED" class="text-center">
       <h3 class="text-center fc-primary mb-3">Interview Result</h3>
       <p>
@@ -59,17 +40,27 @@
         <span v-else>Tutor factory.</span>
         please accept the offer to start your contract with us.
       </p>
-      <v-btn color="success" small class="mt-3" v-if="[$keys.ACCOUNT_TEACHER].includes($store.state.user.account_type)"
-        @click="AcceptAgreement">
+      <v-btn
+        color="success"
+        small
+        class="mt-3"
+        v-if="[$keys.ACCOUNT_TEACHER].includes($store.state.user.account_type)"
+        @click="AcceptAgreement"
+      >
         <span style="color: #ffff"><b>Accept</b></span>
       </v-btn>
     </div>
     <div v-if="interview_data.result == $keys.RESULT_REJECTED">
       <h3 class="text-center fc-primary mb-3">Interview Result</h3>
-      <p class="error--text text-center fw-bold">Your profile has been rejected</p>
+      <p class="error--text text-center fw-bold">
+        We regret to inform you that your profile has not been selected.
+      </p>
     </div>
 
-    <TutorInterviewDialog :dialog="interview_dialog" @update="$emit('update')"></TutorInterviewDialog>
+    <TutorInterviewDialog
+      :dialog="interview_dialog"
+      @update="$emit('update')"
+    ></TutorInterviewDialog>
     <TutorAgreement :dialog="agreement_dialog" @update="$emit('update')"></TutorAgreement>
   </div>
 </template>
@@ -83,11 +74,6 @@ export default {
   props: ["interview_data", "tutor_table_id"],
   data() {
     return {
-      interview_dialog: {
-        flag: false,
-        tutor_table_id: null,
-        action: "Re-Schedule Interview",
-      },
       agreement_dialog: {
         flag: false,
         tutor_table_id: null,
@@ -99,33 +85,6 @@ export default {
     };
   },
   methods: {
-    RescheduleInterview() {
-      this.interview_dialog.flag = true;
-      this.interview_dialog.tutor_table_id = this.tutor_table_id;
-    },
-    ChangeInterviewStatus(result) {
-      const self = this;
-      self.btn_loader = true;
-      var form = new URLSearchParams();
-      form.append("tutor_table_id", self.tutor_table_id);
-      form.append("interview_result", result);
-
-      const successHandler = (response) => {
-        if (response.data.success) {
-          this.$emit("update");
-        }
-      };
-      const finallyHandler = () => { };
-      this.request_POST(
-        self,
-        this.$urls.INTERVIEW_RESULT,
-        form,
-        successHandler,
-        null,
-        null,
-        finallyHandler
-      );
-    },
     AcceptAgreement() {
       this.agreement_dialog.flag = true;
       this.agreement_dialog.tutor_table_id = this.tutor_table_id;

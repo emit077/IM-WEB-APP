@@ -93,7 +93,6 @@
           ></GoogleMap>
         </v-col>
       </v-row>
-      {{ form }}
       <!--  action btn -->
       <div class="text-center mt-5 px-3">
         <v-btn
@@ -133,7 +132,9 @@ export default {
     btn_loader: false,
     pin_loading: false,
   }),
-  created() {},
+  created() {
+    console.log();
+  },
   methods: {
     /* save profile details*/
     Save() {

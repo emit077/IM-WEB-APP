@@ -10,13 +10,34 @@
       }"
       :account_type="$keys.ACCOUNT_TEACHER"
     ></UserProfileCard>
-
-    <InterviewDetails
-      v-if="tutor_data.contract_status == $keys.INTERVIEW_SCHEDULED"
-      :interview_data="interview_data"
-      :tutor_table_id="tutor_table_id"
-      @update="getTutorDetails"
-    ></InterviewDetails>
+    <!-- only for tutor  -->
+    <div
+      v-if="[$keys.ACCOUNT_TEACHER].includes($store.state.user.account_type)"
+      class="mt-5"
+    >
+      <InterviewDetails
+        v-if="tutor_data.contract_status == $keys.INTERVIEW_SCHEDULED"
+        :interview_data="interview_data"
+        :tutor_table_id="tutor_table_id"
+        @update="getTutorDetails"
+      ></InterviewDetails>
+    </div>
+    <!-- rating -->
+    <div
+      v-else-if="
+        [
+          $keys.ACCOUNT_SUPER_ADMIN,
+          $keys.ACCOUNT_ADMISSION_COUNSELLOR,
+          $keys.ACCOUNT_ACADEMIC_COUNSELLOR,
+          $keys.ACCOUNT_ADMISSION_COORDINATOR,
+          $keys.ACCOUNT_RECRUITMENT_MANAGER,
+        ].includes($store.state.user.account_type)
+      "
+      class="mt-5"
+    >
+      <TutorInterviewRating :interview_data="interview_data"></TutorInterviewRating>
+    </div>
+    <!-- rating end  -->
 
     <v-row class="mt-4 mx-0">
       <v-col class="px-0" cols="12" md="12">
@@ -49,6 +70,8 @@ export default {
     UserProfileCard: () => import("../../components/shared/UserProfileCard"),
     DetailsCard: () => import("../../components/teacher/tutor-profile/DetailsCard"),
     InterviewDetails: () => import("../../components/teacher/InterviewDetails"),
+    TutorInterviewRating: () =>
+      import("@/components/teacher/tutor-profile/TutorInterviewRating"),
     ProfileSettings: () => import("../../components/shared/ProfileSettings"),
   },
   data() {

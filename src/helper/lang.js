@@ -173,6 +173,7 @@ export default {
   CATEGORY: "Category",
   RAISE_TICKET: "Raise Ticket",
   COLLECT_REGISTRATION_PAYMENT: "Collect Registration Fee",
+  MODE:"Mode",
 
   ACCOUNT_HOLDER_NAME: "Account Holder Name",
   ACCOUNT_NUMBER: "Account Number",
@@ -200,6 +201,10 @@ export default {
   SELECT: "Select",
   RESCHEDULE: "Re Schedule",
 
+  INTERVIEWER:"Interviewer",
+  INTERVIEWER_NAME:"Interviewer name",
+  INTERVIEWER_MOBILE:"Interviewer mobile",
+
   BANK_ACCOUNT_DETAILS: "Bank Account Details",
   WITHDRAW: "Withdraw",
   DEDUCTION: "Deduction",
@@ -216,6 +221,22 @@ export default {
   },
 
   RAISE_WITHDRAW_REQUEST: "Raise Withdraw Request",
+
+
+  PERSONAL_INTERVIEW:"Personal Interview",
+  ACADEMIC_KNOWLEDGE:"Academic Knowledge",
+  TEACHING_SKILLS:"Teaching Skills",
+  DEMO_SESSION:"Demo Session",
+  OFFICE_REMARKS:"Office Remarks",
+
+  RATING_DESCRIPTION:{
+    1:"Poor",
+    2:"Below Average",
+    3:"Average",
+    4:"Good",
+    5:"Excellent",
+  },
+  
 
   /* search place holders */
   SUBSCRIPTION_PLAN_SEARCH:
@@ -237,8 +258,6 @@ export default {
   IM: {
     CONTACT_NUMBER: "+91 7389563564",
   },
-
-
 
   LOACTION_PERMISSION_MSG: "Location permission is required to open the map.",
   LOACTION_PERMISSION_BTN_TEXT: "Click here to grant location access",

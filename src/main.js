@@ -13,6 +13,7 @@ import project from './helper/project-config.js'
 import GlobalMixins from "./helper/mixins/global-mixin"
 import VueGeolocation from 'vue-browser-geolocation';
 
+
 import VueCryptojs from 'vue-cryptojs'
 import VueTypedJs from 'vue-typed-js'
 

@@ -1,16 +1,16 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog.flag" width="1000">
+    <v-dialog v-model="dialog.flag" width="600">
       <v-card>
-        <v-card-title class="text-h5 grey lighten-2">
+        <v-card-title class="text-h5 grey lighten-2 justify-center">
           {{ dialog.action }}
         </v-card-title>
         <v-form ref="interview_form" lazy-validation @submit.prevent="yesHandler()">
-          <v-card-text class="py-5" style="min-height: 150px">
-            <v-row class="mb-6">
-              <v-col cols="12" md="12">
+          <v-card-text class="" style="min-height: 150px">
+            <v-row class="">
+              <v-col cols="12" md="12" class="pa-5">
                 <v-combobox
-                  v-model="bda_table_id"
+                  v-model="form.bda"
                   :items="bda_list"
                   label="Select Interviewer"
                   :search-input.sync="bda_search_query"
@@ -18,9 +18,11 @@
                   item-text="name"
                   item-value="id"
                   dense
+                  outlined
                   persistent-hint
                   @keyup="getBDAList(true)"
                   @focus="getBDAList"
+                  hide-details
                 >
                   <template v-slot:item="{ index, item }">
                     <div>
@@ -30,8 +32,7 @@
                   </template>
                 </v-combobox>
               </v-col>
-
-              <v-col cols="12" md="4">
+              <v-col cols="12" md="6" class="px-5 pt-5">
                 <v-menu
                   v-model="date_menu"
                   :close-on-content-click="false"
@@ -42,32 +43,34 @@
                 >
                   <template v-slot:activator="{ on }">
                     <v-text-field
-                      v-model="date"
+                      v-model="form.date"
                       v-on="on"
                       :label="$lang.DATE"
                       :rules="[$rules.REQUIRED_FIELD($lang.DATE)]"
                       dense
-                      prepend-icon="mdi-calendar"
+                      outlined
+                      prepend-inner-icon="mdi-calendar"
                       readonly
                       required
+                      hide-details
                       @click:prepend-inner="date_menu = !date_menu"
                     >
                     </v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="date"
+                    v-model="form.date"
                     :min="today"
                     @input="date_menu = false"
                   ></v-date-picker>
                 </v-menu>
               </v-col>
-              <v-col cols="12" md="4">
+              <v-col cols="12" md="6" class="px-5 pt-5">
                 <v-menu
                   ref="menu"
                   v-model="menu2"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  :return-value.sync="time"
+                  :return-value.sync="form.time"
                   transition="scale-transition"
                   offset-y
                   max-width="290px"
@@ -75,54 +78,60 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="time"
+                      v-model="form.time"
                       label="Time"
-                      prepend-icon="mdi-clock-time-four-outline"
+                      prepend-inner-icon="mdi-clock-time-four-outline"
                       readonly
                       v-bind="attrs"
                       :rules="[$rules.REQUIRED_FIELD('Time')]"
                       v-on="on"
                       dense
+                      outlined
+                      hide-details
                     ></v-text-field>
                   </template>
                   <v-time-picker
                     v-if="menu2"
-                    v-model="time"
+                    v-model="form.time"
                     full-width
-                    @click:minute="$refs.menu.save(time)"
+                    @click:minute="$refs.menu.save(form.time)"
                   ></v-time-picker>
                 </v-menu>
               </v-col>
-              <v-col cols="12" md="4" class="">
+              <v-col cols="12" md="3" class="px-5">
                 <v-checkbox
-                  v-model="is_online"
-                  class="d-inline-flex ml-2"
+                  v-model="form.is_online"
                   dense
+                  outlined
                   label="Is Online"
                   hide-details
                 ></v-checkbox>
               </v-col>
+              <v-col cols="12" md="12" class="px-5">
+                <v-textarea
+                  label="Meeting URL"
+                  v-model="form.meeting_url"
+                  :rules="[$rules.REQUIRED_FIELD('Meeting URL')]"
+                  dense
+                  outlined
+                  rows="2"
+                  v-if="form.is_online"
+                  hide-details
+                ></v-textarea
+              ></v-col>
+              <v-col cols="12" md="12" class="pa-5">
+                <v-textarea
+                  :label="$lang.SPECIAL_CONCERN"
+                  v-model="form.special_concern"
+                  dense
+                  outlined
+                  rows="2"
+                  hide-details
+                ></v-textarea>
+              </v-col>
             </v-row>
-
-            <v-textarea
-              label="Meeting URL"
-              v-model="url"
-              :rules="[$rules.REQUIRED_FIELD('Meeting URL')]"
-              filled
-              dense
-              rows="2"
-              v-if="is_online"
-            ></v-textarea>
-
-            <v-textarea
-              :label="$lang.SPECIAL_CONCERN"
-              v-model="special_concern"
-              filled
-              dense
-              rows="2"
-            ></v-textarea>
           </v-card-text>
-          <!--        <v-divider></v-divider>-->
+          <!-- <v-divider></v-divider> -->
           <v-card-actions class="just ify-end py-4">
             <v-spacer></v-spacer>
             <v-btn color="primary" outlined width="100" @click="dialog.flag = false"
@@ -148,17 +157,20 @@ export default {
   },
   data: () => ({
     date_menu: false,
+    menu2: false,
     today: new Date().toISOString().substr(0, 10),
-    date: new Date().toISOString().substr(0, 10),
     bda_list: [],
     bda_search_query: "",
-    bda_table_id: null,
-    special_concern: "",
-    url: "",
-    menu2: false,
-    time: null,
-    is_online: false,
+    form: {
+      bda: null,
+      date: new Date().toISOString().substr(0, 10),
+      time: null,
+      is_online: true,
+      meeting_url: "",
+      special_concern: "",
+    },
   }),
+  created() {},
   methods: {
     /* perform action */
     yesHandler() {
@@ -167,12 +179,12 @@ export default {
       self.btn_loader = true;
       var form = new URLSearchParams();
       form.append("tutor_table_id", self.dialog.tutor_table_id);
-      form.append("bda_table_id", self.bda_table_id.id);
-      form.append("date", self.date);
-      form.append("time", self.time);
-      form.append("special_concern", self.special_concern);
-      form.append("is_online", self.is_online ? "Y" : "N");
-      if (self.is_online) form.append("meeting_url", self.url);
+      form.append("bda_table_id", self.form.bda.id);
+      form.append("date", self.form.date);
+      form.append("time", self.form.time);
+      form.append("special_concern", self.form.special_concern);
+      form.append("is_online", self.form.is_online ? "Y" : "N");
+      if (self.form.is_online) form.append("meeting_url", self.form.url);
 
       const successHandler = (response) => {
         if (response.data.success) {

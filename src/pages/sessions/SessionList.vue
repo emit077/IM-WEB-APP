@@ -90,12 +90,18 @@
         <template v-slot:[`item.duration`]="{ item }">
           <p>{{ item.duration + item.time_extended }}Min</p>
         </template>
+        <!-- session status -->
+        <template v-slot:[`item.session_status`]="{ item }">
+          <span :class="'status-' + item.session_status.toLowerCase()">
+            {{ item.session_status }}
+          </span>
+        </template>
 
         <template v-slot:[`item.action`]="{ item, index }">
-          <!-- duration info -->
+          <!-- Action btns -->
           <div
             v-if="
-              !item.is_approved &&
+              item.session_status == $keys.SESSION_PENDING &&
               [
                 $keys.ACCOUNT_SUPER_ADMIN,
                 $keys.ACCOUNT_ADMIN,
@@ -105,15 +111,12 @@
             "
             class="d-inline"
           >
-            <v-btn
-              color="success"
-              :loading="confirmation_dialog_data.flag"
-              class="py-2 px-2"
-              @click="openDialog(item, index)"
-              style="height: auto !important"
-            >
-              <small>{{ $lang.APPROVE }}</small>
-            </v-btn>
+            <span @click="openDialog(item, index, $keys.SESSION_APPROVED)">
+              <CustomBtn icon="mdi-check-bold" color="success" title="Approve" />
+            </span>
+            <span @click="openDialog(item, index, $keys.SESSION_REJECTED)">
+              <CustomBtn icon="mdi-close-thick" btn_type="error" title="Reject" />
+            </span>
           </div>
           <!--  -->
           <div
@@ -156,6 +159,7 @@ export default {
     TableDetailBtn: () => import("../../components/shared/buttons/TableDetailBtn"),
     TableFilterBtn: () => import("@/components/shared/buttons/TableFilterBtn"),
     FilterDialog: () => import("../../components/sessions/SessionFilters"),
+    CustomBtn: () => import("@/components/shared/buttons/CustomBtn"),
   },
   watch: {
     selected: {
@@ -183,6 +187,7 @@ export default {
         { text: "Date", align: "start", value: "date" },
         { text: "Time", align: "start", value: "start_time" },
         { text: "Duration", align: "start", value: "duration" },
+        { text: "Status", align: "center", value: "session_status" },
         { text: "", value: "action", align: "end", width: "" },
       ],
       filter_dialog: {
@@ -222,6 +227,7 @@ export default {
     // /*Open filter dialog*/
     openFilterDialog() {
       this.filter_data.class_id_list = this.session_filter_data.class_id_list;
+      this.filter_data.session_status = this.session_filter_data.session_status;
       this.filter_data.filter_date_from = this.session_filter_data.filter_date_from;
       this.filter_data.filter_date_to = this.session_filter_data.filter_date_to;
       this.filter_data.flag = true;
@@ -234,14 +240,15 @@ export default {
         page_number: this.page_number,
         page_length: this.$keys.PAGE_LENGTH,
         search_query: this.search_query,
+        session_status: this.session_filter_data.session_status,
         class_id_list: JSON.stringify(this.session_filter_data.class_id_list),
         filter_date_from: this.session_filter_data.filter_date_from,
         filter_date_to: this.session_filter_data.filter_date_to,
       };
       const successHandler = (response) => {
         if (response.data.success) {
-          self.session_list = response.data.session_list;
           self.total_page_count = response.data.total_page_count;
+          self.session_list = response.data.session_list;
         }
       };
       const finallyHandler = () => {
@@ -289,11 +296,12 @@ export default {
       this.dialog.flag = true;
     },
     /* Open confirmation dialog for status toggle */
-    openDialog(item, index) {
-      this.confirmation_dialog_data.title = "Approve Session?";
-      this.confirmation_dialog_data.message = "Are you sure want approve this session";
+    openDialog(item, index, session_status) {
+      this.confirmation_dialog_data.title = session_status + " Session?";
+      this.confirmation_dialog_data.message = `Are you sure want ${session_status.toLowerCase()} this session`;
       this.confirmation_dialog_data.session_table_id = item.id;
       this.confirmation_dialog_data.index = index;
+      this.confirmation_dialog_data.session_status = session_status;
       this.confirmation_dialog_data.flag = true;
     },
     /* aprove the session data*/
@@ -302,9 +310,12 @@ export default {
       self.confirmation_dialog_data.btn_loader = true;
       var form = new FormData();
       form.append("session_table_id", this.confirmation_dialog_data.session_table_id);
+      form.append("session_status", this.confirmation_dialog_data.session_status);
       const successHandler = (response) => {
         if (response.data.success) {
-          this.session_list[this.confirmation_dialog_data.index].is_approved = true;
+          this.session_list[
+            this.confirmation_dialog_data.index
+          ].session_status = this.confirmation_dialog_data.session_status;
           this.confirmation_dialog_data.flag = false;
         }
       };

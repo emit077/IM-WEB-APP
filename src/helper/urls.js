@@ -78,6 +78,7 @@ export default {
   TUTOR_AUTOCOMPLETE: "/tutor/autocomplete/",
   SCHEDULE_INTERVIEW: "/tutor/schedule-interview/",
   INTERVIEW_RESULT: "/tutor/interview-result/",
+  INTERVIEW_DETAILS: "/tutor/interview-details/",
   START_AGREEMENT: "/tutor/start-agreement/",
   UPLOAD_DOCUMENT: "/tutor/upload-document/",
   GET_TUTOR_DOCUMENTS: "/tutor/get-document/",
