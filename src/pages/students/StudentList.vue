@@ -38,7 +38,7 @@
           </div>
         </div>
       </v-col>
-      <v-col class="text-right mt-4" cols="12" md="4" v-if="$project.NAME == $keys.TF">
+      <v-col class="text-right mt-4" cols="12" md="4">
         <span
           @click="downloadExcel"
           :style="{
