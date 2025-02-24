@@ -78,14 +78,16 @@
         <!-- action -->
         <template v-slot:[`item.action`]="{ item }">
           <div>
-            <div class="d-inline" @click="updateStatus(item, $keys.RESULT_SELECTED)">
-              <CustomBtn icon="mdi-check" color="success" />
-            </div>
-            <div class="d-inline" @click="updateStatus(item, $keys.RESULT_REJECTED)">
-              <CustomBtn icon="mdi-close" color="error" />
-            </div>
-            <div class="d-inline" @click="openResheduleDialog(item)">
-              <CustomBtn icon="mdi-calendar-refresh" color="info" />
+            <div v-if="item.result == $keys.RESULT_PENDING">
+              <div class="d-inline" @click="updateStatus(item, $keys.RESULT_SELECTED)">
+                <CustomBtn icon="mdi-check" color="success" />
+              </div>
+              <div class="d-inline" @click="updateStatus(item, $keys.RESULT_REJECTED)">
+                <CustomBtn icon="mdi-close" color="error" />
+              </div>
+              <div class="d-inline" @click="openResheduleDialog(item)">
+                <CustomBtn icon="mdi-calendar-refresh" color="info" />
+              </div>
             </div>
             <!-- <a
               class="d-inline ml-n2"
