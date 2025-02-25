@@ -1,14 +1,10 @@
 export default {
   /* Url configuration for all env*/
-  TF: {
-    PRODUCTION: "https://api.tutorsfactory.com/api",
-    STAGING: "https://dev.api.tutorsfactory.com/api",
-    LOCAL: "http://localhost:8000/api",
-  },
   IM: {
     PRODUCTION: "https://api.indianmentors.in/api",
     STAGING: "https://dev.api.indianmentors.in/api",
-    LOCAL: "http://localhost:8000/api",
+    // LOCAL: "http://localhost:8000/api",
+    LOCAL: "http://13.234.152.205/api",
   },
 
   LOGIN: "/users/login/",
@@ -120,7 +116,6 @@ export default {
   ADD_BANK_DETAILS: "/payouts/add/bank-details/",
   CREATE_PAYOUT: "/payouts/create/payout/",
   UPDATE_WALLET_AMOUNT: "/payouts/update/wallet-amount/",
-
 
   LIST_WITHDRAWAL_REQUEST: "/payouts/list/withdrawal-request/",
   RAISE_WITHDRAWAL_REQUEST: "/payouts/raise/withdrawal-request/",
