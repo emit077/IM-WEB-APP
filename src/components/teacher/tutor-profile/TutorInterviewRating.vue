@@ -9,7 +9,7 @@
     <v-card class="mb-5 pa-3 tutor-rating-card elevation-2">
       <v-card-text>
         <v-row no-gutter class="justify-center">
-          <v-col class="text-center justify-center" cols="6" md="2">
+          <v-col class="text-center justify-center" cols="6" md="3">
             <div class="d-flex justify-center">
               <div>
                 <star-rating
@@ -24,7 +24,7 @@
               </div>
             </div>
           </v-col>
-          <v-col class="text-center justify-center" cols="6" md="2">
+          <v-col class="text-center justify-center" cols="6" md="3">
             <div class="d-flex justify-center">
               <div>
                 <star-rating
@@ -39,7 +39,7 @@
               </div>
             </div>
           </v-col>
-          <v-col class="text-center justify-center" cols="6" md="2">
+          <v-col class="text-center justify-center" cols="6" md="3">
             <div class="d-flex justify-center">
               <div>
                 <star-rating
@@ -54,7 +54,7 @@
               </div>
             </div>
           </v-col>
-          <v-col class="text-center justify-center" cols="6" md="2">
+          <v-col class="text-center justify-center" cols="6" md="3">
             <div class="d-flex justify-center">
               <div>
                 <star-rating
@@ -69,19 +69,14 @@
               </div>
             </div>
           </v-col>
-          <v-col class="text-center justify-center" cols="6" md="2">
-            <div class="d-flex justify-center">
-              <div>
-                <star-rating
-                  v-model="interview_data.office_remarks"
-                  :star-size="30"
-                  :show-rating="false"
-                  read-only
-                ></star-rating>
-                <label class="primary--text font-weight-bold">{{
-                  $lang.OFFICE_REMARKS
-                }}</label>
-              </div>
+          <v-col class="text-center justify-center" cols="12" md="12">
+            <v-divider />
+            <div class="justify-center mt-2">
+              <p class="text-caption">({{ $lang.OFFICE_REMARKS }})</p>
+              <label class="primary--text font-weight-bold">
+                <!-- {{ $lang.OFFICE_REMARKS }} -->
+                {{ interview_data.office_remarks }}
+              </label>
             </div>
           </v-col>
         </v-row>

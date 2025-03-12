@@ -91,13 +91,19 @@ tr td {
                     {{ $lang.OFFICE_REMARKS }}
                   </td>
                   <td>
-                    <star-rating
+                    <v-textarea
                       v-model="office_remarks"
-                      :star-size="30"
-                      rounded-corners
-                      :show-rating="false"
-                      @rating-selected="validate"
-                    ></star-rating>
+                      :placeholder="$lang.OFFICE_REMARKS"
+                      :rules="[$rules.REQUIRED_FIELD($lang.OFFICE_REMARKS)]"
+                      class="mt-1"
+                      dense
+                      outlined
+                      single-line
+                      rows="2"
+                      style="height: 100%"
+                      hide-details
+                      @keypress="validate"
+                    ></v-textarea>
                   </td>
                 </tr>
               </tbody>
@@ -142,7 +148,7 @@ export default {
       academic_knowledge: 0,
       teaching_skills: 0,
       demo_session: 0,
-      office_remarks: 0,
+      office_remarks: "",
       is_validated: false,
       btn_loader: false,
     };
@@ -155,7 +161,7 @@ export default {
       if (this.academic_knowledge < 1) this.is_validated = false;
       if (this.teaching_skills < 1) this.is_validated = false;
       if (this.demo_session < 1) this.is_validated = false;
-      if (this.office_remarks < 1) this.is_validated = false;
+      if (this.office_remarks.length < 1) this.is_validated = false;
       return this.is_validated;
     },
     changeInterviewStatus(result) {

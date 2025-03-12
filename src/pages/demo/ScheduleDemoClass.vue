@@ -242,7 +242,7 @@
           <!-- interested data  -->
           <div>
             <h4>{{ $lang.INTERESTED_TUTOR }}</h4>
-            <v-list v-if="interested_tutors.length > 0">
+            <v-list v-if="interested_tutors.length > 0" class="bg-transparent">
               <v-list-item-group color="primary">
                 <v-list-item
                   v-for="(tutor, i) in interested_tutors"
@@ -273,7 +273,7 @@
           <!-- suggetion data -->
           <div class="mt-10">
             <h4>{{ $lang.TUTOR_SUGGESTION }}</h4>
-            <v-list v-if="suggetion_list.length > 0">
+            <v-list v-if="suggetion_list.length > 0" class="bg-transparent">
               <v-list-item-group color="primary">
                 <v-list-item
                   v-for="(tutor, i) in suggetion_list"
