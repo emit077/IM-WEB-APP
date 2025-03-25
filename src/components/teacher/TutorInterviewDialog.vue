@@ -184,7 +184,7 @@ export default {
       form.append("time", self.form.time);
       form.append("special_concern", self.form.special_concern);
       form.append("is_online", self.form.is_online ? "Y" : "N");
-      if (self.form.is_online) form.append("meeting_url", self.form.url);
+      if (self.form.is_online) form.append("meeting_url", self.form.meeting_url);
 
       const successHandler = (response) => {
         if (response.data.success) {
