@@ -9,7 +9,7 @@
           :key="i"
           :class="interview_status == item.status ? 'elevation-5 ' : ''"
           class="px-3 py-1 d-inline mr-2 border-r-30 cursor-pointer"
-          @click="(interview_status = item.status), getInterviewList()"
+          @click="(interview_status = item.status), getCounsellingList()"
         >
           <span>{{ item.status || "All" }}</span>
           <v-icon v-if="i > 0" size="10" class="pl-2" :color="item.color">
@@ -21,13 +21,13 @@
       <v-col cols="12" md="6">
         <v-text-field
           v-model="search_query"
-          :placeholder="$lang.TUTOR_SEARCH"
+          :placeholder="$lang.STUDENT_SEARCH"
           append-icon="mdi-magnify"
           dense
           hide-details
           outlined
           single-line
-          @keyup="getInterviewList"
+          @keyup="getCounsellingList"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -37,22 +37,22 @@
         :disable-sort="true"
         :headers="headers"
         :hide-default-footer="true"
-        :items="tutor_list"
+        :items="counselling_list"
         :items-per-page="$keys.PAGE_LENGTH"
         :loading="table_loading"
         class="elevation-1 custom-header-bg custom-table-body"
         item-key="tutor_table_id"
       >
         <!-- tutor details -->
-        <template v-slot:[`item.name`]="{ item }">
+        <template v-slot:[`item.student`]="{ item }">
           <AccountInfoCard
-            :type="$keys.ACCOUNT_TEACHER"
+            :type="$keys.ACCOUNT_STUDENT"
             :account_details="{
-              tutor_table_id: item.id,
-              name: item.tutor.name,
-              mobile: item.tutor.mobile,
-              email: item.tutor.email,
-              gender: item.tutor.gender,
+              student_table_id: item.student.student_table_id,
+              name: item.student.name,
+              mobile: item.student.mobile,
+              email: item.student.email,
+              gender: item.student.gender,
             }"
           />
         </template>
@@ -71,14 +71,16 @@
         </template>
 
         <!-- status -->
-        <template v-slot:[`item.result`]="{ item }">
-          <span :class="'status-' + item.result.toLowerCase()">{{ item.result }}</span>
+        <template v-slot:[`item.counselling_status`]="{ item }">
+          <span :class="'status-' + item.counselling_status.toLowerCase()">{{
+            item.counselling_status
+          }}</span>
         </template>
 
         <!-- action -->
         <template v-slot:[`item.action`]="{ item }">
           <div>
-            <div v-if="item.result == $keys.RESULT_PENDING">
+            <div v-if="item.counselling_status == $keys.COUNSELLING_SCHEDULED">
               <div class="d-inline" @click="updateStatus(item, $keys.RESULT_SELECTED)">
                 <CustomBtn icon="mdi-check" color="success" />
               </div>
@@ -108,17 +110,20 @@
         :length="total_page_count"
         :total-visible="7"
         class="custom-pagination"
-        @input="getInterviewList"
+        @input="getCounsellingList"
       ></v-pagination>
     </div>
 
-    <TutorInterviewDialog
-      :dialog="interview_dialog"
-      @update="getInterviewList()"
-      ref="interview_form"
-    ></TutorInterviewDialog>
+    <CounsellingDialog
+      :dialog="counselling_dialog"
+      @update="getCounsellingList()"
+      ref="counselling_form"
+    ></CounsellingDialog>
 
-    <InterviewRatingDialog :dialog="ratingDialog" @update="getInterviewList()" />
+    <CounsellingFormDialog
+      :dialog="counselling_form_dialog"
+      @update="getCounsellingList()"
+    />
   </div>
 </template>
 
@@ -128,61 +133,65 @@ export default {
     AccountInfoCard: () => import("@/components/shared/table-components/AccountInfoCard"),
     TableDetailBtn: () => import("@/components/shared/buttons/TableDetailBtn"),
     CustomBtn: () => import("@/components/shared/buttons/CustomBtn"),
-    TutorInterviewDialog: () => import("@/components/teacher/TutorInterviewDialog"),
-    InterviewRatingDialog: () => import("@/components/interview/InterviewRatingDialog"),
+    CounsellingDialog: () => import("../../components/student/CounsellingDialog"),
+    CounsellingFormDialog: () =>
+      import("@/components/counselling/CounsellingFormDialog.vue"),
   },
   data() {
     return {
       total_page_count: 1,
       page_number: 1,
       table_loading: false,
-      tutor_list: [],
+      counselling_list: [],
       search_query: "",
       headers: [
-        { text: "Tutor ID", align: "start", value: "tutor_id", width: "120px" },
-        { text: "Tutor info", align: "start", value: "name" },
-        { text: "Interviewer", align: "start", value: "bda" },
+        {
+          text: "Student info",
+          align: "start",
+          value: "student",
+        },
+        { text: "Counsellor", align: "start", value: "bda" },
         { text: "Date ", value: "display_date", align: "center" },
         { text: "time", value: "display_time", align: "center" },
-        { text: "Result", value: "result", align: "center" },
+        { text: "Status", value: "counselling_status", align: "center" },
         { text: "", value: "action", align: "end", width: "180px" },
       ],
-      interview_status: this.$keys.RESULT_PENDING,
+      interview_status: this.$keys.COUNSELLING_SCHEDULED,
       interview_status_options: [
         {
           status: "All",
           color: "#fffff",
         },
         {
-          status: this.$keys.RESULT_PENDING,
+          status: this.$keys.COUNSELLING_SCHEDULED,
           color: "#F2994A",
         },
         {
-          status: this.$keys.RESULT_SELECTED,
+          status: this.$keys.COUNSELLING_COMPLETED,
           color: "#27AE60",
         },
         {
-          status: this.$keys.RESULT_REJECTED,
+          status: this.$keys.COUNSELLING_CANCELLED,
           color: "#EB5757",
         },
       ],
-      ratingDialog: {
+      counselling_form_dialog: {
         flag: false,
-        action: "Interview Result",
+        action: "Counselling Result",
       },
-      interview_dialog: {
+      counselling_dialog: {
         flag: false,
-        tutor_table_id: null,
-        action: "Reschedule Interview",
+        student_table_id: null,
+        action: "Reschedule Counselling",
       },
     };
   },
   created() {
-    this.getInterviewList();
+    this.getCounsellingList();
   },
   methods: {
     /* fetching shipment list */
-    getInterviewList(is_cancel = true) {
+    getCounsellingList(is_cancel = true) {
       const self = this;
       self.table_loading = true;
       let params = {
@@ -195,7 +204,7 @@ export default {
 
       const successHandler = (response) => {
         if (response.data.success) {
-          self.tutor_list = response.data.tutor_list;
+          self.counselling_list = response.data.counselling_list;
           self.total_page_count = response.data.total_page_count;
         }
       };
@@ -206,7 +215,7 @@ export default {
 
       self.request_GET(
         self,
-        self.$urls.INTERVIEW_LIST,
+        self.$urls.STUDENT_COUNSELLING_LIST,
         params,
         successHandler,
         null,
@@ -217,20 +226,17 @@ export default {
     },
     openResheduleDialog(item) {
       // prefill the form data
-      this.interview_dialog.tutor_table_id = item.tutor_table_id;
-      this.$refs.interview_form.form.bda = item.bda;
-      this.$refs.interview_form.form.date = item.date;
-      this.$refs.interview_form.form.time = item.time;
-      this.$refs.interview_form.form.is_online = item.is_online;
-      this.$refs.interview_form.form.meeting_url = item.meeting_url;
-      this.$refs.interview_form.form.special_concern = item.special_concern;
+      this.counselling_dialog.student_table_id = item.student.student_table_id;
+      this.$refs.counselling_form.form.bda = item.bda;
+      this.$refs.counselling_form.form.date = item.date;
+      this.$refs.counselling_form.form.time = item.time;
       // open dialog
-      this.interview_dialog.flag = true;
+      this.counselling_dialog.flag = true;
     },
     updateStatus(item, result) {
-      this.ratingDialog.result = result;
-      this.ratingDialog.tutor_table_id = item.tutor_table_id;
-      this.ratingDialog.flag = true;
+      this.counselling_form_dialog.result = result;
+      this.counselling_form_dialog.tutor_table_id = item.tutor_table_id;
+      this.counselling_form_dialog.flag = true;
     },
   },
 };

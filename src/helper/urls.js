@@ -65,6 +65,10 @@ export default {
   STUDENT_LIST: "/student/list/",
   STUDENT_EXPORT: "/student/export/",
 
+  STUDENT_SCHEDULE_COUNSELLING: "/student/schedule-counselling/",
+  STUDENT_COUNSELLING_DETAILS: "/student/counselling-details/",
+  STUDENT_COUNSELLING_LIST: "/student/counselling-list/",
+
   /*Tutor api*/
   GET_TUTOR_DETAILS: "/tutor/get/details/",
   GET_TUTOR_LIST: "/tutor/list/",

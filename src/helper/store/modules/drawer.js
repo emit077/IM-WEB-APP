@@ -82,7 +82,18 @@ export const state = {
       ],
     },
     {
-      title: "Interviews",
+      title: "Counsellings",
+      url: { name: "counselling_list" },
+      is_active_tab: false,
+      access_by: [
+        keys.SUPER_ADMIN,
+        keys.ADMIN,
+        keys.ACCOUNT_ADMISSION_COUNSELLOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
+      ],
+    },
+    {
+      title: "Interview",
       url: { name: "interview_list" },
       is_active_tab: false,
       access_by: [
@@ -160,7 +171,8 @@ export const state = {
         keys.SUPER_ADMIN,
         keys.ADMIN,
         keys.ACCOUNT_ADMISSION_COUNSELLOR,
-        keys.ACCOUNT_ADMISSION_COORDINATOR,
+        // keys.ACCOUNT_ADMISSION_COORDINATOR,
+        keys.ACCOUNT_ACADEMIC_COUNSELLOR,
       ],
     },
     {

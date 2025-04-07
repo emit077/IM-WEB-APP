@@ -103,16 +103,15 @@ const keys = {
   PAYOUT_STATUS_APPROVED: "Approved",
   PAYOUT_STATUS_REJECTED: "Rejected",
 
-  SESSION_STATUS : "session_status",
-  SESSION_PENDING : "Pending",
-  SESSION_REJECTED : "Rejected",
-  SESSION_APPROVED : "Approved",
+  SESSION_STATUS: "session_status",
+  SESSION_PENDING: "Pending",
+  SESSION_REJECTED: "Rejected",
+  SESSION_APPROVED: "Approved",
 
-
-DEMO_SCHEDULED : "Scheduled",
-DEMO_RESCHEDULED : "Rescheduled",
-DEMO_SELECTED : "Selected",
-DEMO_REJECTED : "Rejected",
+  DEMO_SCHEDULED: "Scheduled",
+  DEMO_RESCHEDULED: "Rescheduled",
+  DEMO_SELECTED: "Selected",
+  DEMO_REJECTED: "Rejected",
 
   WEEKDAYS_OPTION: [
     "Monday",
@@ -138,6 +137,11 @@ DEMO_REJECTED : "Rejected",
     "School",
     "College",
   ],
+
+  COUNSELLING_SCHEDULED: "Scheduled",
+  COUNSELLING_RESCHEDULED: "Rescheduled",
+  COUNSELLING_COMPLETED: "Completed",
+  COUNSELLING_CANCELLED: "Cancelled",
 };
 
 export default keys;

@@ -99,6 +99,19 @@
           }}</span>
         </template>
 
+        <!-- counselling_status -->
+        <template v-slot:[`item.counselling_status`]="{ item }">
+          <v-btn
+            color="primary"
+            outlined
+            class="px-2"
+            small
+            @click="scheduleCounselling(item.id)"
+          >
+            Schedule Counselling
+          </v-btn>
+        </template>
+
         <!-- action btn -->
         <template v-slot:[`item.action`]="{ item }">
           <a
@@ -137,6 +150,7 @@
 
     <StudentFilters :filter_data="filter_data" @filter="getStudentList" />
     <ToggleStatusDialog :data="dialog" @yes="toggleAccountStatus" @no="getStudentList" />
+    <CounsellingDialog :dialog="counselling_dialog" />
   </div>
 </template>
 
@@ -152,6 +166,7 @@ export default {
     TableDetailBtn: () => import("../../components/shared/buttons/TableDetailBtn"),
     TableFilterBtn: () => import("@/components/shared/buttons/TableFilterBtn"),
     StudentFilters: () => import("../../components/student/StudentFilters"),
+    CounsellingDialog: () => import("../../components/student/CounsellingDialog"),
     ExportExcelBtn: () => import("@/components/shared/buttons/ExportExcelBtn"),
   },
 
@@ -176,6 +191,12 @@ export default {
           width: "120px",
         },
         { text: "Blocked", value: "action1", align: "end", width: "40px" },
+        {
+          text: "Counselling",
+          value: "counselling_status",
+          align: "end",
+          width: "100px",
+        },
         { text: "", value: "action", align: "end", width: "100px" },
       ],
       filter_dialog: {
@@ -196,6 +217,11 @@ export default {
         filter_date_to: "",
         filter_count: 0,
         gender: "",
+      },
+      counselling_dialog: {
+        flag: false,
+        student_table_id: null,
+        action: "Schedule Counselling",
       },
     };
   },
@@ -318,6 +344,11 @@ export default {
           `?filter_date_from=${this.student_filter_data.filter_date_from}&filter_date_to=${this.student_filter_data.filter_date_to}`;
         window.open(URL, "_blank");
       }
+    },
+    /* schedule counselling*/
+    scheduleCounselling(student_table_id) {
+      this.counselling_dialog.flag = true;
+      this.counselling_dialog.student_table_id = student_table_id;
     },
   },
 };

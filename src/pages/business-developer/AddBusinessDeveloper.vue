@@ -395,7 +395,19 @@ export default {
       const successHandler = (response) => {
         if (response.data.success) {
           this.$refs.student_edit_form.reset();
-          this.$router.push({ name: "bda_list" });
+
+          if (
+            [
+              self.$keys.ACCOUNT_ACADEMIC_COUNSELLOR,
+              self.$keys.ACCOUNT_ADMISSION_COORDINATOR,
+              self.$keys.ACCOUNT_RECRUITMENT_MANAGER,
+              this.$keys.ACCOUNT_ADMISSION_COORDINATOR,
+            ].includes(this.$store.getters.getUsertype)
+          ) {
+            this.$router.push({ name: "bda_profile" });
+          } else {
+            this.$router.push({ name: "bda_list" });
+          }
         }
       };
       const finallyHandler = () => {

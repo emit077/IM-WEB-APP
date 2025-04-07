@@ -229,6 +229,20 @@ const routes = [
             /* webpackChunkName: "students" */ "@/pages/students/EditStudentProfile"
           ),
       },
+      {
+        path: "/counselling/",
+        name: "counselling_list",
+        meta: {
+          requiresAuth: true,
+          title: "Counsellings",
+          show_back_btn: true,
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "students" */ "@/pages/counselling/CounsellingList"
+          ),
+      },
+
       //tutor
 
       {
@@ -492,7 +506,9 @@ const routes = [
         name: "demo_list",
         meta: { requiresAuth: true, title: "Demo", show_back_btn: false },
         component: () =>
-          import(/* webpackChunkName: "DemoList" */ "../../pages/demo/DemoList"),
+          import(
+            /* webpackChunkName: "DemoList" */ "../../pages/demo/DemoList"
+          ),
       },
       {
         path: "/demo/schedule/",
@@ -546,7 +562,6 @@ const routes = [
             /* webpackChunkName: "InterviewList" */ "../../pages/interviews/InterviewList.vue"
           ),
       },
-     
     ],
   },
 ];

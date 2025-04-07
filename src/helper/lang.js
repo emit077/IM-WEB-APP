@@ -173,7 +173,7 @@ export default {
   CATEGORY: "Category",
   RAISE_TICKET: "Raise Ticket",
   COLLECT_REGISTRATION_PAYMENT: "Collect Registration Fee",
-  MODE:"Mode",
+  MODE: "Mode",
 
   ACCOUNT_HOLDER_NAME: "Account Holder Name",
   ACCOUNT_NUMBER: "Account Number",
@@ -201,9 +201,9 @@ export default {
   SELECT: "Select",
   RESCHEDULE: "Re Schedule",
 
-  INTERVIEWER:"Interviewer",
-  INTERVIEWER_NAME:"Interviewer name",
-  INTERVIEWER_MOBILE:"Interviewer mobile",
+  INTERVIEWER: "Interviewer",
+  INTERVIEWER_NAME: "Interviewer name",
+  INTERVIEWER_MOBILE: "Interviewer mobile",
 
   BANK_ACCOUNT_DETAILS: "Bank Account Details",
   WITHDRAW: "Withdraw",
@@ -222,21 +222,28 @@ export default {
 
   RAISE_WITHDRAW_REQUEST: "Raise Withdraw Request",
 
+  PERSONAL_INTERVIEW: "Personal Interview",
+  ACADEMIC_KNOWLEDGE: "Academic Knowledge",
+  TEACHING_SKILLS: "Teaching Skills",
+  DEMO_SESSION: "Demo Session",
+  OFFICE_REMARKS: "Office Remarks",
 
-  PERSONAL_INTERVIEW:"Personal Interview",
-  ACADEMIC_KNOWLEDGE:"Academic Knowledge",
-  TEACHING_SKILLS:"Teaching Skills",
-  DEMO_SESSION:"Demo Session",
-  OFFICE_REMARKS:"Office Remarks",
+  READING: "Reading",
+  WRITING: "Writing",
+  LISTENING: "Listening",
+  COMMUNICATION: "Communication",
+  PRESENCE_OF_MIND: "Presence of mind",
+  SUBJECTIVE_KNOWLEDGE: "Subjective knowledge",
+  GOOD_HABITS: "Good habits",
+  BAD_HABITS: "Bad habits",
 
-  RATING_DESCRIPTION:{
-    1:"Poor",
-    2:"Below Average",
-    3:"Average",
-    4:"Good",
-    5:"Excellent",
+  RATING_DESCRIPTION: {
+    1: "Poor",
+    2: "Below Average",
+    3: "Average",
+    4: "Good",
+    5: "Excellent",
   },
-  
 
   /* search place holders */
   SUBSCRIPTION_PLAN_SEARCH:
@@ -261,5 +268,4 @@ export default {
 
   LOACTION_PERMISSION_MSG: "Location permission is required to open the map.",
   LOACTION_PERMISSION_BTN_TEXT: "Click here to grant location access",
-
 };
