@@ -68,6 +68,7 @@ export default {
   STUDENT_SCHEDULE_COUNSELLING: "/student/schedule-counselling/",
   STUDENT_COUNSELLING_DETAILS: "/student/counselling-details/",
   STUDENT_COUNSELLING_LIST: "/student/counselling-list/",
+  STUDENT_COUNSELLING_RESULT: "/student/counselling-result/",
 
   /*Tutor api*/
   GET_TUTOR_DETAILS: "/tutor/get/details/",

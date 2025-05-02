@@ -5,11 +5,11 @@
       <v-col cols="12" md="6">
         <!-- status filter -->
         <div
-          v-for="(item, i) in interview_status_options"
+          v-for="(item, i) in counselling_status_options"
           :key="i"
-          :class="interview_status == item.status ? 'elevation-5 ' : ''"
+          :class="counselling_status == item.status ? 'elevation-5 ' : ''"
           class="px-3 py-1 d-inline mr-2 border-r-30 cursor-pointer"
-          @click="(interview_status = item.status), getCounsellingList()"
+          @click="(counselling_status = item.status), getCounsellingList()"
         >
           <span>{{ item.status || "All" }}</span>
           <v-icon v-if="i > 0" size="10" class="pl-2" :color="item.color">
@@ -81,10 +81,16 @@
         <template v-slot:[`item.action`]="{ item }">
           <div>
             <div v-if="item.counselling_status == $keys.COUNSELLING_SCHEDULED">
-              <div class="d-inline" @click="updateStatus(item, $keys.RESULT_SELECTED)">
+              <div
+                class="d-inline"
+                @click="updateCounsellingStatus(item, $keys.COUNSELLING_COMPLETED)"
+              >
                 <CustomBtn icon="mdi-check" color="success" />
               </div>
-              <div class="d-inline" @click="updateStatus(item, $keys.RESULT_REJECTED)">
+              <div
+                class="d-inline"
+                @click="updateCounsellingStatus(item, $keys.COUNSELLING_CANCELLED)"
+              >
                 <CustomBtn icon="mdi-close" color="error" />
               </div>
               <div class="d-inline" @click="openResheduleDialog(item)">
@@ -156,8 +162,8 @@ export default {
         { text: "Status", value: "counselling_status", align: "center" },
         { text: "", value: "action", align: "end", width: "180px" },
       ],
-      interview_status: this.$keys.COUNSELLING_SCHEDULED,
-      interview_status_options: [
+      counselling_status: this.$keys.COUNSELLING_SCHEDULED,
+      counselling_status_options: [
         {
           status: "All",
           color: "#fffff",
@@ -176,6 +182,7 @@ export default {
         },
       ],
       counselling_form_dialog: {
+        counselling_table_id: null,
         flag: false,
         action: "Counselling Result",
       },
@@ -199,8 +206,8 @@ export default {
         page_length: this.$keys.PAGE_LENGTH,
         search_query: this.search_query,
       };
-      if (this.interview_status != "All")
-        params["interview_status"] = this.interview_status;
+      if (this.counselling_status != "All")
+        params["counselling_status"] = this.counselling_status;
 
       const successHandler = (response) => {
         if (response.data.success) {
@@ -233,9 +240,9 @@ export default {
       // open dialog
       this.counselling_dialog.flag = true;
     },
-    updateStatus(item, result) {
-      this.counselling_form_dialog.result = result;
-      this.counselling_form_dialog.tutor_table_id = item.tutor_table_id;
+    updateCounsellingStatus(item, counselling_status) {
+      this.counselling_form_dialog.counselling_status = counselling_status;
+      this.counselling_form_dialog.counselling_table_id = item.id;
       this.counselling_form_dialog.flag = true;
     },
   },

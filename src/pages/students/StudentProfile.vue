@@ -30,6 +30,7 @@
       </v-col>
     </v-row>
     <ProfileSettings :settings="settings"></ProfileSettings>
+    <CounsellingCard />
 
     <ProfileDialog
       v-if="$store.state.user.account_type == $keys.ACCOUNT_STUDENT"
@@ -45,6 +46,7 @@ export default {
     StudentDetailsCard: () => import("../../components/student/StudentDetailsCard"),
     ProfileDialog: () => import("../../components/student/ProfileDialog"),
     DemoDetails: () => import("../../components/student/DemoDetails"),
+    CounsellingCard: () => import("@/components/counselling/CounsellingCard.vue"),
     ProfileSettings: () => import("../../components/shared/ProfileSettings"),
   },
   data() {
