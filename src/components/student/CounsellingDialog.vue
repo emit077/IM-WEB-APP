@@ -12,9 +12,9 @@
                 <v-combobox
                   v-model="form.bda"
                   :items="bda_list"
-                  label="Select Interviewer"
+                  label="Select Counsellor"
                   :search-input.sync="bda_search_query"
-                  :rules="[$rules.REQUIRED_FIELD('Interviewer')]"
+                  :rules="[$rules.REQUIRED_FIELD('Counsellor')]"
                   item-text="name"
                   item-value="id"
                   dense
