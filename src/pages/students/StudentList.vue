@@ -107,9 +107,15 @@
             class="px-2"
             small
             @click="scheduleCounselling(item.id)"
+            v-if="!item.counselling_status"
           >
-            Schedule Counselling
+            Schedule
           </v-btn>
+          <div v-else>
+            <span :class="'status-' + item.counselling_status.toLowerCase()">{{
+              item.counselling_status
+            }}</span>
+          </div>
         </template>
 
         <!-- action btn -->
@@ -190,13 +196,13 @@ export default {
           align: "center",
           width: "120px",
         },
-        { text: "Blocked", value: "action1", align: "end", width: "40px" },
         {
           text: "Counselling",
           value: "counselling_status",
-          align: "end",
+          align: "center",
           width: "100px",
         },
+        { text: "Blocked", value: "action1", align: "end", width: "40px" },
         { text: "", value: "action", align: "end", width: "100px" },
       ],
       filter_dialog: {

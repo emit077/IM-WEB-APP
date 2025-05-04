@@ -168,6 +168,23 @@ tr td {
             </tbody>
           </table>
         </v-card-text>
+
+        <!-- <v-divider></v-divider> -->
+        <v-card-actions class="just ify-end py-4">
+          <v-spacer></v-spacer>
+          <v-btn color="primary" outlined width="100" @click="dialog.flag = false"
+            >{{ $lang.CANCEL }}
+          </v-btn>
+          <v-btn
+            color="primary"
+            width="100"
+            :loading="btn_loader"
+            :disabled="!is_validated"
+            @click="updateCounsellingStatus()"
+            >{{ $lang.CONTINUE }}
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
       </v-card>
     </v-dialog>
   </div>

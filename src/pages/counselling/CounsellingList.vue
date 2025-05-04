@@ -87,12 +87,12 @@
               >
                 <CustomBtn icon="mdi-check" color="success" />
               </div>
-              <div
+              <!-- <div
                 class="d-inline"
                 @click="updateCounsellingStatus(item, $keys.COUNSELLING_CANCELLED)"
               >
                 <CustomBtn icon="mdi-close" color="error" />
-              </div>
+              </div> -->
               <div class="d-inline" @click="openResheduleDialog(item)">
                 <CustomBtn icon="mdi-calendar-refresh" color="info" />
               </div>

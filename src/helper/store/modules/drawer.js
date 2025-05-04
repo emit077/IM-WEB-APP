@@ -82,7 +82,7 @@ export const state = {
       ],
     },
     {
-      title: "Counsellings",
+      title: "Counselling",
       url: { name: "counselling_list" },
       is_active_tab: false,
       access_by: [
