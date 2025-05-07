@@ -237,6 +237,9 @@ export default {
       this.$refs.counselling_form.form.bda = item.bda;
       this.$refs.counselling_form.form.date = item.date;
       this.$refs.counselling_form.form.time = item.time;
+      this.$refs.counselling_form.form.is_online = item.is_online;
+      this.$refs.counselling_form.form.special_concern = item.special_concern;
+      this.$refs.counselling_form.form.meeting_url = item.meeting_url;
       // open dialog
       this.counselling_dialog.flag = true;
     },

@@ -98,7 +98,29 @@
                   ></v-time-picker>
                 </v-menu>
               </v-col>
-              <!-- <v-col cols="12" md="12" class="pa-5">
+
+              <v-col cols="12" md="3" class="px-5">
+                <v-checkbox
+                  v-model="form.is_online"
+                  dense
+                  outlined
+                  label="Is Online"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" md="12" class="px-5">
+                <v-textarea
+                  label="Meeting URL"
+                  v-model="form.meeting_url"
+                  :rules="[$rules.REQUIRED_FIELD('Meeting URL')]"
+                  dense
+                  outlined
+                  rows="2"
+                  v-if="form.is_online"
+                  hide-details
+                ></v-textarea
+              ></v-col>
+              <v-col cols="12" md="12" class="pa-5">
                 <v-textarea
                   :label="$lang.SPECIAL_CONCERN"
                   v-model="form.special_concern"
@@ -107,7 +129,7 @@
                   rows="2"
                   hide-details
                 ></v-textarea>
-              </v-col> -->
+              </v-col>
             </v-row>
           </v-card-text>
           <!-- <v-divider></v-divider> -->
@@ -161,7 +183,9 @@ export default {
       form.append("bda_table_id", self.form.bda.id);
       form.append("date", self.form.date);
       form.append("time", self.form.time);
-      // form.append("special_concern", self.form.special_concern);
+      form.append("special_concern", self.form.special_concern);
+      form.append("is_online", self.form.is_online ? "Y" : "N");
+      if (self.form.is_online) form.append("meeting_url", self.form.meeting_url);
 
       const successHandler = (response) => {
         if (response.data.success) {
